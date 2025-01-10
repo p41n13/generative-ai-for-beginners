@@ -1,152 +1,151 @@
-# Getting Started with this course
+# Початок роботи з цим курсом
 
-We are very excited for you to start this course and see what you get inspired to build with Generative AI!
+Ми дуже раді, що ви починаєте цей курс, і з нетерпінням чекаємо побачити, що надихне вас створити за допомогою Генеративного ШІ!
 
-To ensure your success, this page outlines setup steps, technical requirements, and where to get help if needed.
+Щоб забезпечити ваш успіх, ця сторінка описує кроки налаштування, технічні вимоги та де отримати допомогу, якщо вона знадобиться.
 
-## Setup Steps
+## Кроки налаштування
 
-To start taking this course, you will need to complete the following steps.
+Щоб почати проходження цього курсу, вам потрібно виконати наступні кроки.
 
-### 1. Fork this Repo
+### 1. Зробіть форк репозиторію
 
-[Fork this entire repo](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) to your own GitHub account to be able to change any code and complete the challenges. You can also [star (🌟) this repo](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) to find it and related repos easier.
+[Зробіть форк всього репозиторію](https://github.com/microsoft/generative-ai-for-beginners/fork) у свій власний обліковий запис GitHub, щоб мати можливість змінювати будь-який код і виконувати завдання. Ви також можете [позначити репозиторій зірочкою (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars), щоб легше знаходити його та пов'язані репозиторії.
 
-### 2. Create a codespace
+### 2. Створіть codespace
 
-To avoid any dependency issues when running the code, we recommend running this course in a [GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst).
+Щоб уникнути будь-яких проблем із залежностями під час запуску коду, ми рекомендуємо запускати цей курс у [GitHub Codespaces](https://github.com/features/codespaces).
 
-This can be created by selecting the `Code` option on your forked version of this repo and selecting the **Codespaces** option.
+Його можна створити, вибравши опцію `Code` у вашій форкнутій версії цього репозиторію та вибравши опцію **Codespaces**.
 
-![Dialog showing buttons to create a codespace](./images/who-will-pay.webp?WT.mc_id=academic-105485-koreyst)
+![Діалогове вікно з кнопками для створення codespace](./images/who-will-pay.webp)
 
-### 3. Storing Your API Keys
+### 3. Зберігання ваших API-ключів
 
-Keeping your API keys safe and secure is important when building any type of application. We recommend not to store any API keys directly in your code. Committing those details to a public repository could result in security issues and even unwanted costs if used by a bad actor.
+Зберігання ваших API-ключів у безпеці важливе при створенні будь-якого типу застосунку. Ми рекомендуємо не зберігати API-ключі безпосередньо у вашому коді. Збереження цих даних у публічному репозиторії може призвести до проблем безпеки та навіть небажаних витрат, якщо вони будуть використані зловмисником.
 
-## How to Run locally on your computer
+## Як запустити локально на вашому комп'ютері
 
-To run the code locally on your computer, you would need to have some version of [Python installed](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
+Щоб запустити код локально на вашому комп'ютері, вам потрібно мати встановлену якусь версію [Python](https://www.python.org/downloads/).
 
-To then use the repository, you need to clone it:
+Щоб використовувати репозиторій, вам потрібно його клонувати:
 
 ```shell
 git clone https://github.com/microsoft/generative-ai-for-beginners
 cd generative-ai-for-beginners
 ```
 
-Once you have everything checked out, you can get started!
+Після того, як ви все перевірили, можете починати!
 
-### Installing Miniconda (optional step)
+### Встановлення Miniconda (необов'язковий крок)
 
-[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) is a lightweight installer for installing [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), Python, as well as a few packages.
-Conda itself is a package manager, that makes it easy to setup and switch between different Python [**virtual environments**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) and packages. It also comes in handy for installing packages that are not available via `pip`.
+[Miniconda](https://conda.io/en/latest/miniconda.html) - це легкий інсталятор для встановлення [Conda](https://docs.conda.io/en/latest), Python, а також декількох пакетів.
+Conda сама по собі є менеджером пакетів, який полегшує налаштування та перемикання між різними Python [**віртуальними середовищами**](https://docs.python.org/3/tutorial/venv.html) та пакетами. Вона також стає в нагоді для встановлення пакетів, які недоступні через `pip`.
 
-You can follow the [MiniConda installation guide](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) to set it up.
+Ви можете слідувати [інструкції з встановлення MiniConda](https://docs.anaconda.com/free/miniconda/#quick-command-line-install) для налаштування.
 
-With Miniconda installed, you need to clone the [repository](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) (if you haven't already)
+Після встановлення Miniconda вам потрібно клонувати [репозиторій](https://github.com/microsoft/generative-ai-for-beginners/fork) (якщо ви ще цього не зробили)
 
-Next, you need to create a virtual environment. To do this with Conda, go ahead and create a new environment file (_environment.yml_). If you are following along using Codespaces, create this within the `.devcontainer` directory, thus `.devcontainer/environment.yml`.
+Далі вам потрібно створити віртуальне середовище. Щоб зробити це з Conda, створіть новий файл середовища (_environment.yml_). Якщо ви використовуєте Codespaces, створіть його в директорії `.devcontainer`, тобто `.devcontainer/environment.yml`.
 
-Go ahead and populate your environment file with the snippet below:
+Заповніть ваш файл середовища наступним фрагментом:
 
 ```yml
-name: <environment-name>
+name: <назва-середовища>
 channels:
  - defaults
 dependencies:
-- python=<python-version>
+- python=<версія-python>
 - openai
 - python-dotenv
 - azure-ai-inference
-
 ```
 
-The environment file specifies the dependencies we need. `<environment-name>` refers to the name you would like to use for your Conda environment, and `<python-version>` is the version of Python you would like to use, for example, `3` is the latest major version of Python.
+Файл середовища визначає потрібні залежності. `<назва-середовища>` - це назва, яку ви хочете використовувати для вашого Conda-середовища, а `<версія-python>` - це версія Python, яку ви хочете використовувати, наприклад, `3` - це остання основна версія Python.
 
-With that done, you can go ahead and create your Conda environment by running the commands below in your command line/terminal
+Після цього ви можете створити ваше Conda-середовище, виконавши наступні команди у командному рядку/терміналі
 
 ```bash
-conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer sub path applies to only Codespace setups
+conda env create --name ai4beg --file .devcontainer/environment.yml # підшлях .devcontainer застосовується тільки для налаштувань Codespace
 conda activate ai4beg
 ```
 
-Refer to the [Conda environments guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) if you run into any issues.
+Зверніться до [посібника з середовищ Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html), якщо у вас виникнуть проблеми.
 
-### Using Visual Studio Code with the Python support extension
+### Використання Visual Studio Code з розширенням підтримки Python
 
-We recommend using the [Visual Studio Code (VS Code)](http://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) editor with the [Python support extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) installed for this course. This is, however, more of a recommendation and not a definite requirement
+Ми рекомендуємо використовувати редактор [Visual Studio Code (VS Code)](http://code.visualstudio.com/) із встановленим [розширенням підтримки Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) для цього курсу. Це, однак, більше рекомендація, а не обов'язкова вимога.
 
-> **Note**: By opening the course repository in VS Code, you have the option to set the project up within a container. This is because of the [special `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) directory found within the course repository. More on this later.
+> **Примітка**: Відкривши репозиторій курсу у VS Code, ви маєте можливість налаштувати проект у контейнері. Це можливо завдяки [спеціальній директорії `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers), яка знаходиться в репозиторії курсу. Більше про це пізніше.
 
-> **Note**: Once you clone and open the directory in VS Code, it will automatically suggest you install a Python support extension.
+> **Примітка**: Після клонування та відкриття директорії у VS Code, він автоматично запропонує вам встановити розширення підтримки Python.
 
-> **Note**: If VS Code suggests you re-open the repository in a container, decline this request in order to use the locally installed version of Python.
+> **Примітка**: Якщо VS Code пропонує вам повторно відкрити репозиторій у контейнері, відхиліть цей запит, щоб використовувати локально встановлену версію Python.
 
-### Using Jupyter in the Browser
+### Використання Jupyter у браузері
 
-You can also work on the project using the [Jupyter environment](https://jupyter.org?WT.mc_id=academic-105485-koreyst) right within your browser. Both classic Jupyter and [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) provide quite a pleasant development environment with features such as auto-completion, code highlighting, etc.
+Ви також можете працювати над проектом, використовуючи [середовище Jupyter](https://jupyter.org) прямо у вашому браузері. Як класичний Jupyter, так і [Jupyter Hub](https://jupyter.org/hub) забезпечують досить приємне середовище розробки з такими функціями, як автодоповнення, підсвічування коду тощо.
 
-To start Jupyter locally, head over to the terminal/command line, navigate to the course directory, and execute:
+Щоб запустити Jupyter локально, перейдіть до терміналу/командного рядка, перейдіть до директорії курсу та виконайте:
 
 ```bash
 jupyter notebook
 ```
 
-or
+або
 
 ```bash
 jupyterhub
 ```
 
-This will start a Jupyter instance and the URL to access it will be shown within the command line window.
+Це запустить екземпляр Jupyter, і URL для доступу до нього буде показано у вікні командного рядка.
 
-Once you access the URL, you should see the course outline and be able to navigate to any `*.ipynb` file. For example, `08-building-search-applications/python/oai-solution.ipynb`.
+Після доступу до URL ви повинні побачити структуру курсу і мати можливість переходити до будь-якого файлу `*.ipynb`. Наприклад, `08-building-search-applications/python/oai-solution.ipynb`.
 
-### Running in a container
+### Запуск у контейнері
 
-An alternative to setting everything up on your computer or Codespace is to use a [container](https://en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst). The special `.devcontainer` folder within the course repository makes it possible for VS Code to set up the project within a container. Outside of Codespaces, this will require the installation of Docker, and quite frankly, it involves a bit of work, so we recommend this only to those with experience working with containers.
+Альтернативою налаштуванню всього на вашому комп'ютері або Codespace є використання [контейнера](https://en.wikipedia.org/wiki/Containerization_(computing)). Спеціальна папка `.devcontainer` в репозиторії курсу дозволяє VS Code налаштувати проект у контейнері. За межами Codespaces це вимагатиме встановлення Docker і, чесно кажучи, передбачає певну роботу, тому ми рекомендуємо це тільки тим, хто має досвід роботи з контейнерами.
 
-One of the best ways to keep your API keys secure when using GitHub Codespaces is by using Codespace Secrets. Please follow the [Codespaces secrets management](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) guide to learn more about this.
+Один з найкращих способів зберегти ваші API-ключі в безпеці при використанні GitHub Codespaces - це використання Секретів Codespace. Будь ласка, дотримуйтесь [посібника з управління секретами Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces), щоб дізнатися більше про це.
 
-## Lessons and Technical Requirements
+## Уроки та технічні вимоги
 
-The course has 6 concept lessons and 6 coding lessons.
+Курс має 6 концептуальних уроків та 6 уроків з програмування.
 
-For the coding lessons, we are using the Azure OpenAI Service. You will need access to the Azure OpenAI service and an API key to run this code. You can apply to get access by [completing this application](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst).
+Для уроків з програмування ми використовуємо Azure OpenAI Service. Вам потрібен буде доступ до служби Azure OpenAI та API-ключ для запуску цього коду. Ви можете подати заявку на отримання доступу, [заповнивши цю форму](https://azure.microsoft.com/products/ai-services/openai-service).
 
-While you wait for your application to be processed, each coding lesson also includes a `README.md` file where you can view the code and outputs.
+Поки ви чекаєте на обробку вашої заявки, кожен урок з програмування також включає файл `README.md`, де ви можете переглянути код та результати.
 
-## Using the Azure OpenAI Service for the first time
+## Перше використання служби Azure OpenAI
 
-If this is your first time working with the Azure OpenAI service, please follow this guide on how to [create and deploy an Azure OpenAI Service resource.](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst)
+Якщо це ваше перше знайомство зі службою Azure OpenAI, будь ласка, дотримуйтесь цього посібника про те, як [створити та розгорнути ресурс служби Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
 
-## Using the OpenAI API for the first time
+## Перше використання OpenAI API
 
-If this is your first time working with the OpenAI API, please follow the guide on how to [create and use the Interface.](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst)
+Якщо це ваше перше знайомство з OpenAI API, будь ласка, дотримуйтесь посібника про те, як [створити та використовувати Інтерфейс](https://platform.openai.com/docs/quickstart?context=python).
 
-## Meet Other Learners
+## Зустрічайте інших учнів
 
-We have created channels in our official [AI Community Discord server](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) for meeting other learners. This is a great way to network with other like-minded entrepreneurs, builders, students, and anyone looking to level up in Generative AI.
+Ми створили канали в нашому офіційному [Discord-сервері спільноти ШІ](https://aka.ms/genai-discord) для зустрічі з іншими учнями. Це чудовий спосіб познайомитися з іншими однодумцями-підприємцями, розробниками, студентами та всіма, хто прагне підвищити свій рівень у Генеративному ШІ.
 
-[![Join discord channel](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
+[![Приєднатися до каналу discord](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord)
 
-The project team will also be on this Discord server to help any learners.
+Команда проекту також буде присутня на цьому Discord-сервері, щоб допомагати учням.
 
-## Contribute
+## Зробіть внесок
 
-This course is an open-source initiative. If you see areas of improvement or issues, please create a [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) or log a [GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst).
+Цей курс є ініціативою з відкритим кодом. Якщо ви бачите області для покращення або проблеми, будь ласка, створіть [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls) або зареєструйте [GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues).
 
-The project team will be tracking all contributions. Contributing to open source is an amazing way to build your career in Generative AI.
+Команда проекту буде відслідковувати всі внески. Внесок у проекти з відкритим кодом - це чудовий спосіб побудувати свою кар'єру в Генеративному ШІ.
 
-Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to and actually do, grant us the rights to use your contribution. For details, visit [CLA, Contributor License Agreement website](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst).
+Більшість внесків вимагають від вас погодитися з Угодою про ліцензію учасника (CLA), яка декларує, що ви маєте право та фактично надаєте нам права на використання вашого внеску. Для деталей відвідайте [веб-сайт CLA, Угоди про ліцензію учасника](https://cla.microsoft.com).
 
-Important: when translating text in this repo, please ensure that you do not use machine translation. We will verify translations via the community, so please only volunteer for translations in languages where you are proficient.
+Важливо: при перекладі тексту в цьому репозиторії, будь ласка, переконайтеся, що ви не використовуєте машинний переклад. Ми будемо перевіряти переклади через спільноту, тому, будь ласка, викликайтесь на переклади тільки тими мовами, якими ви володієте професійно.
 
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repositories using our CLA.
+Коли ви надсилаєте pull request, CLA-бот автоматично визначить, чи потрібно вам надати CLA і відповідно оформить PR (наприклад, позначка, коментар). Просто дотримуйтесь інструкцій, наданих ботом. Вам потрібно буде зробити це тільки один раз для всіх репозиторіїв, що використовують нашу CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst). For more information read the Code of Conduct FAQ or contact [Email opencode](opencode@microsoft.com) with any additional questions or comments.
+Цей проект прийняв [Кодекс поведінки Microsoft Open Source](https://opensource.microsoft.com/codeofconduct/). Для отримання додаткової інформації прочитайте FAQ Кодексу поведінки або зв'яжіться з [opencode@microsoft.com](mailto:opencode@microsoft.com) з будь-якими додатковими питаннями чи коментарями.
 
-## Let's Get Started
+## Давайте почнемо
 
-Now that you have completed the needed steps to complete this course, let's get started by getting an [introduction to Generative AI and LLMs](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst).
+Тепер, коли ви виконали необхідні кроки для проходження цього курсу, давайте почнемо з [введення в Генеративний ШІ та LLM](../01-introduction-to-genai/README.md).
