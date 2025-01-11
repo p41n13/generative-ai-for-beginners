@@ -1,137 +1,133 @@
-# Setup Your Dev Environment
+# Налаштування середовища розробки
 
-We setup this repository and course with a [development container](https://containers.dev?WT.mc_id=academic-105485-koreyst) that has a Universal runtime that can support Python3, .NET, Node.js and Java development. The related configuration is defined in the `devcontainer.json` file located in the `.devcontainer/` folder at the root of this repository.
+Ми налаштували цей репозиторій та курс з [контейнером розробки](https://containers.dev), який має універсальне середовище виконання, що підтримує розробку на Python3, .NET, Node.js та Java. Відповідна конфігурація визначена у файлі `devcontainer.json`, розташованому в папці `.devcontainer/` в корені цього репозиторію.
 
-To activate the dev container, launch it in [GitHub Codespaces](https://docs.github.com/en/codespaces/overview?WT.mc_id=academic-105485-koreyst) (for a cloud-hosted runtime) or in [Docker Desktop](https://docs.docker.com/desktop/?WT.mc_id=academic-105485-koreyst) (for a local device-hosted runtime). Read [this documentation](https://code.visualstudio.com/docs/devcontainers/containers?WT.mc_id=academic-105485-koreyst) for more details on how dev containers work within VS Code.  
+Щоб активувати контейнер розробки, запустіть його в [GitHub Codespaces](https://docs.github.com/en/codespaces/overview) (для хмарного середовища виконання) або в [Docker Desktop](https://docs.docker.com/desktop/) (для локального середовища виконання). Прочитайте [цю документацію](https://code.visualstudio.com/docs/devcontainers/containers) для отримання додаткової інформації про те, як працюють контейнери розробки в VS Code.
 
-> [!TIP]  
-> We recommend using GitHub Codespaces for a quick start with minimal effort. It provides a generous [free usage quota](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts?WT.mc_id=academic-105485-koreyst) for personal accounts. Configure [timeouts](https://docs.github.com/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces?WT.mc_id=academic-105485-koreyst) to stop or delete inactive codespaces to maximize your quota usage.
+> [!ПОРАДА]
+> Ми рекомендуємо використовувати GitHub Codespaces для швидкого старту з мінімальними зусиллями. Він надає щедру [безкоштовну квоту](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts) для персональних облікових записів. Налаштуйте [таймаути](https://docs.github.com/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces) для зупинки або видалення неактивних codespaces, щоб максимально використати вашу квоту.
 
+## 1. Виконання завдань
 
-## 1. Executing Assignments
+Кожен урок матиме _необов'язкові_ завдання, які можуть бути надані однією або кількома мовами програмування, включаючи: Python, .NET/C#, Java та JavaScript/TypeScript. Цей розділ надає загальні вказівки щодо виконання цих завдань.
 
-Each lesson will have _optional_ assignments that may be provided in one or more programming languages including: Python, .NET/C#, Java and JavaScript/TypeScript. This section provides general guidance related to executing those assignments.
+### 1.1 Завдання на Python
 
-### 1.1 Python Assignments
+Завдання Python надаються або як програми (файли `.py`), або як Jupyter notebooks (файли `.ipynb`).
+- Щоб запустити ноутбук, відкрийте його у Visual Studio Code, потім натисніть _Вибрати ядро_ (вгорі праворуч) і виберіть показану опцію Python 3 за замовчуванням. Тепер ви можете _Запустити все_ для виконання ноутбука.
+- Щоб запустити Python-програми з командного рядка, дотримуйтесь специфічних для завдання інструкцій, щоб вибрати правильні файли та надати необхідні аргументи.
 
-Python assignments are provided either as applications (`.py` files) or Jupyter notebooks (`.ipynb` files). 
-- To run the notebook, open it in Visual Studio Code then click _Select Kernel_ (at top right) and select the default Python 3 option shown. You can now _Run All_ to execute the notebook.
-- To run Python applications from command-line, follow assignment-specific instructions to ensure you select the right files and provide required arguments
+## 2. Налаштування провайдерів
 
-## 2. Configuring Providers
+Завдання **можуть** бути налаштовані для роботи з одним або кількома розгортаннями Великих Мовних Моделей (LLM) через підтримуваного постачальника послуг, як-от OpenAI, Azure чи Hugging Face. Вони надають _хостингову кінцеву точку_ (API), до якої ми можемо отримати доступ програмно за допомогою правильних облікових даних (API-ключа або токена). У цьому курсі ми розглядаємо таких провайдерів:
 
-Assignments **may** also be setup to work against one or more Large Language Model (LLM) deployments through a supported service provider like OpenAI, Azure or Hugging Face. These provide a _hosted endpoint_ (API) that we can access programmatically with the right credentials (API key or token). In this course, we discuss these providers:
+ - [OpenAI](https://platform.openai.com/docs/models) з різноманітними моделями, включаючи основну серію GPT.
+ - [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/) для моделей OpenAI з фокусом на готовність до корпоративного використання
+ - [Hugging Face](https://huggingface.co/docs/hub/index) для моделей з відкритим кодом та сервера виведення
 
- - [OpenAI](https://platform.openai.com/docs/models?WT.mc_id=academic-105485-koreyst) with diverse models including the core GPT series.
- - [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst) for OpenAI models with enterprise readiness in focus
- - [Hugging Face](https://huggingface.co/docs/hub/index?WT.mc_id=academic-105485-koreyst) for open-source models and inference server
+**Вам потрібно буде використовувати власні облікові записи для цих вправ**. Завдання є необов'язковими, тому ви можете вибрати налаштування одного, всіх - або жодного - з провайдерів залежно від ваших інтересів. Деякі вказівки щодо реєстрації:
 
-**You will need to use your own accounts for these exercises**. Assignments are optional so you can choose to setup one, all - or none - of the providers based on your interests. Some guidance for signup:
-
-| Signup | Cost | API Key | Playground | Comments |
+| Реєстрація | Вартість | API-ключ | Пісочниця | Коментарі |
 |:---|:---|:---|:---|:---|
-| [OpenAI](https://platform.openai.com/signup?WT.mc_id=academic-105485-koreyst)| [Pricing](https://openai.com/pricing#language-models?WT.mc_id=academic-105485-koreyst)| [Project-based](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst) | [No-Code, Web](https://platform.openai.com/playground?WT.mc_id=academic-105485-koreyst) | Multiple Models Available |
-| [Azure](https://aka.ms/azure/free?WT.mc_id=academic-105485-koreyst)| [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/?WT.mc_id=academic-105485-koreyst)| [SDK Quickstart](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst)| [Studio Quickstart](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst) |  [Must Apply Ahead For Access](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst)|
-| [Hugging Face](https://huggingface.co/join?WT.mc_id=academic-105485-koreyst) | [Pricing](https://huggingface.co/pricing) | [Access Tokens](https://huggingface.co/docs/hub/security-tokens?WT.mc_id=academic-105485-koreyst) | [Hugging Chat](https://huggingface.co/chat/?WT.mc_id=academic-105485-koreyst)| [Hugging Chat has limited models](https://huggingface.co/chat/models?WT.mc_id=academic-105485-koreyst) |
+| [OpenAI](https://platform.openai.com/signup)| [Ціни](https://openai.com/pricing#language-models)| [На основі проекту](https://platform.openai.com/api-keys) | [Без коду, веб](https://platform.openai.com/playground) | Доступні кілька моделей |
+| [Azure](https://aka.ms/azure/free)| [Ціни](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)| [SDK Швидкий старт](https://learn.microsoft.com/azure/ai-services/openai/quickstart)| [Studio Швидкий старт](https://learn.microsoft.com/azure/ai-services/openai/quickstart) | [Потрібно заздалегідь подати заявку на доступ](https://learn.microsoft.com/azure/ai-services/openai/)|
+| [Hugging Face](https://huggingface.co/join) | [Ціни](https://huggingface.co/pricing) | [Токени доступу](https://huggingface.co/docs/hub/security-tokens) | [Hugging Chat](https://huggingface.co/chat/) | [Hugging Chat має обмежені моделі](https://huggingface.co/chat/models) |
 | | | | | |
 
-Follow the directions below to _configure_ this repository for use with different providers. Assignments that require a specific provider will contain one of these tags in their filename:
- - `aoai` - requires Azure OpenAI endpoint, key
- - `oai` - requires OpenAI endpoint, key
- - `hf` - requires Hugging Face token
+Дотримуйтесь наведених нижче вказівок, щоб _налаштувати_ цей репозиторій для використання з різними провайдерами. Завдання, що вимагають конкретного провайдера, міститимуть одну з цих позначок у назві файлу:
+ - `aoai` - потребує кінцевої точки Azure OpenAI, ключа
+ - `oai` - потребує кінцевої точки OpenAI, ключа
+ - `hf` - потребує токена Hugging Face
 
-You can configure one, none, or all providers. Related assignments will simply error out on missing credentials.
+Ви можете налаштувати одного, жодного або всіх провайдерів. Відповідні завдання просто видадуть помилку при відсутності облікових даних.
 
-###  2.1. Create `.env` file
+### 2.1. Створення файлу `.env`
 
-We assume that you have already read the guidance above and signed up with the relevant provider, and obtained the required authentication credentials (API_KEY or token). In the case of Azure OpenAI, we assume you also have a valid deployment of an Azure OpenAI Service (endpoint) with at least one GPT model deployed for chat completion.
+Ми припускаємо, що ви вже прочитали вказівки вище та зареєструвалися у відповідного провайдера, і отримали необхідні облікові дані для автентифікації (API_KEY або токен). У випадку Azure OpenAI ми припускаємо, що у вас також є дійсне розгортання Служби Azure OpenAI (кінцева точка) з щонайменше однією розгорнутою моделлю GPT для чат-завершення.
 
-The next step is to configure your **local environment variables** as follows:
+Наступним кроком є налаштування ваших **локальних змінних середовища** наступним чином:
 
-
-1. Look in the root folder for a `.env.copy` file that should have contents like this:
+1. Знайдіть у кореневій папці файл `.env.copy`, який повинен мати такий вміст:
 
    ```bash
    # OpenAI Provider
-   OPENAI_API_KEY='<add your OpenAI API key here>'
+   OPENAI_API_KEY='<додайте ваш ключ OpenAI API тут>'
 
    ## Azure OpenAI
-   AZURE_OPENAI_API_VERSION='2024-02-01' # Default is set!
-   AZURE_OPENAI_API_KEY='<add your AOAI key here>'
-   AZURE_OPENAI_ENDPOINT='<add your AOIA service endpoint here>'
-   AZURE_OPENAI_DEPLOYMENT='<add your chat completion model name here>' 
-   AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='<add your embeddings model name here>'
+   AZURE_OPENAI_API_VERSION='2024-02-01' # За замовчуванням встановлено!
+   AZURE_OPENAI_API_KEY='<додайте ваш ключ AOAI тут>'
+   AZURE_OPENAI_ENDPOINT='<додайте вашу кінцеву точку служби AOIA тут>'
+   AZURE_OPENAI_DEPLOYMENT='<додайте назву вашої моделі для завершення чату тут>'
+   AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='<додайте назву вашої моделі для вбудовувань тут>'
 
    ## Hugging Face
-   HUGGING_FACE_API_KEY='<add your HuggingFace API or token here>'
+   HUGGING_FACE_API_KEY='<додайте ваш API або токен HuggingFace тут>'
    ```
 
-2. Copy that file to `.env` using the command below. This file is _gitignore-d_, keeping secrets safe.
+2. Скопіюйте цей файл у `.env` за допомогою наведеної нижче команди. Цей файл _ігнорується git-ом_, зберігаючи секрети в безпеці.
 
    ```bash
    cp .env.copy .env
    ```
 
-3. Fill in the values (replace placeholders on right side of `=`) as described in the next section.
+3. Заповніть значення (замініть заповнювачі праворуч від `=`), як описано в наступному розділі.
 
-3. (Option) If you use GitHub Codespaces, you have the option to save environment variables as _Codespaces secrets_ associated with this repository. In that case, you won't need to setup a local .env file. **However, note that this option works only if you use GitHub Codespaces.** You will still need to setup the .env file if you use Docker Desktop instead.
+3. (Необов'язково) Якщо ви використовуєте GitHub Codespaces, у вас є можливість зберегти змінні середовища як _секрети Codespaces_, пов'язані з цим репозиторієм. У такому випадку вам не потрібно буде налаштовувати локальний файл .env. **Однак зверніть увагу, що ця опція працює тільки якщо ви використовуєте GitHub Codespaces.** Вам все одно потрібно буде налаштувати файл .env, якщо ви натомість використовуєте Docker Desktop.
 
+### 2.2. Заповнення файлу `.env`
 
-### 2.2. Populate `.env` file
+Давайте швидко розглянемо назви змінних, щоб зрозуміти, що вони представляють:
 
-Let's take a quick look at the variable names to understand what they represent:
-
-| Variable  | Description  |
-| :--- | :--- |
-| HUGGING_FACE_API_KEY | This is the user access token you setup in your profile |
-| OPENAI_API_KEY | This is the authorization key for using the service for non-Azure OpenAI endpoints |
-| AZURE_OPENAI_API_KEY | This is the authorization key for using that service |
-| AZURE_OPENAI_ENDPOINT | This is the deployed endpoint for an Azure OpenAI resource |
-| AZURE_OPENAI_DEPLOYMENT | This is the _text generation_ model deployment endpoint |
-| AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT | This is the _text embeddings_ model deployment endpoint |
+| Змінна | Опис |
+|:---|:---|
+| HUGGING_FACE_API_KEY | Це токен доступу користувача, який ви налаштували у своєму профілі |
+| OPENAI_API_KEY | Це ключ авторизації для використання сервісу для не-Azure OpenAI кінцевих точок |
+| AZURE_OPENAI_API_KEY | Це ключ авторизації для використання цього сервісу |
+| AZURE_OPENAI_ENDPOINT | Це розгорнута кінцева точка для ресурсу Azure OpenAI |
+| AZURE_OPENAI_DEPLOYMENT | Це кінцева точка розгортання моделі _генерації тексту_ |
+| AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT | Це кінцева точка розгортання моделі _текстових вбудовувань_ |
 | | |
 
-Note: The last two Azure OpenAI variables reflect a default model for chat completion (text generation) and vector search (embeddings) respectively. Instructions for setting them will be defined in relevant assignments.
+Примітка: Останні дві змінні Azure OpenAI відображають модель за замовчуванням для завершення чату (генерація тексту) та векторного пошуку (вбудовування) відповідно. Інструкції щодо їх налаштування будуть визначені у відповідних завданнях.
 
+### 2.3 Налаштування Azure: З Порталу
 
-### 2.3 Configure Azure: From Portal
+Значення кінцевої точки та ключа Azure OpenAI можна знайти на [Порталі Azure](https://portal.azure.com), тож почнемо звідти.
 
-The Azure OpenAI endpoint and key values will be found in the [Azure Portal](https://portal.azure.com?WT.mc_id=academic-105485-koreyst) so let's start there.
+1. Перейдіть на [Портал Azure](https://portal.azure.com)
+2. Натисніть опцію **Ключі та кінцева точка** на бічній панелі (меню зліва).
+3. Натисніть **Показати ключі** - ви повинні побачити наступне: КЛЮЧ 1, КЛЮЧ 2 та Кінцева точка.
+4. Використовуйте значення КЛЮЧ 1 для AZURE_OPENAI_API_KEY
+5. Використовуйте значення Кінцевої точки для AZURE_OPENAI_ENDPOINT
 
-1. Go to the [Azure Portal](https://portal.azure.com?WT.mc_id=academic-105485-koreyst)
-1. Click the **Keys and Endpoint** option in the sidebar (menu at left).
-1. Click **Show Keys** - you should see the following: KEY 1, KEY 2 and Endpoint.
-1. Use the KEY 1 value for AZURE_OPENAI_API_KEY
-1. Use the Endpoint value for AZURE_OPENAI_ENDPOINT
+Далі нам потрібні кінцеві точки для конкретних розгорнутих моделей.
 
-Next, we need the endpoints for the specific models we've deployed.
+1. Натисніть опцію **Розгортання моделей** на бічній панелі (ліве меню) для ресурсу Azure OpenAI.
+2. На цільовій сторінці натисніть **Керувати розгортаннями**
 
-1. Click the **Model deployments** option in the sidebar (left menu) for Azure OpenAI resource.
-1. In the destination page, click **Manage Deployments**
+Це перенесе вас на веб-сайт Azure OpenAI Studio, де ми знайдемо інші значення, як описано нижче.
 
-This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.
+### 2.4 Налаштування Azure: Зі Studio
 
-### 2.4 Configure Azure: From Studio
+1. Перейдіть до [Azure OpenAI Studio](https://oai.azure.com) **з вашого ресурсу**, як описано вище.
+2. Натисніть вкладку **Розгортання** (бічна панель, зліва), щоб переглянути наразі розгорнуті моделі.
+3. Якщо ваша бажана модель не розгорнута, використовуйте **Створити нове розгортання** для її розгортання.
+4. Вам потрібна модель _генерації тексту_ - ми рекомендуємо: **gpt-4o-mini**
+5. Вам потрібна модель _вбудовування тексту_ - ми рекомендуємо **text-embedding-ada-003**
 
-1. Navigate to [Azure OpenAI Studio](https://oai.azure.com?WT.mc_id=academic-105485-koreyst) **from your resource** as described above.
-1. Click the **Deployments** tab (sidebar, left) to view currently deployed models.
-1. If your desired model is not deployed, use **Create new deployment** to deploy it.
-1. You will need a _text-generation_ model - we recommend: **gpt-35-turbo**
-1. You will need a _text-embedding_ model - we recommend **text-embedding-ada-002**
-
-Now update the environment variables to reflect the _Deployment name_ used. This will typically be the same as the model name unless you changed it explcitly. So, as an example, you might have:
+Тепер оновіть змінні середовища, щоб відобразити використану _Назву розгортання_. Це зазвичай буде така ж назва, як і назва моделі, якщо ви явно її не змінили. Отже, наприклад, у вас може бути:
 
 ```bash
 AZURE_OPENAI_DEPLOYMENT='gpt-35-turbo'
 AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='text-embedding-ada-002'
 ```
 
-**Don't forget to save the .env file when done**. You can now exit the file and return to the instructions for running the notebook.
+**Не забудьте зберегти файл .env після завершення**. Тепер ви можете вийти з файлу і повернутися до інструкцій щодо запуску ноутбука.
 
-### 2.5 Configure OpenAI: From Profile
+### 2.5 Налаштування OpenAI: З Профілю
 
-Your OpenAI API key can be found in your [OpenAI account](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst). If you don't have one, you can sign up for an account and create an API key. Once you have the key, you can use it to populate the `OPENAI_API_KEY` variable in the `.env` file.
+Ваш ключ OpenAI API можна знайти у вашому [обліковому записі OpenAI](https://platform.openai.com/api-keys). Якщо у вас його немає, ви можете зареєструвати обліковий запис і створити API-ключ. Після отримання ключа ви можете використати його для заповнення змінної `OPENAI_API_KEY` у файлі `.env`.
 
-### 2.6 Configure Hugging Face: From Profile
+### 2.6 Налаштування Hugging Face: З Профілю
 
-Your Hugging Face token can be found in your profile under [Access Tokens](https://huggingface.co/settings/tokens?WT.mc_id=academic-105485-koreyst). Don't post or share these publicly. Instead, create a new token for this project usage and copy that into the `.env` file under the `HUGGING_FACE_API_KEY` variable. _Note:_ This is technically not an API key but is used for authentication so we are keeping that naming convention for consistency.
+Ваш токен Hugging Face можна знайти у вашому профілі в розділі [Токени доступу](https://huggingface.co/settings/tokens). Не публікуйте і не діліться ними публічно. Замість цього створіть новий токен для використання в цьому проекті та скопіюйте його у файл `.env` у змінну `HUGGING_FACE_API_KEY`. _Примітка:_ Технічно це не API-ключ, але він використовується для автентифікації, тому ми зберігаємо цю схему іменування для послідовності.

@@ -1,136 +1,136 @@
-# Introduction to Generative AI and Large Language Models
+# Вступ до Генеративного ШІ та Великих Мовних Моделей
 
-[![Introduction to Generative AI and Large Language Models](./images/01-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson-1-gh?WT.mc_id=academic-105485-koreyst)
+[![Вступ до Генеративного ШІ та Великих Мовних Моделей](./images/01-lesson-banner.png)](https://aka.ms/gen-ai-lesson-1-gh)
 
-_(Click the image above to view video of this lesson)_
+_(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 
-Generative AI is artificial intelligence capable of generating text, images and other types of content. What makes it a fantastic technology is that it democratizes AI, anyone can use it with as little as a text prompt, a sentence written in a natural language. There's no need for you to learn a language like Java or SQL to accomplish something worthwhile, all you need is to use your language, state what you want and out comes a suggestion from an AI model. The applications and impact for this is huge, you write or understand reports, write applications and much more, all in seconds.
+Генеративний ШІ - це штучний інтелект, здатний генерувати текст, зображення та інші типи контенту. Що робить його фантастичною технологією, так це те, що він демократизує ШІ: будь-хто може використовувати його за допомогою простого текстового запиту, речення, написаного природною мовою. Вам не потрібно вивчати мову програмування як Java чи SQL, щоб досягти чогось корисного - все, що вам потрібно, це використовувати свою мову, вказати, що ви хочете, і отримати пропозицію від моделі ШІ. Застосування та вплив цього величезні: ви можете писати або розуміти звіти, створювати програми та багато іншого, все це за лічені секунди.
 
-In this curriculum, we’ll explore how our startup leverages generative AI to unlock new scenarios in the education world and how we address the inevitable challenges associated with the social implications of its application and the technology limitations.
+У цьому курсі ми дослідимо, як наш стартап використовує генеративний ШІ для відкриття нових сценаріїв у світі освіти та як ми вирішуємо неминучі проблеми, пов'язані з соціальними наслідками його застосування та технологічними обмеженнями.
 
-## Introduction
+## Вступ
 
-This lesson will cover:
+Цей урок охопить:
 
-- Introduction to the business scenario: our startup idea and mission.
-- Generative AI and how we landed on the current technology landscape.
-- Inner working of a large language model.
-- Main capabilities and practical use cases of Large Language Models.
+- Вступ до бізнес-сценарію: ідея та місія нашого стартапу.
+- Генеративний ШІ та як ми прийшли до поточного технологічного ландшафту.
+- Внутрішній принцип роботи великої мовної моделі.
+- Основні можливості та практичні випадки використання Великих Мовних Моделей.
 
-## Learning Goals
+## Цілі навчання
 
-After completing this lesson, you will understand:
+Після завершення цього уроку ви зрозумієте:
 
-- What generative AI is and how Large Language Models work.
-- How you can leverage large language models for different use cases, with a focus on education scenarios.
+- Що таке генеративний ШІ та як працюють Великі Мовні Моделі.
+- Як ви можете використовувати великі мовні моделі для різних випадків використання, з фокусом на освітні сценарії.
 
-## Scenario: our educational startup
+## Сценарій: наш освітній стартап
 
-Generative Artificial Intelligence (AI) represents the pinnacle of AI technology, pushing the boundaries of what was once thought impossible. Generative AI models have several capabilities and applications, but for this curriculum we'll explore how it's revolutionizing education through a fictional startup. We'll refer to this startup as _our startup_. Our startup works in the education domain with the ambitious mission statement of
+Генеративний Штучний Інтелект (ШІ) представляє вершину технології ШІ, розсуваючи межі того, що колись вважалося неможливим. Моделі генеративного ШІ мають кілька можливостей та застосувань, але в цьому курсі ми дослідимо, як він революціонізує освіту через вигаданий стартап. Ми будемо називати цей стартап _нашим стартапом_. Наш стартап працює в освітній галузі з амбітною місією:
 
-> _improving accessibility in learning, on a global scale, ensuring equitable access to education and providing personalized learning experiences to every learner, according to their needs_.
+> _покращення доступності навчання в глобальному масштабі, забезпечення рівного доступу до освіти та надання персоналізованого навчального досвіду кожному учню відповідно до їхніх потреб_.
 
-Our startup team is aware we’ll not be able to achieve this goal without leveraging one of the most powerful tools of modern times – Large Language Models (LLMs).
+Команда нашого стартапу усвідомлює, що ми не зможемо досягти цієї мети без використання одного з найпотужніших інструментів сучасності – Великих Мовних Моделей (LLMs).
 
-Generative AI is expected to revolutionize the way we learn and teach today, with students having at their disposal virtual teachers 24 hours a day who provide vast amounts of information and examples, and teachers able to leverage innovative tools to assess their students and give feedback.
+Очікується, що генеративний ШІ революціонізує спосіб навчання та викладання сьогодні: у студентів будуть віртуальні вчителі 24 години на добу, які надають величезну кількість інформації та прикладів, а вчителі зможуть використовувати інноваційні інструменти для оцінки своїх учнів та надання відгуків.
 
-![Five young students looking at a monitor - image by DALLE2](./images/students-by-DALLE2.png?WT.mc_id=academic-105485-koreyst)
+![П'ять молодих студентів дивляться на монітор - зображення від DALLE2](./images/students-by-DALLE2.png)
 
-To start, let’s define some basic concepts and terminology we’ll be using throughout the curriculum.
+Для початку давайте визначимо деякі базові концепції та термінологію, які ми будемо використовувати протягом курсу.
 
-## How did we get Generative AI?
+## Як ми прийшли до Генеративного ШІ?
 
-Despite the extraordinary _hype_ created lately by the announcement of generative AI models, this technology is decades in the making, with the first research efforts dating back to 60s. We're now at a point with AI having human cognitive capabilities, like conversation as shown by for example [OpenAI ChatGPT](https://openai.com/chatgpt) or [Bing Chat](https://www.microsoft.com/edge/features/bing-chat?WT.mc_id=academic-105485-koreyst), which also uses a GPT model for the web search Bing conversations.
+Незважаючи на надзвичайний _ажіотаж_, створений останнім часом анонсом моделей генеративного ШІ, ця технологія розвивається десятиліттями, перші дослідницькі зусилля датуються 60-ми роками. Зараз ми перебуваємо на етапі, коли ШІ має людські когнітивні здібності, такі як розмова, що демонструється, наприклад, [OpenAI ChatGPT](https://openai.com/chatgpt) або [Bing Chat](https://www.microsoft.com/edge/features/bing-chat), який також використовує модель GPT для веб-пошукових розмов Bing.
 
-Backing up a bit, the very first prototypes of AI consisted of typewritten chatbots, relying on a knowledge base extracted from a group of experts and represented into a computer. The answers in the knowledge base were triggered by keywords appearing in the input text.
-However, it soon became clear that such approach, using typewritten chatbots, did not scale well.
+Повертаючись трохи назад, перші прототипи ШІ складалися з друкованих чатботів, що спиралися на базу знань, отриману від групи експертів і представлену в комп'ютері. Відповіді в базі знань запускалися ключовими словами, що з'являлися у вхідному тексті.
+Однак незабаром стало зрозуміло, що такий підхід з використанням друкованих чатботів погано масштабується.
 
-### A statistical approach to AI: Machine Learning
+### Статистичний підхід до ШІ: Машинне навчання
 
-A turning point arrived during the 90s, with the application of a statistical approach to text analysis. This led to the development of new algorithms – known with the name of machine learning - able to learn patterns from data, without being explicitly programmed. This approach allows a machine to simulate human language understanding: a statistical model is trained on text-label pairings, enabling the model to classify unknown input text with a pre-defined label representing the intention of the message.
+Поворотний момент настав у 90-х роках із застосуванням статистичного підходу до аналізу тексту. Це призвело до розробки нових алгоритмів – відомих під назвою машинне навчання – здатних вивчати паттерни з даних без явного програмування. Цей підхід дозволяє машині імітувати розуміння людської мови: статистична модель тренується на парах текст-мітка, що дозволяє моделі класифікувати невідомий вхідний текст попередньо визначеною міткою, яка представляє намір повідомлення.
 
-### Neural networks and modern virtual assistants
+### Нейронні мережі та сучасні віртуальні асистенти
 
-In more recent times, the technological evolution of the hardware, capable of handling larger amounts of data and more complex computations, encouraged research in the AI fields, leading to the development of advanced machine learning algorithms – called neural networks or deep learning algorithms.
+В більш недавні часи технологічна еволюція апаратного забезпечення, здатного обробляти більші обсяги даних та складніші обчислення, стимулювала дослідження в галузях ШІ, що призвело до розробки просунутих алгоритмів машинного навчання – названих нейронними мережами або алгоритмами глибокого навчання.
 
-Neural networks (and in particular Recurrent Neural Networks – RNNs) significantly enhanced natural language processing, enabling the representation of the meaning of text in a more meaningful way, valuing the context of a word in a sentence.
+Нейронні мережі (і особливо Рекурентні Нейронні Мережі – RNN) значно покращили обробку природної мови, дозволяючи представляти значення тексту більш осмисленим способом, оцінюючи контекст слова в реченні.
 
-This is the technology that powered the virtual assistants born in the first decade of the new century, very proficient in interpreting the human language, identifying a need, and performing an action to satisfy it – like answering with a pre-defined script or consuming a 3rd party service.
+Це технологія, яка живила віртуальних асистентів, що з'явилися в першому десятилітті нового століття, дуже вправних у інтерпретації людської мови, визначенні потреби та виконанні дії для її задоволення – наприклад, відповідаючи попередньо визначеним скриптом або використовуючи сторонній сервіс.
 
-### Present day, Generative AI
+### Сьогодення, Генеративний ШІ
 
-So that’s how we came to Generative AI today, which can be seen as a subset of deep learning.
+Отже, так ми прийшли до сьогоднішнього Генеративного ШІ, який можна розглядати як підмножину глибокого навчання.
 
-![AI, ML, DL and Generative AI](./images/AI-diagram.png?WT.mc_id=academic-105485-koreyst)
+![ШІ, ML, DL та Генеративний ШІ](./images/AI-diagram.png)
 
-After decades of research in the AI field, a new model architecture – called _Transformer_ – overcame the limits of RNNs, being able to get much longer sequences of text as input. Transformers are based on the attention mechanism, enabling the model to give different weights to the inputs it receives, ‘paying more attention’ where the most relevant information is concentrated, regardless of their order in the text sequence.
+Після десятиліть досліджень у галузі ШІ нова архітектура моделі – названа _Трансформер_ – подолала обмеження RNN, будучи здатною отримувати набагато довші послідовності тексту як вхідні дані. Трансформери базуються на механізмі уваги, що дозволяє моделі надавати різні ваги вхідним даним, які вона отримує, 'приділяючи більше уваги' там, де зосереджена найбільш релевантна інформація, незалежно від їх порядку в текстовій послідовності.
 
-Most of the recent generative AI models – also known as Large Language Models (LLMs), since they work with textual inputs and outputs – are indeed based on this architecture. What’s interesting about these models – trained on a huge amount of unlabeled data from diverse sources like books, articles and websites – is that they can be adapted to a wide variety of tasks and generate grammatically correct text with a semblance of creativity. So, not only did they incredibly enhance the capacity of a machine to ‘understand’ an input text, but they enabled their capacity to generate an original response in human language.
+Більшість недавніх моделей генеративного ШІ – також відомих як Великі Мовні Моделі (LLMs), оскільки вони працюють з текстовими входами та виходами – дійсно базуються на цій архітектурі. Що цікаво в цих моделях – навчених на величезній кількості нерозмічених даних з різних джерел, як-от книги, статті та веб-сайти – це те, що вони можуть бути адаптовані до широкого різноманіття завдань і генерувати граматично правильний текст з подобою творчості. Отже, вони не тільки неймовірно покращили здатність машини 'розуміти' вхідний текст, але й дали їй можливість генерувати оригінальну відповідь людською мовою.
 
-## How do large language models work?
+## Як працюють великі мовні моделі?
 
-In the next chapter we are going to explore different types of Generative AI models, but for now let’s have a look at how large language models work, with a focus on OpenAI GPT (Generative Pre-trained Transformer) models.
+У наступному розділі ми дослідимо різні типи моделей Генеративного ШІ, але поки що давайте подивимося, як працюють великі мовні моделі, зосередившись на моделях OpenAI GPT (Генеративний Попередньо навчений Трансформер).
 
-- **Tokenizer, text to numbers**: Large Language Models receive a text as input and generate a text as output. However, being statistical models, they work much better with numbers than text sequences. That’s why every input to the model is processed by a tokenizer, before being used by the core model. A token is a chunk of text – consisting of a variable number of characters, so the tokenizer's main task is splitting the input into an array of tokens. Then, each token is mapped with a token index, which is the integer encoding of the original text chunk.
+- **Токенізатор, текст у числа**: Великі Мовні Моделі отримують текст як вхідні дані і генерують текст як вихідні дані. Однак, будучи статистичними моделями, вони набагато краще працюють з числами, ніж з текстовими послідовностями. Саме тому кожне вхідне значення до моделі обробляється токенізатором перед використанням основною моделлю. Токен - це фрагмент тексту, що складається зі змінної кількості символів, тому основне завдання токенізатора - розбити вхідні дані на масив токенів. Потім кожен токен зіставляється з індексом токена, який є цілочисельним кодуванням оригінального текстового фрагмента.
 
-![Example of tokenization](./images/tokenizer-example.png?WT.mc_id=academic-105485-koreyst)
+![Приклад токенізації](./images/tokenizer-example.png)
 
-- **Predicting output tokens**: Given n tokens as input (with max n varying from one model to another), the model is able to predict one token as output. This token is then incorporated into the input of the next iteration, in an expanding window pattern, enabling a better user experience of getting one (or multiple) sentence as an answer. This explains why, if you ever played with ChatGPT, you might have noticed that sometimes it looks like it stops in the middle of a sentence.
+- **Передбачення вихідних токенів**: Отримавши n токенів як вхідні дані (з максимальним n, що варіюється від однієї моделі до іншої), модель здатна передбачити один токен як вихідні дані. Цей токен потім включається до вхідних даних наступної ітерації за pattern-ом розширюваного вікна, що забезпечує кращий користувацький досвід отримання одного (або кількох) речень як відповіді. Це пояснює, чому, якщо ви коли-небудь грали з ChatGPT, ви могли помітити, що іноді здається, ніби він зупиняється посеред речення.
 
-- **Selection process, probability distribution**: The output token is chosen by the model according to its probability of occurring after the current text sequence. This is because the model predicts a probability distribution over all possible ‘next tokens’, calculated based on its training. However, not always the token with the highest probability is chosen from the resulting distribution. A degree of randomness is added to this choice, in a way that the model acts in a non-deterministic fashion - we do not get the exact same output for the same input. This degree of randomness is added to simulate the process of creative thinking and it can be tuned using a model parameter called temperature.
+- **Процес вибору, розподіл ймовірностей**: Вихідний токен вибирається моделлю відповідно до його ймовірності появи після поточної текстової послідовності. Це тому, що модель передбачає розподіл ймовірностей для всіх можливих 'наступних токенів', обчислений на основі її навчання. Однак не завжди вибирається токен з найвищою ймовірністю з отриманого розподілу. До цього вибору додається ступінь випадковості таким чином, що модель діє недетермінованим способом - ми не отримуємо точно такий же вихід для того самого входу. Цей ступінь випадковості додається для імітації процесу творчого мислення, і його можна налаштувати, використовуючи параметр моделі під назвою температура.
 
-## How can our startup leverage Large Language Models?
+## Як наш стартап може використовувати Великі Мовні Моделі?
 
-Now that we have a better understanding of the inner working of a large language model, let’s see some practical examples of the most common tasks they can perform pretty well, with an eye to our business scenario.
-We said that the main capability of a Large Language Model is _generating a text from scratch, starting from a textual input, written in natural language_.
+Тепер, коли ми краще розуміємо внутрішню роботу великої мовної моделі, давайте розглянемо деякі практичні приклади найпоширеніших завдань, які вони можуть виконувати досить добре, з урахуванням нашого бізнес-сценарію.
+Ми сказали, що основна здатність Великої Мовної Моделі - це _генерація тексту з нуля, починаючи з текстового вводу, написаного природною мовою_.
 
-But what kind of textual input and output?
-The input of a large language model is known as prompt, while the output is known as completion, term that refers to the model mechanism of generating the next token to complete the current input. We are going to dive deep into what is a prompt and how to design it in a way to get the most out of our model. But for now, let’s just say that a prompt may include:
+Але який тип текстового вводу та виводу?
+Вхідні дані великої мовної моделі відомі як промпт, тоді як вихідні дані відомі як завершення, термін, що відноситься до механізму моделі генерації наступного токена для завершення поточного вводу. Ми збираємося глибоко зануритися в те, що таке промпт і як спроектувати його таким чином, щоб отримати максимум від нашої моделі. Але поки що скажемо, що промпт може включати:
 
-- An **instruction** specifying the type of output we expect from the model. This instruction sometimes might embed some examples or some additional data.
+- **Інструкцію**, що визначає тип виводу, який ми очікуємо від моделі. Ця інструкція іноді може включати приклади або додаткові дані.
 
-  1. Summarization of an article, book, product reviews and more, along with extraction of insights from unstructured data.
+  1. Узагальнення статті, книги, відгуків про продукт тощо, а також отримання інсайтів з неструктурованих даних.
     
-    ![Example of summarization](./images/summarization-example.png?WT.mc_id=academic-105485-koreyst)
+    ![Приклад узагальнення](./images/summarization-example.png)
   
-  2. Creative ideation and design of an article, an essay, an assignment or more.
+  2. Креативне генерування ідей та написання статті, есе, завдання тощо.
       
-     ![Example of creative writing](./images/creative-writing-example.png?WT.mc_id=academic-105485-koreyst)
+     ![Приклад креативного письма](./images/creative-writing-example.png)
 
-- A **question**, asked in the form of a conversation with an agent.
+- **Запитання**, задане у формі розмови з агентом.
   
-  ![Example of conversation](./images/conversation-example.png?WT.mc_id=academic-105485-koreyst)
+  ![Приклад розмови](./images/conversation-example.png)
 
-- A chunk of **text to complete**, which implicitly is an ask for writing assistance.
+- **Текст для завершення**, що неявно є проханням про допомогу в написанні.
   
-  ![Example of text completion](./images/text-completion-example.png?WT.mc_id=academic-105485-koreyst)
+  ![Приклад завершення тексту](./images/text-completion-example.png)
 
-- A chunk of **code** together with the ask of explaining and documenting it, or a comment asking to generate a piece of code performing a specific task.
+- **Фрагмент коду** разом із проханням пояснити та задокументувати його, або коментар із проханням згенерувати код, що виконує певне завдання.
   
-  ![Coding example](./images/coding-example.png?WT.mc_id=academic-105485-koreyst)
+  ![Приклад кодування](./images/coding-example.png)
 
-The examples above are quite simple and don’t want to be an exhaustive demonstration of Large Language Models capabilities. They just want to show the potential of using generative AI, in particular but not limited to educational context.
+Наведені вище приклади досить прості і не претендують на вичерпну демонстрацію можливостей Великих Мовних Моделей. Вони лише показують потенціал використання генеративного ШІ, зокрема, але не обмежуючись освітнім контекстом.
 
-Also, the output of a generative AI model is not perfect and sometimes the creativity of the model can work against it, resulting in an output which is a combination of words that the human user can interpret as a mystification of reality, or it can be offensive. Generative AI is not intelligent - at least in the more comprehensive definition of intelligence, including critical and creative reasoning or emotional intelligence; it is not deterministic, and it is not trustworthy, since fabrications, such as erroneous references, content, and statements, may be combined with correct information, and presented in a persuasive and confident manner. In the following lessons, we’ll be dealing with all these limitations and we’ll see what we can do to mitigate them.
+Крім того, вихід моделі генеративного ШІ не є досконалим, і іноді креативність моделі може працювати проти неї, призводячи до виходу, який є комбінацією слів, яку людина-користувач може інтерпретувати як містифікацію реальності, або він може бути образливим. Генеративний ШІ не є інтелектуальним - принаймні в більш широкому визначенні інтелекту, що включає критичне і творче мислення чи емоційний інтелект; він не є детермінованим і не є надійним, оскільки вигадки, такі як помилкові посилання, контент та твердження, можуть поєднуватися з правильною інформацією та подаватися переконливим і впевненим чином. У наступних уроках ми будемо мати справу з усіма цими обмеженнями і побачимо, що ми можемо зробити, щоб їх пом'якшити.
 
-## Assignment
+## Завдання
 
-Your assignment is to read up more on [generative AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence?WT.mc_id=academic-105485-koreyst) and try to identify an area where you would add generative AI today that doesn't have it. How would the impact be different from doing it the "old way", can you do something you couldn't before, or are you faster? Write a 300 word summary on what your dream AI startup would look like and include headers like "Problem", "How I would use AI", "Impact" and optionally a business plan.
+Ваше завдання - почитати більше про [генеративний ШІ](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) і спробувати визначити область, де ви б додали генеративний ШІ сьогодні, де його ще немає. Яким був би вплив порівняно зі "старим способом", чи можете ви зробити щось, чого не могли раніше, чи ви просто швидші? Напишіть резюме на 300 слів про те, як би виглядав ваш омріяний ШІ-стартап, і включіть такі заголовки як "Проблема", "Як би я використовував ШІ", "Вплив" і необов'язково бізнес-план.
 
-If you did this task, you might even be ready to apply to Microsoft's incubator, [Microsoft for Startups Founders Hub](https://www.microsoft.com/startups?WT.mc_id=academic-105485-koreyst) we offer credits for both Azure, OpenAI, mentoring and much more, check it out!
+Якщо ви виконали це завдання, ви можете бути готові подати заявку до інкубатора Microsoft, [Microsoft for Startups Founders Hub](https://www.microsoft.com/startups) - ми пропонуємо кредити як для Azure, OpenAI, так і менторство та багато іншого, перевірте це!
 
-## Knowledge check
+## Перевірка знань
 
-What's true about large language models?
+Що правильно про великі мовні моделі?
 
-1. You get the exact same response every time.
-1. It does things perfectly, great at adding numbers, produce working code etc.
-1. The response may vary despite using the same prompt. It's also great at giving you a first draft of something, be it text or code. But you need to improve on the results.
+1. Ви отримуєте точно таку ж відповідь щоразу.
+2. Вона робить все ідеально, чудово додає числа, створює робочий код тощо.
+3. Відповідь може відрізнятися, незважаючи на використання того самого промпту. Вона також чудово підходить для створення першого варіанту чого-небудь, будь то текст чи код. Але вам потрібно покращувати результати.
 
-A: 3, an LLM is non-deterministic, the response vary, however, you can control its variance via a temperature setting. You also shouldn't expect it to do things perfectly, it's here to do the heavy-lifting for you which often means you get a good first attempt at something that you need to gradually improve.
+В: 3, LLM є недетермінованою, відповідь варіюється, однак ви можете контролювати її варіативність через налаштування температури. Ви також не повинні очікувати, що вона робитиме все ідеально, вона тут для того, щоб виконати важку роботу за вас, що часто означає отримання хорошої першої спроби чогось, що вам потрібно поступово покращувати.
 
-## Great Work! Continue the Journey
+## Чудова робота! Продовжуйте подорож
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Після завершення цього уроку перегляньте нашу [колекцію навчальних матеріалів з Генеративного ШІ](https://aka.ms/genai-collection), щоб продовжити підвищувати свої знання про Генеративний ШІ!
 
-Head over to Lesson 2 where we will look at how to [explore and compare different LLM types](../02-exploring-and-comparing-different-llms/README.md?WT.mc_id=academic-105485-koreyst)!
+Переходьте до Уроку 2, де ми розглянемо, як [досліджувати та порівнювати різні типи LLM](../02-exploring-and-comparing-different-llms/README.md)!
