@@ -1,208 +1,172 @@
-# Prompt Engineering Fundamentals
+# Основи інженерії промптів 
 
-[![Prompt Engineering Fundamentals](./images/04-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)
+[![Основи інженерії промптів](./images/04-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)
 
-## Introduction
-This module covers essential concepts and techniques for creating effective prompts in generative AI models. The way your write your prompt to an LLM also matters. A carefully-crafted prompt can achieve a better quality of response. But what exactly do terms like _prompt_ and _prompt engineering_ mean? And how do I improve the prompt _input_ that I send to the LLM? These are the questions we'll try to answer with in this chapter and the next.
+## Вступ
+Цей модуль охоплює основні концепції та техніки створення ефективних промптів у моделях генеративного ШІ. Спосіб написання вашого промпту до LLM також має значення. Ретельно складений промпт може досягти кращої якості відповіді. Але що саме означають такі терміни як _промпт_ та _інженерія промптів_? І як мені покращити _вхідний_ промпт, який я надсилаю до LLM? Це ті питання, на які ми спробуємо відповісти в цьому та наступному розділах.
 
-_Generative AI_ is capable of creating new content (e.g., text, images, audio, code etc.) in response to user requests. It achieves this using _Large Language Models_ like OpenAI's GPT ("Generative Pre-trained Transformer") series that are trained for using natural language and code.
+_Генеративний ШІ_ здатний створювати новий контент (наприклад, текст, зображення, аудіо, код тощо) у відповідь на запити користувачів. Він досягає цього за допомогою _Великих мовних моделей_, таких як серія GPT ("Generative Pre-trained Transformer") від OpenAI, які навчені використовувати природну мову та код.
 
-Users can now interact with these models using familiar paradigms like chat, without needing any technical expertise or training. The models are _prompt-based_ - users send a text input (prompt) and get back the AI response (completion). They can then "chat with the AI" iteratively, in multi-turn conversations, refining their prompt until the response matches their expectations.
+Користувачі тепер можуть взаємодіяти з цими моделями за допомогою знайомих парадигм, як чат, без необхідності в технічній експертизі чи навчанні. Моделі базуються на _промптах_ - користувачі надсилають текстовий вхід (промпт) і отримують відповідь ШІ (завершення). Потім вони можуть "спілкуватися з ШІ" ітеративно, у багатоходових розмовах, уточнюючи свій промпт, доки відповідь не відповідатиме їхнім очікуванням.
 
-"Prompts" now become the primary _programming interface_ for generative AI apps, telling the models what to do and influencing the quality of returned responses. "Prompt Engineering" is a fast-growing field of study that focuses on the _design and optimization_ of prompts to deliver consistent and quality responses at scale.
+"Промпти" тепер стають основним _програмним інтерфейсом_ для додатків генеративного ШІ, вказуючи моделям, що робити та впливаючи на якість поверених відповідей. "Інженерія промптів" - це швидкозростаюча галузь досліджень, яка фокусується на _проектуванні та оптимізації_ промптів для забезпечення постійних та якісних відповідей у масштабі.
 
-## Learning Goals
+## Цілі навчання
 
-In this lesson, we learn what Prompt Engineering is, why it matters, and how we can craft more effective prompts for a given model and application objective. We'll understand core concepts and best practices for prompt engineering - and learn about an interactive Jupyter Notebooks "sandbox" environment where we can see these concepts applied to real examples.
+У цьому уроці ми дізнаємося, що таке інженерія промптів, чому вона важлива, і як ми можемо створювати більш ефективні промпти для конкретної моделі та цілі додатку. Ми зрозуміємо основні концепції та найкращі практики інженерії промптів - і дізнаємося про інтерактивне середовище Jupyter Notebooks "пісочниця", де ми можемо побачити ці концепції застосованими до реальних прикладів.
 
-By the end of this lesson we will be able to:
+Після завершення цього уроку ми зможемо:
 
-1. Explain what prompt engineering is and why it matters.
-2. Describe the components of a prompt and how they are used.
-3. Learn best practices and techniques for prompt engineering.
-4. Apply learned techniques to real examples, using an OpenAI endpoint.
+1. Пояснити, що таке інженерія промптів і чому вона важлива.
+2. Описати компоненти промпту та як вони використовуються.
+3. Вивчити найкращі практики та техніки інженерії промптів.
+4. Застосувати вивчені техніки до реальних прикладів, використовуючи кінцеву точку OpenAI.
 
-## Key Terms
+## Ключові терміни
 
-Prompt Engineering: The practice of designing and refining inputs to guide AI models toward producing desired outputs.
-Tokenization: The process of converting text into smaller units, called tokens, that a model can understand and process.
-Instruction-Tuned LLMs: Large Language Models (LLMs) that have been fine-tuned with specific instructions to improve their response accuracy and relevance.
+Інженерія промптів: Практика проектування та уточнення входів для спрямування моделей ШІ на створення бажаних виходів.
+Токенізація: Процес перетворення тексту на менші одиниці, які називаються токенами, які модель може зрозуміти та обробити.
+LLM, налаштовані на інструкції: Великі Мовні Моделі (LLM), які були точно налаштовані з конкретними інструкціями для покращення точності та релевантності відповідей.
 
-## Learning Sandbox
+## Навчальна пісочниця
 
-Prompt engineering is currently more art than science. The best way to improve our intuition for it is to _practice more_ and adopt a trial-and-error approach that combines application domain expertise with recommended techniques and model-specific optimizations.
+Інженерія промптів наразі більше мистецтво, ніж наука. Найкращий спосіб покращити нашу інтуїцію для неї - це _більше практикуватися_ і прийняти підхід проб і помилок, який поєднує експертизу в предметній області з рекомендованими техніками та оптимізаціями, специфічними для моделі.
 
-The Jupyter Notebook accompanying this lesson provides a _sandbox_ environment where you can try out what you learn - as you go or as part of the code challenge at the end. To execute the exercises, you will need:
+Jupyter Notebook, що супроводжує цей урок, надає _пісочницю_ - середовище, де ви можете спробувати те, що вивчаєте - у процесі або як частину кодового завдання в кінці. Для виконання вправ вам знадобиться:
 
-1. **An Azure OpenAI API key** - the service endpoint for a deployed LLM.
-2. **A Python Runtime** - in which the Notebook can be executed.
-3. **Local Env Variables** - _complete the [SETUP](./../00-course-setup/SETUP.md?WT.mc_id=academic-105485-koreyst) steps now to get ready_.
+1. **Ключ API Azure OpenAI** - кінцева точка сервісу для розгорнутої LLM.
+2. **Середовище виконання Python** - в якому може виконуватись Notebook.
+3. **Локальні змінні середовища** - _виконайте кроки [SETUP](./../00-course-setup/SETUP.md?WT.mc_id=academic-105485-koreyst) зараз, щоб підготуватися_.
 
-The notebook comes with _starter_ exercises - but you are encouraged to add your own _Markdown_ (description) and _Code_ (prompt requests) sections to try out more examples or ideas - and build your intuition for prompt design.
+Notebook містить _початкові_ вправи - але ви заохочуєтесь додавати свої власні секції _Markdown_ (опис) та _Code_ (запити промптів), щоб спробувати більше прикладів або ідей - і розвивати свою інтуїцію щодо проектування промптів.
 
-## Illustrated Guide
+## Ілюстрований посібник
 
-Want to get the big picture of what this lesson covers before you dive in? Check out this illustrated guide, which gives you a sense of the main topics covered and the key takeaways for you to think about in each one. The lesson roadmap takes you from understanding the core concepts and challenges to addressing them with relevant prompt engineering techniques and best practices. Note that the "Advanced Techniques" section in this guide refers to content covered in the _next_ chapter of this curriculum.
+Хочете отримати загальне уявлення про те, що охоплює цей урок, перш ніж занурюватися? Перегляньте цей ілюстрований посібник, який дає вам розуміння основних тем та ключових моментів для роздумів у кожній з них. Дорожня карта уроку веде вас від розуміння основних концепцій та викликів до їх вирішення за допомогою відповідних технік інженерії промптів та найкращих практик. Зверніть увагу, що розділ "Розширені техніки" в цьому посібнику стосується контенту, який охоплюється в _наступному_ розділі цього навчального плану.
 
-![Illustrated Guide to Prompt Engineering](./images/04-prompt-engineering-sketchnote.png?WT.mc_id=academic-105485-koreyst)
+![Ілюстрований посібник з інженерії промптів](./images/04-prompt-engineering-sketchnote.png?WT.mc_id=academic-105485-koreyst)
 
-## Our Startup
+## Наш стартап 
 
-Now, let's talk about how _this topic_ relates to our startup mission to [bring AI innovation to education](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). We want to build AI-powered applications of _personalized learning_ - so let's think about how different users of our application might "design" prompts:
+Тепер поговорімо про те, як _ця тема_ пов'язана з місією нашого стартапу [привнести інновації ШІ в освіту](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). Ми хочемо створити додатки на основі ШІ для _персоналізованого навчання_ - тож давайте подумаємо про те, як різні користувачі нашого додатку можуть "проектувати" промпти:
 
-- **Administrators** might ask the AI to _analyze curriculum data to identify gaps in coverage_. The AI can summarize results or visualize them with code.
-- **Educators** might ask the AI to _generate a lesson plan for a target audience and topic_. The AI can build the personalized plan in a specified format.
-- **Students** might ask the AI to _tutor them in a difficult subject_. The AI can now guide students with lessons, hints & examples tailored to their level.
+- **Адміністратори** можуть попросити ШІ _проаналізувати дані навчального плану, щоб виявити прогалини в охопленні_. ШІ може підсумувати результати або візуалізувати їх за допомогою коду.
+- **Викладачі** можуть попросити ШІ _створити план уроку для цільової аудиторії та теми_. ШІ може створити персоналізований план у визначеному форматі.
+- **Студенти** можуть попросити ШІ _допомогти їм у складному предметі_. ШІ тепер може направляти студентів за допомогою уроків, підказок та прикладів, адаптованих до їхнього рівня.
 
-That's just the tip of the iceberg. Check out [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) - an open-source prompts library curated by education experts - to get a broader sense of the possibilities! _Try running some of those prompts in the sandbox or using the OpenAI Playground to see what happens!_
+Це лише верхівка айсберга. Перегляньте [Промпти для освіти](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) - бібліотеку промптів з відкритим кодом, підібрану експертами в галузі освіти - щоб отримати ширше уявлення про можливості! _Спробуйте запустити деякі з цих промптів у пісочниці або використовуючи OpenAI Playground, щоб побачити, що станеться!_
 
-<!--
-LESSON TEMPLATE:
-This unit should cover core concept #1.
-Reinforce the concept with examples and references.
+## Що таке інженерія промптів?
 
-CONCEPT #1:
-Prompt Engineering.
-Define it and explain why it is needed.
--->
+Ми почали цей урок з визначення **Інженерії промптів** як процесу _проектування та оптимізації_ текстових входів (промптів) для забезпечення послідовних та якісних відповідей (завершень) для заданої цілі додатку та моделі. Ми можемо розглядати це як 2-етапний процес:
 
-## What is Prompt Engineering?
+- _проектування_ початкового промпту для заданої моделі та цілі
+- _уточнення_ промпту ітеративно для покращення якості відповіді
 
-We started this lesson by defining **Prompt Engineering** as the process of _designing and optimizing_ text inputs (prompts) to deliver consistent and quality responses (completions) for a given application objective and model. We can think of this as a 2-step process:
+Це обов'язково є процесом проб і помилок, який вимагає інтуїції та зусиль користувача для отримання оптимальних результатів. То чому це важливо? Щоб відповісти на це питання, нам спочатку потрібно зрозуміти три концепції:
 
-- _designing_ the initial prompt for a given model and objective
-- _refining_ the prompt iteratively to improve the quality of the response
+- _Токенізація_ = як модель "бачить" промпт
+- _Базові LLM_ = як фундаментальна модель "обробляє" промпт
+- _LLM, налаштовані на інструкції_ = як модель тепер може бачити "завдання"
 
-This is necessarily a trial-and-error process that requires user intuition and effort to get optimal results. So why is it important? To answer that question, we first need to understand three concepts:
+### Токенізація
 
-- _Tokenization_ = how the model "sees" the prompt
-- _Base LLMs_ = how the foundation model "processes" a prompt
-- _Instruction-Tuned LLMs_ = how the model can now see "tasks"
+LLM бачить промпти як _послідовність токенів_, де різні моделі (або версії моделі) можуть токенізувати один і той же промпт по-різному. Оскільки LLM навчаються на токенах (а не на сирому тексті), спосіб токенізації промптів має прямий вплив на якість згенерованої відповіді.
 
-### Tokenization
-
-An LLM sees prompts as a _sequence of tokens_ where different models (or versions of a model) can tokenize the same prompt in different ways. Since LLMs are trained on tokens (and not on raw text), the way prompts get tokenized has a direct impact on the quality of the generated response.
-
-To get an intuition for how tokenization works, try tools like the [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) shown below. Copy in your prompt - and see how that gets converted into tokens, paying attention to how whitespace characters and punctuation marks are handled. Note that this example shows an older LLM (GPT-3) - so trying this with a newer model may produce a different result.
+Щоб отримати інтуїтивне розуміння того, як працює токенізація, спробуйте такі інструменти, як [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst), показаний нижче. Скопіюйте свій промпт - і подивіться, як він перетворюється в токени, звертаючи увагу на те, як обробляються пробіли та знаки пунктуації. Зауважте, що цей приклад показує старішу LLM (GPT-3) - тому спроба цього з новішою моделлю може дати інший результат.
 
 ![Tokenization](./images/04-tokenizer-example.png?WT.mc_id=academic-105485-koreyst)
 
-### Concept: Foundation Models
+### Концепт: Фундаментальні моделі
 
-Once a prompt is tokenized, the primary function of the ["Base LLM"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (or Foundation model) is to predict the token in that sequence. Since LLMs are trained on massive text datasets, they have a good sense of the statistical relationships between tokens and can make that prediction with some confidence. Note that they don't understand the _meaning_ of the words in the prompt or token; they just see a pattern they can "complete" with their next prediction. They can continue predicting the sequence till terminated by user intervention or some pre-established condition.
+Після токенізації промпту, основна функція ["Базової LLM"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (або Фундаментальної моделі) полягає в передбаченні токена в цій послідовності. Оскільки LLM навчені на масивних наборах текстових даних, вони мають хороше розуміння статистичних зв'язків між токенами і можуть робити це передбачення з певною впевненістю. Зауважте, що вони не розуміють _значення_ слів у промпті чи токені; вони просто бачать шаблон, який можуть "завершити" своїм наступним передбаченням. Вони можуть продовжувати передбачати послідовність доки не будуть зупинені втручанням користувача або якоюсь заздалегідь встановленою умовою.
 
-Want to see how prompt-based completion works? Enter the above prompt into the Azure OpenAI Studio [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) with the default settings. The system is configured to treat prompts as requests for information - so you should see a completion that satisfies this context.
+Хочете побачити, як працює завершення на основі промптів? Введіть наведений вище промпт у [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) Azure OpenAI Studio з налаштуваннями за замовчуванням. Система налаштована на обробку промптів як запитів на інформацію - тому ви повинні побачити завершення, яке відповідає цьому контексту.
 
-But what if the user wanted to see something specific that met some criteria or task objective? This is where _instruction-tuned_ LLMs come into the picture.
-
-![Base LLM Chat Completion](./images/04-playground-chat-base.png?WT.mc_id=academic-105485-koreyst)
-
-### Concept: Instruction Tuned LLMs
-
-An [Instruction Tuned LLM](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) starts with the foundation model and fine-tunes it with examples or input/output pairs (e.g., multi-turn "messages") that can contain clear instructions - and the response from the AI attempt to follow that instruction.
-
-This uses techniques like Reinforcement Learning with Human Feedback (RLHF) that can train the model to _follow instructions_ and _learn from feedback_ so that it produces responses that are better-suited to practical applications and more relevant to user objectives.
-
-Let's try it out - revisit the prompt above, but now change the _system message_ to provide the following instruction as context:
-
-> _Summarize content you are provided with for a second-grade student. Keep the result to one paragraph with 3-5 bullet points._
-
-See how the result is now tuned to reflect the desired goal and format? An educator can now directly use this response in their slides for that class.
+Але що, якщо користувач хотів побачити щось конкретне, що відповідало б певним критеріям чи цілям завдання? Ось тут на сцену виходять LLM, _налаштовані на інструкції_.
 
 ![Instruction Tuned LLM Chat Completion](./images/04-playground-chat-instructions.png?WT.mc_id=academic-105485-koreyst)
 
-## Why do we need Prompt Engineering?
+## Чому нам потрібна інженерія промптів?
 
-Now that we know how prompts are processed by LLMs, let's talk about _why_ we need prompt engineering. The answer lies in the fact that current LLMs pose a number of challenges that make _reliable and consistent completions_ more challenging to achieve without putting effort into prompt construction and optimization. For instance:
+Тепер, коли ми знаємо, як промпти обробляються LLM, давайте поговоримо про те, _чому_ нам потрібна інженерія промптів. Відповідь полягає в тому, що сучасні LLM створюють ряд викликів, які роблять досягнення _надійних і послідовних завершень_ більш складним без докладання зусиль до конструювання та оптимізації промптів. Наприклад:
 
-1. **Model responses are stochastic.** The _same prompt_ will likely produce different responses with different models or model versions. And it may even produce different results with the _same model_ at different times. _Prompt engineering techniques can help us minimize these variations by providing better guardrails_.
+1. **Відповіді моделей є стохастичними.** _Один і той же промпт_ імовірно буде створювати різні відповіді з різними моделями або версіями моделей. І він може навіть давати різні результати з _тією ж моделлю_ в різний час. _Техніки інженерії промптів можуть допомогти нам мінімізувати ці варіації, забезпечуючи кращі обмеження_.
 
-1. **Models can fabricate responses.** Models are pre-trained with _large but finite_ datasets, meaning they lack knowledge about concepts outside that training scope. As a result, they can produce completions that are inaccurate, imaginary, or directly contradictory to known facts. _Prompt engineering techniques help users identify and mitigate such fabrications e.g., by asking AI for citations or reasoning_.
+1. **Моделі можуть фабрикувати відповіді.** Моделі попередньо навчені на _великих, але кінцевих_ наборах даних, що означає, що їм бракує знань про концепції поза межами цього навчального обсягу. В результаті вони можуть створювати завершення, які є неточними, уявними або прямо суперечать відомим фактам. _Техніки інженерії промптів допомагають користувачам ідентифікувати та зменшувати такі фабрикації, наприклад, запитуючи в ШІ цитати або обґрунтування_.
 
-1. **Models capabilities will vary.** Newer models or model generations will have richer capabilities but also bring unique quirks and tradeoffs in cost & complexity. _Prompt engineering can help us develop best practices and workflows that abstract away differences and adapt to model-specific requirements in scalable, seamless ways_.
+1. **Можливості моделей будуть відрізнятися.** Новіші моделі або покоління моделей матимуть багатші можливості, але також принесуть унікальні особливості та компроміси в вартості й складності. _Інженерія промптів може допомогти нам розробити найкращі практики та робочі процеси, які абстрагують відмінності та адаптуються до специфічних вимог моделей масштабованими, безшовними способами_.
 
-Let's see this in action in the OpenAI or Azure OpenAI Playground:
+Давайте подивимось це в дії в OpenAI або Azure OpenAI Playground:
 
-- Use the same prompt with different LLM deployments (e.g, OpenAI, Azure OpenAI, Hugging Face) - did you see the variations?
-- Use the same prompt repeatedly with the _same_ LLM deployment (e.g., Azure OpenAI playground) - how did these variations differ?
+- Використайте той самий промпт з різними розгортаннями LLM (наприклад, OpenAI, Azure OpenAI, Hugging Face) - чи побачили ви варіації?
+- Використайте той самий промпт повторно з _тим самим_ розгортанням LLM (наприклад, Azure OpenAI playground) - як відрізнялися ці варіації?
 
-### Fabrications Example
+### Приклад фабрикацій
 
-In this course, we use the term **"fabrication"** to reference the phenomenon where LLMs sometimes generate factually incorrect information due to limitations in their training or other constraints. You may also have heard this referred to as _"hallucinations"_ in popular articles or research papers. However, we strongly recommend using _"fabrication"_ as the term so we don't accidentally anthropomorphize the behavior by attributing a human-like trait to a machine-driven outcome. This also reinforces [Responsible AI guidelines](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) from a terminology perspective, removing terms that may also be considered offensive or non-inclusive in some contexts.
+У цьому курсі ми використовуємо термін **"фабрикація"** для позначення явища, коли LLM іноді генерують фактично неправильну інформацію через обмеження в їхньому навчанні чи інші обмеження. Ви також могли чути це як _"галюцинації"_ в популярних статтях чи дослідницьких роботах. Однак, ми наполегливо рекомендуємо використовувати термін _"фабрикація"_, щоб ми випадково не антропоморфізували поведінку, приписуючи людиноподібну рису результату, керованому машиною. Це також підкріплює [принципи Відповідального ШІ](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) з термінологічної точки зору, видаляючи терміни, які також можуть вважатися образливими або неінклюзивними в деяких контекстах.
 
-Want to get a sense of how fabrications work? Think of a prompt that instructs the AI to generate content for a non-existent topic (to ensure it is not found in the training dataset). For example - I tried this prompt:
+Хочете отримати уявлення про те, як працюють фабрикації? Подумайте про промпт, який дає вказівку ШІ генерувати контент для неіснуючої теми (щоб переконатися, що її немає в навчальному наборі даних). Наприклад - я спробував цей промпт:
 
-> **Prompt:** generate a lesson plan on the Martian War of 2076.
+> **Промпт:** створіть план уроку про Марсіанську війну 2076 року.
 
-A web search showed me that there were fictional accounts (e.g., television series or books) on Martian wars - but none in 2076. Commonsense also tells us that 2076 is _in the future_ and thus, cannot be associated with a real event.
+Пошук в інтернеті показав мені, що були вигадані історії (наприклад, телесеріали або книги) про марсіанські війни - але жодної в 2076 році. Здоровий глузд також підказує нам, що 2076 рік _у майбутньому_, і, отже, не може бути пов'язаний з реальною подією.
 
-So what happens when we run this prompt with different LLM providers?
+То що ж відбувається, коли ми запускаємо цей промпт з різними провайдерами LLM?
 
-> **Response 1**: OpenAI Playground (GPT-35)
+> **Відповідь 1**: OpenAI Playground (GPT-35)
 
-![Response 1](./images/04-fabrication-oai.png?WT.mc_id=academic-105485-koreyst)
+![Відповідь 1](./images/04-fabrication-oai.png?WT.mc_id=academic-105485-koreyst)
 
-> **Response 2**: Azure OpenAI Playground (GPT-35)
+> **Відповідь 2**: Azure OpenAI Playground (GPT-35)
 
-![Response 2](./images/04-fabrication-aoai.png?WT.mc_id=academic-105485-koreyst)
+![Відповідь 2](./images/04-fabrication-aoai.png?WT.mc_id=academic-105485-koreyst)
 
-> **Response 3**: : Hugging Face Chat Playground (LLama-2)
+> **Відповідь 3**: Hugging Face Chat Playground (LLama-2)
 
-![Response 3](./images/04-fabrication-huggingchat.png?WT.mc_id=academic-105485-koreyst)
+![Відповідь 3](./images/04-fabrication-huggingchat.png?WT.mc_id=academic-105485-koreyst)
 
-As expected, each model (or model version) produces slightly different responses thanks to stochastic behavior and model capability variations. For instance, one model targets an 8th grade audience while the other assumes a high-school student. But all three models did generate responses that could convince an uninformed user that the event was real
+Як і очікувалося, кожна модель (або версія моделі) створює дещо різні відповіді завдяки стохастичній поведінці та варіаціям можливостей моделі. Наприклад, одна модель орієнтується на аудиторію 8-го класу, тоді як інша передбачає старшокласника. Але всі три моделі згенерували відповіді, які могли б переконати непоінформованого користувача, що подія була реальною.
 
-Prompt engineering techniques like _metaprompting_ and _temperature configuration_ may reduce model fabrications to some extent. New prompt engineering _architectures_ also incorporate new tools and techniques seamlessly into the prompt flow, to mitigate or reduce some of these effects.
+Техніки інженерії промптів, такі як _метапромптинг_ та _конфігурація температури_, можуть деякою мірою зменшити фабрикації моделей. Нові _архітектури_ інженерії промптів також безшовно включають нові інструменти та техніки в потік промптів для пом'якшення або зменшення деяких з цих ефектів.
 
-## Case Study: GitHub Copilot
+## Практичний приклад: GitHub Copilot
 
-Let's wrap this section by getting a sense of how prompt engineering is used in real-world solutions by looking at one Case Study: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
+Давайте завершимо цей розділ, отримавши уявлення про те, як інженерія промптів використовується в реальних рішеннях, розглянувши один практичний приклад: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
 
-GitHub Copilot is your "AI Pair Programmer" - it converts text prompts into code completions and is integrated into your development environment (e.g., Visual Studio Code) for a seamless user experience. As documented in the series of blogs below, the earliest version was based on the OpenAI Codex model - with engineers quickly realizing the need to fine-tune the model and develop better prompt engineering techniques, to improve code quality. In July, they [debuted an improved AI model that goes beyond Codex](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) for even faster suggestions.
+GitHub Copilot - це ваш "ШІ-напарник програміст" - він перетворює текстові промпти в завершення коду та інтегрований у ваше середовище розробки (наприклад, Visual Studio Code) для безперебійного користувацького досвіду. Як задокументовано в серії блогів нижче, найраніша версія базувалася на моделі OpenAI Codex - інженери швидко усвідомили необхідність точного налаштування моделі та розробки кращих технік інженерії промптів для покращення якості коду. У липні вони [представили вдосконалену модель ШІ, що виходить за межі Codex](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) для ще швидших пропозицій.
 
-Read the posts in order, to follow their learning journey.
+Прочитайте пости по порядку, щоб прослідкувати їхній шлях навчання.
 
-- **May 2023** | [GitHub Copilot is Getting Better at Understanding Your Code](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
-- **May 2023** | [Inside GitHub: Working with the LLMs behind GitHub Copilot](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **Jun 2023** | [How to write better prompts for GitHub Copilot](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **Jul 2023** | [.. GitHub Copilot goes beyond Codex with improved AI model](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
-- **Jul 2023** | [A Developer's Guide to Prompt Engineering and LLMs](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
-- **Sep 2023** | [How to build an enterprise LLM app: Lessons from GitHub Copilot](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **Травень 2023** | [GitHub Copilot стає кращим у розумінні вашого коду](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
+- **Травень 2023** | [Всередині GitHub: Робота з LLM за GitHub Copilot](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst).
+- **Червень 2023** | [Як писати кращі промпти для GitHub Copilot](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst).
+- **Липень 2023** | [.. GitHub Copilot виходить за межі Codex з вдосконаленою моделлю ШІ](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
+- **Липень 2023** | [Посібник розробника з інженерії промптів та LLM](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
+- **Вересень 2023** | [Як створити корпоративний додаток LLM: Уроки від GitHub Copilot](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
 
-You can also browse their [Engineering blog](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) for more posts like [this one](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst) that shows how these models and techniques are _applied_ for driving real-world applications.
+Ви також можете переглянути їхній [Інженерний блог](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) для більшої кількості постів, як [цей](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst), який показує, як ці моделі та техніки _застосовуються_ для створення реальних додатків.
 
----
+## Конструювання промптів
 
-<!--
-LESSON TEMPLATE:
-This unit should cover core concept #2.
-Reinforce the concept with examples and references.
+Ми побачили, чому інженерія промптів важлива - тепер давайте зрозуміємо, як промпти _конструюються_, щоб ми могли оцінити різні техніки для більш ефективного проектування промптів.
 
-CONCEPT #2:
-Prompt Design.
-Illustrated with examples.
--->
+### Базовий промпт
 
-## Prompt Construction
+Почнемо з базового промпту: текстового вводу, надісланого моделі без будь-якого іншого контексту. Ось приклад - коли ми надсилаємо перші кілька слів національного гімну США до [API завершення](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst) OpenAI, він миттєво _завершує_ відповідь наступними рядками, ілюструючи базову поведінку передбачення.
 
-We've seen why prompt engineering is important - now let's understand how prompts are _constructed_ so we can evaluate different techniques for more effective prompt design.
-
-### Basic Prompt
-
-Let's start with the basic prompt: a text input sent to the model with no other context. Here's an example - when we send the first few words of the US national anthem to the OpenAI [Completion API](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst) it instantly _completes_ the response with the next few lines, illustrating the basic prediction behavior.
-
-| Prompt (Input)     | Completion (Output)                                                                                                                        |
+| Промпт (Ввід)     | Завершення (Вивід)                                                                                                                      |
 | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| Oh say can you see | It sounds like you're starting the lyrics to "The Star-Spangled Banner," the national anthem of the United States. The full lyrics are ... |
+| Oh say can you see | Схоже, ви починаєте текст "The Star-Spangled Banner," національного гімну Сполучених Штатів. Повний текст такий... |
 
-### Complex Prompt
+### Складний промпт
 
-Now let's add context and instructions to that basic prompt. The [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) lets us construct a complex prompt as a collection of _messages_ with:
+Тепер давайте додамо контекст та інструкції до цього базового промпту. [API завершення чату](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) дозволяє нам конструювати складний промпт як колекцію _повідомлень_ з:
 
-- Input/output pairs reflecting _user_ input and _assistant_ response.
-- System message setting the context for assistant behavior or personality.
+- Парами ввід/вивід, що відображають ввід _користувача_ та відповідь _асистента_.
+- Системним повідомленням, що встановлює контекст для поведінки або особистості асистента.
 
-The request is now in the form below, where the _tokenization_ effectively captures relevant information from context and conversation. Now, changing the system context can be as impactful on the quality of completions, as the user inputs provided.
+Запит тепер має форму, наведену нижче, де _токенізація_ ефективно захоплює релевантну інформацію з контексту та розмови. Тепер зміна системного контексту може мати такий же вплив на якість завершень, як і надані користувачем вводи.
 
 ```python
 response = openai.chat.completions.create(
@@ -216,188 +180,158 @@ response = openai.chat.completions.create(
 )
 ```
 
-### Instruction Prompt
+### Промпт з інструкціями
 
-In the above examples, the user prompt was a simple text query that can be interpreted as a request for information. With _instruction_ prompts, we can use that text to specify a task in more detail, providing better guidance to the AI. Here's an example:
+У наведених вище прикладах промпт користувача був простим текстовим запитом, який можна інтерпретувати як запит на інформацію. З промптами _з інструкціями_ ми можемо використовувати цей текст для більш детального визначення завдання, надаючи краще керівництво для ШІ. Ось приклад:
 
-| Prompt (Input)                                                                                                                                                                                                                         | Completion (Output)                                                                                                        | Instruction Type    |
+| Промпт (Ввід)                                                                                                                                                                                                                          | Завершення (Вивід)                                                                                                         | Тип інструкції     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :------------------ |
-| Write a description of the Civil War                                                                                                                                                                                                   | _returned a simple paragraph_                                                                                              | Simple              |
-| Write a description of the Civil War. Provide key dates and events and describe their significance                                                                                                                                     | _returned a paragraph followed by a list of key event dates with descriptions_                                             | Complex             |
-| Write a description of the Civil War in 1 paragraph. Provide 3 bullet points with key dates and their significance. Provide 3 more bullet points with key historical figures and their contributions. Return the output as a JSON file | _returns more extensive details in a text box, formatted as JSON that you can copy-paste to a file and validate as needed_ | Complex. Formatted. |
+| Напишіть опис Громадянської війни                                                                                                                                                                                                    | _повернув простий параграф_                                                                                               | Простий             |
+| Напишіть опис Громадянської війни. Надайте ключові дати та події та опишіть їх значення                                                                                                                                      | _повернув параграф, за яким слідує список ключових дат подій з описами_                                              | Складний            |
+| Напишіть опис Громадянської війни в 1 параграфі. Надайте 3 пункти з ключовими датами та їх значенням. Надайте ще 3 пункти з ключовими історичними фігурами та їх внесками. Поверніть результат як JSON файл  | _повертає більш розширені деталі в текстовому полі, відформатовані як JSON, який ви можете скопіювати-вставити у файл та перевірити за потреби_ | Складний. Форматований. |
 
-## Primary Content
+## Основний контент
 
-In the above examples, the prompt was still fairly open-ended, allowing the LLM to decide what part of its pre-trained dataset was relevant. With the _primary content_ design pattern, the input text is divided into two parts:
+У наведених вище прикладах промпт все ще був досить відкритим, дозволяючи LLM вирішувати, яка частина її попередньо навченого набору даних була релевантною. З шаблоном проектування _основного контенту_ вхідний текст розділяється на дві частини:
 
-- an instruction (action)
-- relevant content (that influences action)
+- інструкція (дія)
+- релевантний контент (який впливає на дію)
 
-Here's an example where the instruction is to "summarize this in 2 sentences".
+Ось приклад, де інструкція - "підсумуйте це у 2 реченнях".
 
-| Prompt (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Completion (Output)                                                                                                                                                                                                                                                                             |
+| Промпт (Ввід)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Завершення (Вивід)                                                                                                                                                                                                                                                                             |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.[19] When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,[20] and is on average the third-brightest natural object in the night sky after the Moon and Venus. <br/> **Summarize this in 2 short sentences** | Jupiter, the fifth planet from the Sun, is the largest in the Solar System and is known for being one of the brightest objects in the night sky. Named after the Roman god Jupiter, it's a gas giant whose mass is two-and-a-half times that of all other planets in the Solar System combined. |
+| Юпітер - п'ята планета від Сонця і найбільша в Сонячній системі. Це газовий гігант з масою в одну тисячну від маси Сонця, але в два з половиною рази більшою за масу всіх інших планет Сонячної системи разом узятих. Юпітер - один з найяскравіших об'єктів, видимих неозброєним оком у нічному небі, і був відомий древнім цивілізаціям ще до писаної історії. Він названий на честь римського бога Юпітера.[19] При спостереженні з Землі Юпітер може бути достатньо яскравим, щоб його відбите світло створювало видимі тіні,[20] і в середньому є третім за яскравістю природним об'єктом у нічному небі після Місяця та Венери. <br/> **Підсумуйте це у 2 коротких реченнях** | Юпітер, п'ята планета від Сонця, є найбільшою в Сонячній системі і відома як один з найяскравіших об'єктів у нічному небі. Названий на честь римського бога Юпітера, це газовий гігант, маса якого в два з половиною рази більша за масу всіх інших планет Сонячної системи разом узятих. |
 
-The primary content segment can be used in various ways to drive more effective instructions:
+Сегмент основного контенту можна використовувати різними способами для створення більш ефективних інструкцій:
 
-- **Examples** - instead of telling the model what to do with an explicit instruction, give it examples of what to do and let it infer the pattern.
-- **Cues** - follow the instruction with a "cue" that primes the completion, guiding the model towards more relevant responses.
-- **Templates** - these are repeatable 'recipes' for prompts with placeholders (variables) that can be customized with data for specific use cases.
+- **Приклади** - замість того, щоб явно вказувати моделі, що робити, надайте їй приклади того, що робити, і дозвольте їй вивести шаблон.
+- **Підказки** - слідуйте за інструкцією "підказкою", яка готує завершення, спрямовуючи модель до більш релевантних відповідей.
+- **Шаблони** - це повторювані 'рецепти' для промптів із заповнювачами (змінними), які можна налаштувати даними для конкретних випадків використання.
 
-Let's explore these in action.
+Давайте розглянемо це в дії.
 
-### Using Examples
+### Використання прикладів
 
-This is an approach where you use the primary content to "feed the model" some examples of the desired output for a given instruction, and let it infer the pattern for the desired output. Based on the number of examples provided, we can have zero-shot prompting, one-shot prompting, few-shot prompting etc.
+Це підхід, де ви використовуєте основний контент, щоб "підгодувати модель" деякими прикладами бажаного виводу для заданої інструкції, і дозволити їй вивести шаблон для бажаного виводу. Базуючись на кількості наданих прикладів, ми можемо мати промптинг з нуля (zero-shot), з одним прикладом (one-shot), з кількома прикладами (few-shot) тощо.
 
-The prompt now consists of three components:
+Промпт тепер складається з трьох компонентів:
 
-- A task description
-- A few examples of the desired output
-- The start of a new example (which becomes an implicit task description)
+- Опис завдання
+- Кілька прикладів бажаного виводу 
+- Початок нового прикладу (який стає неявним описом завдання)
 
-| Learning Type | Prompt (Input)                                                                                                                                        | Completion (Output)         |
+| Тип навчання | Промпт (Ввід)                                                                                                                                           | Завершення (Вивід)          |
 | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------- |
-| Zero-shot     | "The Sun is Shining". Translate to Spanish                                                                                                            | "El Sol está brillando".    |
-| One-shot      | "The Sun is Shining" => ""El Sol está brillando". <br> "It's a Cold and Windy Day" =>                                                                 | "Es un día frío y ventoso". |
-| Few-shot      | The player ran the bases => Baseball <br/> The player hit an ace => Tennis <br/> The player hit a six => Cricket <br/> The player made a slam-dunk => | Basketball                  |
-|               |                                                                                                                                                       |                             |
+| Zero-shot     | "The Sun is Shining". Перекласти іспанською                                                                                                            | "El Sol está brillando".    |
+| One-shot      | "The Sun is Shining" => "El Sol está brillando". <br> "It's a Cold and Windy Day" =>                                                                    | "Es un día frío y ventoso". |
+| Few-shot      | Гравець пробіг по базах => Бейсбол <br/> Гравець зробив ейс => Теніс <br/> Гравець вдарив шістку => Крикет <br/> Гравець зробив слем-данк =>         | Баскетбол                   |
+|               |                                                                                                                                                         |                             |
 
-Note how we had to provide explicit instruction ("Translate to Spanish") in zero-shot prompting, but it gets inferred in the one-shot prompting example. The few-shot example shows how adding more examples allows models to make more accurate inferences with no added instructions.
+Зверніть увагу, як нам довелося надати явну інструкцію ("Перекласти іспанською") у промптингу з нуля, але вона виводиться у прикладі промптингу з одним прикладом. Приклад з кількома прикладами показує, як додавання більшої кількості прикладів дозволяє моделям робити точніші висновки без додаткових інструкцій.
 
-### Prompt Cues
+### Підказки промпту
 
-Another technique for using primary content is to provide _cues_ rather than examples. In this case, we are giving the model a nudge in the right direction by _starting it off_ with a snippet that reflects the desired response format. The model then "takes the cue" to continue in that vein.
+Інша техніка використання основного контенту полягає в наданні _підказок_ замість прикладів. У цьому випадку ми даємо моделі поштовх у правильному напрямку, _починаючи_ із фрагмента, який відображає бажаний формат відповіді. Модель потім "бере підказку" для продовження в цьому напрямку.
 
-| Number of Cues | Prompt (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Completion (Output)                                                                                                                                                                                                                                                                                       |
-| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/>**Summarize This**                                       | Jupiter is the largest planet in our Solar System and the fifth one from the Sun. It is a gas giant with a mass 1/1000th of the Sun's, but it is heavier than all the other planets combined. Ancient civilizations have known about Jupiter for a long time, and it is easily visible in the night sky.. |
-| 1              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/>**Summarize This** <br/> What we learned is that Jupiter | is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets combined. It is easily visible to the naked eye and has been known since ancient times.                        |
-| 2              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/>**Summarize This** <br/> Top 3 Facts We Learned:         | 1. Jupiter is the fifth planet from the Sun and the largest in the Solar System. <br/> 2. It is a gas giant with a mass one-thousandth that of the Sun...<br/> 3. Jupiter has been visible to the naked eye since ancient times ...                                                                       |
+| Кількість підказок | Промпт (Ввід)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Завершення (Вивід)                                                                                                                                                                                                                                                                                       |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0                  | Юпітер - п'ята планета від Сонця і найбільша в Сонячній системі. Це газовий гігант з масою в одну тисячну від маси Сонця, але в два з половиною рази більшою за масу всіх інших планет Сонячної системи разом узятих. Юпітер - один з найяскравіших об'єктів, видимих неозброєним оком у нічному небі, і був відомий древнім цивілізаціям ще до писаної історії. <br/>**Підсумуйте це**                                       | Юпітер - найбільша планета в нашій Сонячній системі і п'ята від Сонця. Це газовий гігант з масою 1/1000 від маси Сонця, але він важчий за всі інші планети разом узяті. Древні цивілізації знали про Юпітер протягом довгого часу, і його легко побачити в нічному небі. |
+| 1                  | Юпітер - п'ята планета від Сонця і найбільша в Сонячній системі. Це газовий гігант з масою в одну тисячну від маси Сонця, але в два з половиною рази більшою за масу всіх інших планет Сонячної системи разом узятих. Юпітер - один з найяскравіших об'єктів, видимих неозброєним оком у нічному небі, і був відомий древнім цивілізаціям ще до писаної історії. <br/>**Підсумуйте це** <br/> Те, що ми дізналися про Юпітер | це п'ята планета від Сонця і найбільша в Сонячній системі. Це газовий гігант з масою в одну тисячну від маси Сонця, але в два з половиною рази більшою за масу всіх інших планет разом узятих. Його легко побачити неозброєним оком, і він був відомий з давніх часів.                        |
+| 2                  | Юпітер - п'ята планета від Сонця і найбільша в Сонячній системі. Це газовий гігант з масою в одну тисячну від маси Сонця, але в два з половиною рази більшою за масу всіх інших планет Сонячної системи разом узятих. Юпітер - один з найяскравіших об'єктів, видимих неозброєним оком у нічному небі, і був відомий древнім цивілізаціям ще до писаної історії. <br/>**Підсумуйте це** <br/> Топ 3 фактів, які ми дізналися:         | 1. Юпітер - п'ята планета від Сонця і найбільша в Сонячній системі. <br/> 2. Це газовий гігант з масою в одну тисячну від маси Сонця...<br/> 3. Юпітер видно неозброєним оком з давніх часів ...                                                                       |
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |
 
-### Prompt Templates
+### Шаблони промптів
 
-A prompt template is a _pre-defined recipe for a prompt_ that can be stored and reused as needed, to drive more consistent user experiences at scale. In its simplest form, it is simply a collection of prompt examples like [this one from OpenAI](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst) that provides both the interactive prompt components (user and system messages) and the API-driven request format - to support reuse.
+Шаблон промпту - це _попередньо визначений рецепт для промпту_, який можна зберігати та повторно використовувати за потреби для забезпечення більш послідовного користувацького досвіду в масштабі. У своїй найпростішій формі це просто колекція прикладів промптів, як [цей від OpenAI](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst), який надає як компоненти інтерактивного промпту (повідомлення користувача та системи), так і формат запиту через API - для підтримки повторного використання.
 
-In it's more complex form like [this example from LangChain](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst) it contains _placeholders_ that can be replaced with data from a variety of sources (user input, system context, external data sources etc.) to generate a prompt dynamically. This allows us to create a library of reusable prompts that can be used to drive consistent user experiences **programmatically** at scale.
+У більш складній формі, як [цей приклад від LangChain](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst), він містить _заповнювачі_, які можна замінити даними з різних джерел (ввід користувача, системний контекст, зовнішні джерела даних тощо) для динамічного генерування промпту. Це дозволяє нам створити бібліотеку повторно використовуваних промптів, які можна використовувати для забезпечення послідовного користувацького досвіду **програмно** в масштабі.
 
-Finally, the real value of templates lies in the ability to create and publish _prompt libraries_ for vertical application domains - where the prompt template is now _optimized_ to reflect application-specific context or examples that make the responses more relevant and accurate for the targeted user audience. The [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) repository is a great example of this approach, curating a library of prompts for the education domain with emphasis on key objectives like lesson planning, curriculum design, student tutoring etc.
+Нарешті, справжня цінність шаблонів полягає в можливості створювати та публікувати _бібліотеки промптів_ для вертикальних прикладних доменів - де шаблон промпту тепер _оптимізований_ для відображення специфічного для додатку контексту або прикладів, які роблять відповіді більш релевантними та точними для цільової аудиторії користувачів. Репозиторій [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) є чудовим прикладом такого підходу, курируючи бібліотеку промптів для освітньої галузі з акцентом на ключових цілях, таких як планування уроків, розробка навчальних програм, репетиторство студентів тощо.
 
-## Supporting Content
+## Допоміжний контент
 
-If we think about prompt construction as having a instruction (task) and a target (primary content), then _secondary content_ is like additional context we provide to **influence the output in some way**. It could be tuning parameters, formatting instructions, topic taxonomies etc. that can help the model _tailor_ its response to be suit the desired user objectives or expectations.
+Якщо ми думаємо про конструювання промпту як про наявність інструкції (завдання) та цілі (основний контент), тоді _вторинний контент_ - це як додатковий контекст, який ми надаємо, щоб **певним чином вплинути на вивід**. Це можуть бути параметри налаштування, інструкції з форматування, таксономії тем тощо, які можуть допомогти моделі _адаптувати_ свою відповідь відповідно до бажаних цілей або очікувань користувача.
 
-For example: Given a course catalog with extensive metadata (name, description, level, metadata tags, instructor etc.) on all the available courses in the curriculum:
+Наприклад: Маючи каталог курсів з розширеними метаданими (назва, опис, рівень, теги метаданих, викладач тощо) про всі доступні курси в навчальній програмі:
 
-- we can define an instruction to "summarize the course catalog for Fall 2023"
-- we can use the primary content to provide a few examples of the desired output
-- we can use the secondary content to identify the top 5 "tags" of interest.
+- ми можемо визначити інструкцію "підсумувати каталог курсів на осінь 2023 року"
+- ми можемо використати основний контент для надання кількох прикладів бажаного виводу
+- ми можемо використати вторинний контент для визначення топ-5 "тегів", що цікавлять.
 
-Now, the model can provide a summary in the format shown by the few examples - but if a result has multiple tags, it can prioritize the 5 tags identified in secondary content.
+Тепер модель може надати підсумок у форматі, показаному кількома прикладами - але якщо результат має кілька тегів, вона може приоритезувати 5 тегів, визначених у вторинному контенті.
 
----
+## Найкращі практики промптингу
 
-<!--
-LESSON TEMPLATE:
-This unit should cover core concept #1.
-Reinforce the concept with examples and references.
+Тепер, коли ми знаємо, як промпти можуть бути _сконструйовані_, ми можемо почати думати про те, як їх _проектувати_ для відображення найкращих практик. Ми можемо розглядати це в двох частинах - маючи правильний _мисленнєвий підхід_ та застосовуючи правильні _техніки_.
 
-CONCEPT #3:
-Prompt Engineering Techniques.
-What are some basic techniques for prompt engineering?
-Illustrate it with some exercises.
--->
+### Мисленнєвий підхід до інженерії промптів
 
-## Prompting Best Practices
+Інженерія промптів - це процес проб і помилок, тому пам'ятайте про три широкі керівні фактори:
 
-Now that we know how prompts can be _constructed_, we can start thinking about how to _design_ them to reflect best practices. We can think about this in two parts - having the right _mindset_ and applying the right _techniques_.
+1. **Розуміння домену має значення.** Точність і релевантність відповіді є функцією _домену_, в якому працює додаток чи користувач. Застосовуйте свою інтуїцію та експертизу домену для подальшої **настройки технік**. Наприклад, визначте _специфічні для домену особистості_ у ваших системних промптах, або використовуйте _специфічні для домену шаблони_ у ваших користувацьких промптах. Надавайте вторинний контент, який відображає специфічні для домену контексти, або використовуйте _специфічні для домену підказки та приклади_ для спрямування моделі до знайомих шаблонів використання.
 
-### Prompt Engineering Mindset
+2. **Розуміння моделі має значення.** Ми знаємо, що моделі за своєю природою стохастичні. Але реалізації моделей також можуть відрізнятися з точки зору навчального набору даних, який вони використовують (попередньо навчені знання), можливостей, які вони надають (наприклад, через API чи SDK), та типу контенту, для якого вони оптимізовані (наприклад, код проти зображень проти тексту). Зрозумійте сильні та слабкі сторони моделі, яку ви використовуєте, і використовуйте ці знання для _пріоритезації завдань_ або створення _настроюваних шаблонів_, оптимізованих під можливості моделі.
 
-Prompt Engineering is a trial-and-error process so keep three broad guiding factors in mind:
+3. **Ітерація та валідація мають значення.** Моделі швидко розвиваються, як і техніки інженерії промптів. Як експерт домену, у вас можуть бути інший контекст чи критерії для _вашого_ конкретного додатку, які можуть не застосовуватися до ширшої спільноти. Використовуйте інструменти та техніки інженерії промптів для "швидкого старту" конструювання промптів, потім ітеруйте та валідуйте результати, використовуючи власну інтуїцію та експертизу домену. Записуйте свої висновки та створюйте **базу знань** (наприклад, бібліотеки промптів), яку інші можуть використовувати як нову базову лінію для швидших ітерацій у майбутньому.
 
-1. **Domain Understanding Matters.** Response accuracy and relevance is a function of the _domain_ in which that application or user operates. Apply your intuition and domain expertise to **customize techniques** further. For instance, define _domain-specific personalities_ in your system prompts, or use _domain-specific templates_ in your user prompts. Provide secondary content that reflects domain-specific contexts, or use _domain-specific cues and examples_ to guide the model towards familiar usage patterns.
+## Найкращі практики
 
-2. **Model Understanding Matters.** We know models are stochastic by nature. But model implementations can also vary in terms of the training dataset they use (pre-trained knowledge), the capabilities they provide (e.g., via API or SDK) and the type of content they are optimized for (e.g, code vs. images vs. text). Understand the strengths and limitations of the model you are using, and use that knowledge to _prioritize tasks_ or build _customized templates_ that are optimized for the model's capabilities.
+Тепер розглянемо загальні найкращі практики, які рекомендують практики [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) та [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst).
 
-3. **Iteration & Validation Matters.** Models are evolving rapidly, and so are the techniques for prompt engineering. As a domain expert, you may have other context or criteria _your_ specific application, that may not apply to the broader community. Use prompt engineering tools & techniques to "jump start" prompt construction, then iterate and validate the results using your own intuition and domain expertise. Record your insights and create a **knowledge base** (e.g, prompt libraries) that can be used as a new baseline by others, for faster iterations in the future.
+| Що                                    | Чому                                                                                                                                                                                                                                               |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Оцінюйте найновіші моделі            | Нові покоління моделей, ймовірно, матимуть покращені функції та якість - але також можуть спричинити вищі витрати. Оцініть їх вплив, потім приймайте рішення щодо міграції.                                                                    |
+| Розділяйте інструкції та контекст    | Перевірте, чи ваша модель/провайдер визначає _розділювачі_ для чіткішого розрізнення інструкцій, первинного та вторинного контенту. Це може допомогти моделям точніше призначати ваги токенам.                                                 |
+| Будьте конкретними та чіткими        | Надавайте більше деталей про бажаний контекст, результат, довжину, формат, стиль тощо. Це покращить як якість, так і послідовність відповідей. Фіксуйте рецепти в шаблонах для повторного використання.                                        |
+| Будьте описовими, використовуйте приклади | Моделі можуть краще реагувати на підхід "покажи і розкажи". Почніть з підходу `zero-shot`, де ви даєте інструкцію (але без прикладів), потім спробуйте `few-shot` як уточнення, надаючи кілька прикладів бажаного виводу. Використовуйте аналогії. |
+| Використовуйте підказки для швидкого старту | Підштовхніть до бажаного результату, надавши деякі провідні слова чи фрази, які можна використати як відправну точку для відповіді.                                                                                                              |
+| Подвоюйте зусилля                    | Іноді вам може знадобитися повторити себе для моделі. Давайте інструкції до і після основного контенту, використовуйте інструкцію та підказку тощо. Ітеруйте та перевіряйте, що працює.                                                         |
+| Порядок має значення                  | Порядок, у якому ви представляєте інформацію моделі, може вплинути на вивід, навіть у навчальних прикладах, завдяки упередженню недавності. Спробуйте різні варіанти, щоб побачити, що працює найкраще.                                        |
+| Дайте моделі "вихід"                 | Дайте моделі _резервну_ відповідь завершення, яку вона може надати, якщо не може виконати завдання з будь-якої причини. Це може зменшити шанси генерування моделями хибних або сфабрикованих відповідей.                                       |
 
-## Best Practices
+Як і з будь-якою найкращою практикою, пам'ятайте, що _ваші результати можуть відрізнятися_ залежно від моделі, завдання та домену. Використовуйте їх як відправну точку та ітеруйте, щоб знайти те, що працює найкраще для вас. Постійно переоцінюйте ваш процес інженерії промптів, коли стають доступними нові моделі та інструменти, зосереджуючись на масштабованості процесу та якості відповідей.
 
-Now let's look at common best practices that are recommended by [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) and [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst) practitioners.
+## Завдання
 
-| What                              | Why                                                                                                                                                                                                                                               |
-| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Evaluate the latest models.       | New model generations are likely to have improved features and quality - but may also incur higher costs. Evaluate them for impact, then make migration decisions.                                                                                |
-| Separate instructions & context   | Check if your model/provider defines _delimiters_ to distinguish instructions, primary and secondary content more clearly. This can help models assign weights more accurately to tokens.                                                         |
-| Be specific and clear             | Give more details about the desired context, outcome, length, format, style etc. This will improve both the quality and consistency of responses. Capture recipes in reusable templates.                                                          |
-| Be descriptive, use examples      | Models may respond better to a "show and tell" approach. Start with a `zero-shot` approach where you give it an instruction (but no examples) then try `few-shot` as a refinement, providing a few examples of the desired output. Use analogies. |
-| Use cues to jumpstart completions | Nudge it towards a desired outcome by giving it some leading words or phrases that it can use as a starting point for the response.                                                                                                               |
-| Double Down                       | Sometimes you may need to repeat yourself to the model. Give instructions before and after your primary content, use an instruction and a cue, etc. Iterate & validate to see what works.                                                         |
-| Order Matters                     | The order in which you present information to the model may impact the output, even in the learning examples, thanks to recency bias. Try different options to see what works best.                                                               |
-| Give the model an “out”           | Give the model a _fallback_ completion response it can provide if it cannot complete the task for any reason. This can reduce chances of models generating false or fabricated responses.                                                         |
-|                                   |                                                                                                                                                                                                                                                   |
+Вітаємо! Ви дійшли до кінця уроку! Час перевірити деякі з цих концепцій та технік на реальних прикладах!
 
-As with any best practice, remember that _your mileage may vary_ based on the model, the task and the domain. Use these as a starting point, and iterate to find what works best for you. Constantly re-evaluate your prompt engineering process as new models and tools become available, with a focus on process scalability and response quality.
+Для нашого завдання ми будемо використовувати Jupyter Notebook з вправами, які ви можете виконати інтерактивно. Ви також можете розширити Notebook власними комірками Markdown та Code для дослідження ідей та технік самостійно.
 
-<!--
-LESSON TEMPLATE:
-This unit should provide a code challenge if applicable
+### Для початку зробіть форк репозиторію, потім
 
-CHALLENGE:
-Link to a Jupyter Notebook with only the code comments in the instructions (code sections are empty).
+- (Рекомендовано) Запустіть GitHub Codespaces
+- (Альтернативно) Клонуйте репозиторій на свій локальний пристрій та використовуйте його з Docker Desktop
+- (Альтернативно) Відкрийте Notebook у вашому улюбленому середовищі виконання Notebook.
 
-SOLUTION:
-Link to a copy of that Notebook with the prompts filled in and run, showing what one example could be.
--->
+### Далі налаштуйте змінні середовища
 
-## Assignment
+- Скопіюйте файл `.env.copy` в кореневій директорії репозиторію в `.env` та заповніть значення `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` та `AZURE_OPENAI_DEPLOYMENT`. Поверніться до розділу [Learning Sandbox](./04-prompt-engineering-fundamentals#learning-sandbox), щоб дізнатися як.
 
-Congratulations! You made it to the end of the lesson! It's time to put some of those concepts and techniques to the test with real examples!
+### Потім відкрийте Jupyter Notebook
 
-For our assignment, we'll be using a Jupyter Notebook with exercises you can complete interactively. You can also extend the Notebook with your own Markdown and Code cells to explore ideas and techniques on your own.
+- Виберіть ядро виконання. Якщо використовуєте варіанти 1 або 2, просто виберіть ядро Python 3.10.x за замовчуванням, що надається dev container.
 
-### To get started, fork the repo, then
+Ви готові запускати вправи. Зауважте, що тут немає _правильних і неправильних_ відповідей - просто досліджуємо варіанти методом проб і помилок та розвиваємо інтуїцію щодо того, що працює для конкретної моделі та домену додатку.
 
-- (Recommended) Launch GitHub Codespaces
-- (Alternatively) Clone the repo to your local device and use it with Docker Desktop
-- (Alternatively) Open the Notebook with your preferred Notebook runtime environment.
+_З цієї причини в цьому уроці немає сегментів з рішеннями коду. Натомість Notebook матиме комірки Markdown з назвою "Моє рішення:", що показує один приклад виводу для довідки._
 
-### Next, configure your environment variables
+## Перевірка знань
 
-- Copy the `.env.copy` file in repo root to `.env` and fill in the `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_DEPLOYMENT` values. Come back to [Learning Sandbox section](./04-prompt-engineering-fundamentals#learning-sandbox) to learn how.
+Який з наступних промптів є хорошим, дотримуючись розумних найкращих практик?
 
-### Next, open the Jupyter Notebook
+1. Покажи мені зображення червоного авто
+2. Покажи мені зображення червоного авто марки Volvo моделі XC90, припаркованого біля скелі на заході сонця
+3. Покажи мені зображення червоного авто марки Volvo моделі XC90
 
-- Select the runtime kernel. If using options 1 or 2, simply select the default Python 3.10.x kernel provided by the dev container.
+В: 2, це найкращий промпт, оскільки він надає деталі про "що" і вдається в подробиці (не просто будь-яке авто, а конкретної марки та моделі), а також описує загальну обстановку. 3 є наступним найкращим, оскільки він також містить багато опису.
 
-You're all set to run the exercises. Note that there are no _right and wrong_ answers here - just exploring options by trial-and-error and building intuition for what works for a given model and application domain.
+## 🚀 Завдання
 
-_For this reason there are no Code Solution segments in this lesson. Instead, the Notebook will have Markdown cells titled "My Solution:" that shows one example output for reference._
+Подивіться, чи можете ви використати техніку "підказки" з промптом: Завершіть речення "Покажи мені зображення червоного авто марки Volvo та ". Що воно відповідає, і як би ви це покращили?
 
- <!--
-LESSON TEMPLATE:
-Wrap the section with a summary and resources for self-guided learning.
--->
+## Чудова робота! Продовжуйте навчання
 
-## Knowledge check
+Хочете дізнатися більше про різні концепції інженерії промптів? Перейдіть на [сторінку продовження навчання](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб знайти інші чудові ресурси на цю тему.
 
-Which of the following is a good prompt following some reasonable best practices?
-
-1. Show me an image of red car
-2. Show me an image of red car of make Volvo and model XC90 parked by a cliff with the sun setting
-3. Show me an image of red car of make Volvo and model XC90
-
-A: 2, it's the best prompt as it provides details on "what" and goes into specifics (not just any car but a specific make and model) and it also describes the overall setting. 3 is next best as it also contains a lot of description.
-
-## 🚀 Challenge
-
-See if you can leverage the "cue" technique with the prompt: Complete the sentence "Show me an image of red car of make Volvo and ". What does it respond with, and how would you improve it?
-
-## Great Work! Continue Your Learning
-
-Want to learn more about different Prompt Engineering concepts? Go to the [continued learning page](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to find other great resources on this topic.
-
-Head over to Lesson 5 where we will look at [advanced prompting techniques](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)!
+Переходьте до Уроку 5, де ми розглянемо [розширені техніки промптингу](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)!

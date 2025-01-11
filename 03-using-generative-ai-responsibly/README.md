@@ -1,133 +1,133 @@
-# Using Generative AI Responsibly
+# Відповідальне використання Генеративного ШІ
 
-[![Using Generative AI Responsibly](./images/03-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson3-gh?WT.mc_id=academic-105485-koreyst)
+[![Відповідальне використання Генеративного ШІ](./images/03-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson3-gh?WT.mc_id=academic-105485-koreyst)
 
-> _Click the image above to view video of this lesson_
+> _Натисніть на зображення вище, щоб переглянути відео цього уроку_
 
-It's easy to be fascinated with AI and generative AI in particular, but you need to consider how you would use it responsibly. You need to consider things like how to ensure the output is fair, non-harmful and more. This chapter aims to provide you with the mentioned context, what to consider, and how to take active steps to improve your AI usage.
+Легко захопитися ШІ і особливо генеративним ШІ, але вам потрібно подумати про те, як використовувати його відповідально. Вам потрібно врахувати такі речі, як забезпечення справедливості, безпечності результатів тощо. Ця глава має на меті надати вам згаданий контекст, що потрібно враховувати і як зробити активні кроки для покращення вашого використання ШІ.
 
-## Introduction
+## Вступ
 
-This lesson will cover:
+Цей урок охопить:
 
-- Why you should prioritize Responsible AI when building Generative AI applications.
-- Core principles of Responsible AI and how they relate to Generative AI.
-- How to put these Responsible AI principles into practice through strategy and tooling.
+- Чому ви повинні приоритезувати Відповідальний ШІ при створенні додатків Генеративного ШІ.
+- Основні принципи Відповідального ШІ та як вони пов'язані з Генеративним ШІ.
+- Як втілити ці принципи Відповідального ШІ на практиці через стратегію та інструменти.
 
-## Learning Goals
+## Цілі навчання
 
-After completing this lesson you will know:
+Після завершення цього уроку ви будете знати:
 
-- The importance of Responsible AI when building Generative AI applications.
-- When to think and apply the core principles of Responsible AI when building Generative AI applications.
-- What tools and strategies are available to you to put the concept of Responsible AI into practice.
+- Важливість Відповідального ШІ при створенні додатків Генеративного ШІ.
+- Коли думати і застосовувати основні принципи Відповідального ШІ при створенні додатків Генеративного ШІ.
+- Які інструменти та стратегії доступні вам для втілення концепції Відповідального ШІ на практиці.
 
-## Responsible AI Principles
+## Принципи Відповідального ШІ
 
-The excitement of Generative AI has never been higher. This excitement has brought a lot of new developers, attention, and funding to this space. While this is very positive for anyone looking to build products and companies using Generative AI, it is also important we proceed responsibly.
+Захоплення Генеративним ШІ ще ніколи не було таким високим. Це захоплення принесло багато нових розробників, уваги та фінансування в цю сферу. Хоча це дуже позитивно для всіх, хто хоче будувати продукти та компанії з використанням Генеративного ШІ, також важливо діяти відповідально.
 
-Throughout this course, we are focusing on building our startup and our AI education product. We’ll use the principles of Responsible AI: Fairness, Inclusiveness, Reliability/Safety, Security & Privacy, Transparency and Accountability. With these principles, we will explore how they relate to our use of Generative AI in our products.
+Протягом цього курсу ми зосереджуємося на побудові нашого стартапу та нашого освітнього продукту на основі ШІ. Ми будемо використовувати принципи Відповідального ШІ: Справедливість, Інклюзивність, Надійність/Безпека, Захист і Приватність, Прозорість та Підзвітність. З цими принципами ми дослідимо, як вони пов'язані з нашим використанням Генеративного ШІ в наших продуктах.
 
-## Why Should You Prioritize Responsible AI
+## Чому варто приоритезувати Відповідальний ШІ
 
-When building a product, taking a human-centric approach by keeping your user's best interest in mind leads to the best results.
+При створенні продукту, застосування людино-центричного підходу, тримаючи на увазі найкращі інтереси користувача, призводить до найкращих результатів.
 
-The uniqueness of Generative AI is its power to create helpful answers, information, guidance, and content for users. This can be done without many manual steps which can lead to very impressive results. Without proper planning and strategies, it can also unfortunately lead to some harmful results for your users, your product, and society as a whole.
+Унікальність Генеративного ШІ полягає в його здатності створювати корисні відповіді, інформацію, керівництва та контент для користувачів. Це можна зробити без багатьох ручних кроків, що може призвести до дуже вражаючих результатів. Без належного планування та стратегій це також, на жаль, може призвести до деяких шкідливих результатів для ваших користувачів, вашого продукту та суспільства в цілому.
 
-Let's look at some (but not all) of these potentially harmful results:
+Давайте розглянемо деякі (але не всі) з цих потенційно шкідливих результатів:
 
-### Hallucinations
+### Галюцинації
 
-Hallucinations are a term used to describe when an LLM produces content that is either completely nonsensical or something we know is factually wrong based on other sources of information.
+Галюцинації - це термін, який використовується для опису ситуації, коли LLM створює контент, який або повністю безглуздий, або щось, що ми знаємо, є фактично неправильним на основі інших джерел інформації.
 
-Let's take for example we build a feature for our startup that allows students to ask historical questions to a model. A student asks the question `Who was the sole survivor of Titanic?`
+Наприклад, припустимо, ми створюємо функцію для нашого стартапу, яка дозволяє студентам задавати історичні питання моделі. Студент задає питання `Хто був єдиним вижившим на Титаніку?`
 
-The model produces a response such as the one below:
+Модель створює таку відповідь:
 
-![Prompt saying "Who was the sole survivor of the Titanic"](../03-using-generative-ai-responsibly/images/ChatGPT-titanic-survivor-prompt.webp?WT.mc_id=academic-105485-koreyst)
+![Промпт "Хто був єдиним вижившим на Титаніку"](../03-using-generative-ai-responsibly/images/ChatGPT-titanic-survivor-prompt.webp?WT.mc_id=academic-105485-koreyst)
 
-> _(Source: [Flying bisons](https://flyingbisons.com?WT.mc_id=academic-105485-koreyst))_
+> _(Джерело: [Flying bisons](https://flyingbisons.com?WT.mc_id=academic-105485-koreyst))_
 
-This is a very confident and thorough answer. Unfortunately, it is incorrect. Even with a minimal amount of research, one would discover there was more than one survivor of the Titanic disaster. For a student who is just starting to research this topic, this answer can be persuasive enough to not be questioned and treated as fact. The consequences of this can lead to the AI system being unreliable and negatively impact the reputation of our startup.
+Це дуже впевнена і ретельна відповідь. На жаль, вона неправильна. Навіть з мінімальним дослідженням можна виявити, що було більше одного вижившого в катастрофі Титаніка. Для студента, який тільки починає досліджувати цю тему, така відповідь може бути достатньо переконливою, щоб не ставити її під сумнів і сприймати як факт. Наслідки цього можуть призвести до того, що система ШІ стане ненадійною і негативно вплине на репутацію нашого стартапу.
 
-With each iteration of any given LLM, we have seen performance improvements around minimizing hallucinations. Even with this improvement, we as application builders and users still need to remain aware of these limitations.
+З кожною ітерацією будь-якої конкретної LLM ми спостерігали покращення продуктивності щодо мінімізації галюцинацій. Навіть з цим покращенням, ми як розробники додатків та користувачі все ще повинні залишатися обізнаними про ці обмеження.
 
-### Harmful Content
+### Шкідливий контент
 
-We covered in the earlier section when an LLM produces incorrect or nonsensical responses. Another risk we need to be aware of is when a model responds with harmful content.
+Ми розглянули в попередньому розділі, коли LLM створює неправильні або безглузді відповіді. Інший ризик, про який нам потрібно знати, - це коли модель відповідає шкідливим контентом.
 
-Harmful content can be defined as:
+Шкідливий контент можна визначити як:
 
-- Providing instructions or encouraging self-harm or harm to certain groups.
-- Hateful or demeaning content.
-- Guiding planning any type of attack or violent acts.
-- Providing instructions on how to find illegal content or commit illegal acts.
-- Displaying sexually explicit content.
+- Надання інструкцій або заохочення до самоушкодження чи шкоди певним групам.
+- Ненависний або принизливий контент.
+- Керівництво з планування будь-якого типу нападу чи насильницьких дій.
+- Надання інструкцій щодо того, як знайти нелегальний контент або вчинити нелегальні дії.
+- Відображення сексуально експліцитного контенту.
 
-For our startup, we want to make sure we have the right tools and strategies in place to prevent this type of content from being seen by students.
+Для нашого стартапу ми хочемо переконатися, що у нас є правильні інструменти та стратегії для запобігання перегляду такого контенту студентами.
 
-### Lack of Fairness
+### Відсутність справедливості
 
-Fairness is defined as “ensuring that an AI system is free from bias and discrimination and that they treat everyone fairly and equally.” In the world of Generative AI, we want to ensure that exclusionary worldviews of marginalized groups are not reinforced by the model’s output.
+Справедливість визначається як "забезпечення того, що система ШІ вільна від упереджень та дискримінації і що вона ставиться до всіх справедливо та рівно". У світі Генеративного ШІ ми хочемо забезпечити, щоб виключні світогляди маргіналізованих груп не підкріплювалися результатами моделі.
 
-These types of outputs are not only destructive to building positive product experiences for our users, but they also cause further societal harm. As application builders, we should always keep a wide and diverse user base in mind when building solutions with Generative AI.
+Такі типи результатів не тільки руйнівні для створення позитивного досвіду користування продуктом для наших користувачів, але вони також спричиняють подальшу суспільну шкоду. Як розробники додатків, ми завжди повинні мати на увазі широку та різноманітну базу користувачів при створенні рішень з Генеративним ШІ.
 
-## How to Use Generative AI Responsibly
+## Як відповідально використовувати Генеративний ШІ
 
-Now that we have identified the importance of Responsible Generative AI, let's look at 4 steps we can take to build our AI solutions responsibly:
+Тепер, коли ми визначили важливість Відповідального Генеративного ШІ, давайте розглянемо 4 кроки, які ми можемо зробити для відповідальної побудови наших рішень ШІ:
 
-![Mitigate Cycle](./images/mitigate-cycle.png?WT.mc_id=academic-105485-koreyst)
+![Цикл пом'якшення](./images/mitigate-cycle.png?WT.mc_id=academic-105485-koreyst)
 
-### Measure Potential Harms
+### Вимірювання потенційної шкоди
 
-In software testing, we test the expected actions of a user on an application. Similarly, testing a diverse set of prompts users are most likely going to use is a good way to measure potential harm.
+У тестуванні програмного забезпечення ми тестуємо очікувані дії користувача в додатку. Аналогічно, тестування різноманітного набору промптів, які користувачі найімовірніше будуть використовувати, є хорошим способом виміряти потенційну шкоду.
 
-Since our startup is building an education product, it would be good to prepare a list of education-related prompts. This could be to cover a certain subject, historical facts, and prompts about student life.
+Оскільки наш стартап створює освітній продукт, було б добре підготувати список промптів, пов'язаних з освітою. Це може бути для охоплення певного предмету, історичних фактів та промптів про студентське життя.
 
-### Mitigate Potential Harms
+### Пом'якшення потенційної шкоди
 
-It is now time to find ways where we can prevent or limit the potential harm caused by the model and its responses. We can look at this in 4 different layers:
+Тепер час знайти способи, якими ми можемо запобігти або обмежити потенційну шкоду, спричинену моделлю та її відповідями. Ми можемо розглянути це в 4 різних шарах:
 
-![Mitigation Layers](./images/mitigation-layers.png?WT.mc_id=academic-105485-koreyst)
+![Шари пом'якшення](./images/mitigation-layers.png?WT.mc_id=academic-105485-koreyst)
 
-- **Model**. Choosing the right model for the right use case. Larger and more complex models like GPT-4 can cause more of a risk of harmful content when applied to smaller and more specific use cases. Using your training data to fine-tune also reduces the risk of harmful content.
+- **Модель**. Вибір правильної моделі для правильного випадку використання. Більші та складніші моделі, як GPT-4, можуть спричинити більший ризик шкідливого контенту при застосуванні до менших та більш специфічних випадків використання. Використання ваших навчальних даних для точного налаштування також зменшує ризик шкідливого контенту.
 
-- **Safety System**. A safety system is a set of tools and configurations on the platform serving the model that help mitigate harm. An example of this is the content filtering system on the Azure OpenAI service. Systems should also detect jailbreak attacks and unwanted activity like requests from bots.
+- **Система безпеки**. Система безпеки - це набір інструментів та конфігурацій на платформі, що обслуговує модель, які допомагають пом'якшити шкоду. Прикладом цього є система фільтрації контенту в сервісі Azure OpenAI. Системи також повинні виявляти атаки типу jailbreak та небажану активність, як запити від ботів.
 
-- **Metaprompt**. Metaprompts and grounding are ways we can direct or limit the model based on certain behaviors and information. This could be using system inputs to define certain limits of the model. In addition, providing outputs that are more relevant to the scope or domain of the system.
+- **Метапромпт**. Метапромпти та заземлення - це способи, якими ми можемо направляти або обмежувати модель на основі певної поведінки та інформації. Це може бути використання системних входів для визначення певних обмежень моделі. Крім того, надання результатів, які більш релевантні до сфери або домену системи.
 
-It can also be using techniques like Retrieval Augmented Generation (RAG) to have the model only pull information from a selection of trusted sources. There is a lesson later in this course for [building search applications](../08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)
+Це також може бути використання таких технік, як Генерація з Розширенням Пошуку (RAG), щоб модель витягувала інформацію тільки з вибору довірених джерел. Пізніше в цьому курсі є урок про [створення пошукових додатків](../08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)
 
-- **User Experience**. The final layer is where the user interacts directly with the model through our application’s interface in some way. In this way we can design the UI/UX to limit the user on the types of inputs they can send to the model as well as text or images displayed to the user. When deploying the AI application, we also must be transparent about what our Generative AI application can and can’t do.
+- **Користувацький досвід**. Останній шар - це де користувач безпосередньо взаємодіє з моделлю через інтерфейс нашого додатка певним чином. Таким чином ми можемо розробити UI/UX для обмеження користувача щодо типів входів, які вони можуть надсилати моделі, а також тексту чи зображень, що відображаються користувачу. При розгортанні додатка ШІ ми також повинні бути прозорими щодо того, що наш додаток Генеративного ШІ може і не може робити.
 
-We have an entire lesson dedicated to [Designing UX for AI Applications](../12-designing-ux-for-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
+У нас є цілий урок, присвячений [Проектуванню UX для Додатків ШІ](../12-designing-ux-for-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
 
-- **Evaluate model**. Working with LLMs can be challenging because we don’t always have control over the data the model was trained on. Regardless, we should always evaluate the model’s performance and outputs. It’s still important to measure the model’s accuracy, similarity, groundedness, and relevance of the output. This helps provide transparency and trust to stakeholders and users.
+- **Оцінка моделі**. Робота з LLM може бути складною, тому що ми не завжди маємо контроль над даними, на яких модель була навчена. Незалежно від цього, ми завжди повинні оцінювати продуктивність моделі та її результати. Все ще важливо вимірювати точність моделі, подібність, обґрунтованість та релевантність результату. Це допомагає забезпечити прозорість та довіру для зацікавлених сторін та користувачів.
 
-### Operate a Responsible Generative AI solution
+### Експлуатація відповідального рішення Генеративного ШІ
 
-Building an operational practice around your AI applications is the final stage. This includes partnering with other parts of our startup like Legal and Security to ensure we are compliant with all regulatory policies. Before launching, we also want to build plans around delivery, handling incidents, and rollback to prevent any harm to our users from growing.
+Побудова операційної практики навколо ваших додатків ШІ є останнім етапом. Це включає партнерство з іншими частинами нашого стартапу, такими як Юридичний відділ та Безпека, щоб забезпечити відповідність усім регуляторним політикам. Перед запуском ми також хочемо створити плани щодо доставки, обробки інцидентів та відкату, щоб запобігти зростанню будь-якої шкоди для наших користувачів.
 
-## Tools
+## Інструменти
 
-While the work of developing Responsible AI solutions may seem like a lot, it is work well worth the effort. As the area of Generative AI grows, more tooling to help developers efficiently integrate responsibility into their workflows will mature. For example, the [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=academic-105485-koreyst) can help detect harmful content and images via an API request.
+Хоча робота з розробки відповідальних рішень ШІ може здаватися великою, це робота, яка варта зусиль. Оскільки сфера Генеративного ШІ зростає, більше інструментів для допомоги розробникам ефективно інтегрувати відповідальність у їхні робочі процеси буде вдосконалюватися. Наприклад, [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=academic-105485-koreyst) може допомогти виявити шкідливий контент та зображення через API-запит.
 
-## Knowledge check
+## Перевірка знань
 
-What are some things you need to care about to ensure responsible AI usage?
+Про що потрібно подбати, щоб забезпечити відповідальне використання ШІ?
 
-1. That the answer is correct.
-1. Harmful usage, that AI isn't used for criminal purposes.
-1. Ensuring the AI is free from bias and discrimination.
+1. Що відповідь правильна.
+1. Шкідливе використання, що ШІ не використовується для злочинних цілей.
+1. Забезпечення того, що ШІ вільний від упереджень та дискримінації.
 
-A: 2 and 3 are correct. Responsible AI helps you consider how to mitigate harmful effects and biases and more.
+В: 2 та 3 правильні. Відповідальний ШІ допомагає вам враховувати, як пом'якшити шкідливі ефекти та упередження тощо.
 
-## 🚀 Challenge
+## 🚀 Завдання
 
-Read up on [Azure AI Content Saftey](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=academic-105485-koreyst) and see what you can adopt for your usage.
+Прочитайте про [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=academic-105485-koreyst) і подивіться, що ви можете прийняти для свого використання.
 
-## Great Work, Continue Your Learning
+## Чудова робота, продовжуйте навчання
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Після завершення цього уроку, перегляньте нашу [колекцію навчальних матеріалів з Генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжити підвищувати свої знання про Генеративний ШІ!
 
-Head over to Lesson 4 where we will look at [Prompt Engineering Fundamentals](../04-prompt-engineering-fundamentals/README.md?WT.mc_id=academic-105485-koreyst)!
+Переходьте до Уроку 4, де ми розглянемо [Основи інженерії промптів](../04-prompt-engineering-fundamentals/README.md?WT.mc_id=academic-105485-koreyst)!
