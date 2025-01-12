@@ -1,117 +1,116 @@
-# Building Text Generation Applications
+# Створення застосунків для генерації тексту
 
-[![Building Text Generation Applications](./images/06-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst)
+[![Створення застосунків для генерації тексту](./images/06-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst)
 
-> _(Click the image above to view video of this lesson)_
+> _(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 
-You've seen so far through this curriculum that there are core concepts like prompts and even a whole discipline called "prompt engineering". Many tools you can interact with like ChatGPT, Office 365, Microsoft Power Platform and more, support you using prompts to accomplish something.
+Ви вже бачили в цьому курсі, що існують основні концепції, такі як промпти, і навіть цілий напрямок під назвою "інженерія промптів". Багато інструментів, з якими ви можете взаємодіяти, як-от ChatGPT, Office 365, Microsoft Power Platform тощо, підтримують використання промптів для виконання певних завдань.
 
-For you to add such an experience to an app, you need to understand concepts like prompts, completions and choose a library to work with. That's exactly what you'll learn in this chapter.
+Щоб додати такий функціонал до застосунку, вам потрібно розуміти концепції, як-от промпти, доповнення, та вибрати бібліотеку для роботи. Саме це ви й вивчите в цьому розділі.
 
-## Introduction
+## Вступ
 
-In this chapter, you will:
+У цьому розділі ви:
 
-- Learn about the openai library and it's core concepts.
-- Build a text generation app using openai.
-- Understand how to use concepts like prompt, temperature, and tokens to build a text generation app.
+- Дізнаєтесь про бібліотеку openai та її основні концепції.
+- Створите застосунок для генерації тексту за допомогою openai.
+- Зрозумієте, як використовувати такі концепції як промпт, температура та токени для створення застосунку генерації тексту.
 
-## Learning goals
+## Цілі навчання
 
-At the end of this lesson, you'll be able to:
+Наприкінці цього уроку ви зможете:
 
-- Explain what a text generation app is.
-- Build a text generation app using openai.
-- Configure your app to use more or less tokens and also change the temperature, for a varied output.
+- Пояснити, що таке застосунок для генерації тексту.
+- Створити застосунок для генерації тексту за допомогою openai.
+- Налаштувати свій застосунок на використання більшої чи меншої кількості токенів, а також змінювати температуру для отримання різноманітніших результатів.
 
-## What is a text generation app?
+## Що таке застосунок для генерації тексту?
 
-Normally when you build an app it has some kind of interface like the following:
+Зазвичай, коли ви створюєте застосунок, він має якийсь інтерфейс, наприклад:
 
-- Command-based. Console apps are typical apps where you type a command and it carries out a task. For example, `git` is a command-based app.
-- User interface (UI). Some apps have graphical user interfaces (GUIs) where you click buttons, input text, select options and more.
+- Командний інтерфейс. Консольні програми - це типові застосунки, де ви вводите команду, і вона виконує завдання. Наприклад, `git` - це застосунок з командним інтерфейсом.
+- Користувацький інтерфейс (UI). Деякі застосунки мають графічний користувацький інтерфейс (GUI), де ви натискаєте кнопки, вводите текст, вибираєте опції тощо.
 
-### Console and UI apps are limited
+### Консольні та UI застосунки мають обмеження
 
-Compare it to a command-based app where you type a command:
+Порівняйте це з застосунком на основі команд, де ви вводите команду:
 
-- **It's limited**. You can't just type any command, only the ones that the app supports.
-- **Language specific**. Some apps support many languages, but by default the app is built for a specific language, even if you can add more language support.
+- **Він обмежений**. Ви не можете просто ввести будь-яку команду, тільки ті, які підтримує застосунок.
+- **Залежність від мови**. Деякі застосунки підтримують багато мов, але за замовчуванням застосунок створюється для конкретної мови, навіть якщо ви можете додати підтримку інших мов.
 
-### Benefits of text generation apps
+### Переваги застосунків для генерації тексту
 
-So how is a text generation app different?
+Отже, чим відрізняється застосунок для генерації тексту?
 
-In a text generation app, you have more flexibility, you're not limited to a set of commands or a specific input language. Instead, you can use natural language to interact with the app. Another benefit is that because you're already interacting with a data source that has been trained on a vast corpus of information, whereas a traditional app might be limited on what's in a database.
+У застосунку для генерації тексту ви маєте більше гнучкості, ви не обмежені набором команд чи конкретною мовою введення. Натомість ви можете використовувати природну мову для взаємодії з застосунком. Ще однією перевагою є те, що ви вже взаємодієте з джерелом даних, яке було навчене на величезному корпусі інформації, тоді як традиційний застосунок може бути обмежений тим, що є в базі даних.
 
-### What can I build with a text generation app?
+### Що я можу створити за допомогою застосунку для генерації тексту?
 
-There are many things you can build. For example:
+Є багато речей, які ви можете створити. Наприклад:
 
-- **A chatbot**. A chatbot answering questions about topics, like your company and its products could be a good match.
-- **Helper**. LLMs are great at things like summarizing text, getting insights from text, producing text like resumes and more.
-- **Code assistant**. Depending on the language model you use, you can build a code assistant that helps you write code. For example, you can use a product like GitHub Copilot as well as ChatGPT to help you write code.
+- **Чатбот**. Чатбот, що відповідає на запитання про теми, як-от ваша компанія та її продукти, може бути хорошим варіантом.
+- **Помічник**. LLM чудово справляються з такими завданнями, як узагальнення тексту, отримання інсайтів з тексту, створення текстів, як-от резюме тощо.
+- **Помічник з кодування**. Залежно від моделі мови, яку ви використовуєте, ви можете створити помічника з кодування, який допомагає вам писати код. Наприклад, ви можете використовувати такий продукт, як GitHub Copilot, а також ChatGPT, щоб допомогти вам писати код.
 
-## How can I get started?
+## Як почати?
 
-Well, you need to find a way to integrate with an LLM which usually entails the following two approaches:
+Що ж, вам потрібно знайти спосіб інтеграції з LLM, що зазвичай передбачає такі два підходи:
 
-- Use an API. Here you're constructing web requests with your prompt and get generated text back.
-- Use a library. Libraries help encapsulate the API calls and make them easier to use.
+- Використання API. Тут ви створюєте веб-запити з вашим промптом і отримуєте згенерований текст у відповідь.
+- Використання бібліотеки. Бібліотеки допомагають інкапсулювати API-виклики та зробити їх простішими у використанні.
 
-## Libraries/SDKs
+## Бібліотеки/SDK
 
-There are a few well known libraries for working with LLMs like:
+Є кілька відомих бібліотек для роботи з LLM, такі як:
 
-- **openai**, this library makes it easy to connect to your model and send in prompts.
+- **openai**, ця бібліотека полегшує підключення до вашої моделі та надсилання промптів.
 
-Then there are libraries that operate on a higher level like:
+Також є бібліотеки, що працюють на вищому рівні, як-от:
 
-- **Langchain**. Langchain is well known and supports Python.
-- **Semantic Kernel**. Semantic Kernel is a library by Microsoft supporting the languages C#, Python, and Java.
+- **Langchain**. Langchain добре відомий і підтримує Python.
+- **Semantic Kernel**. Semantic Kernel - це бібліотека від Microsoft, що підтримує мови C#, Python та Java.
 
-## First app using openai
+## Перший застосунок з використанням openai
 
-Let's see how we can build our first app, what libraries we need, how much is required and so on.
+Давайте подивимось, як ми можемо створити наш перший застосунок, які бібліотеки нам потрібні, скільки всього потрібно і так далі.
 
-### Install openai
+### Встановлення openai
 
-There are many libraries out there for interacting with OpenAI or Azure OpenAI. It's possible to use numerous programming languages as well like C#, Python, JavaScript, Java and more. We've chosen to use the `openai` Python library, so we'll use `pip` to install it.
+Існує багато бібліотек для взаємодії з OpenAI або Azure OpenAI. Можливо використовувати різні мови програмування, такі як C#, Python, JavaScript, Java тощо. Ми обрали використовувати бібліотеку `openai` для Python, тому встановимо її за допомогою `pip`.
 
 ```bash
 pip install openai
 ```
+### Створення ресурсу
 
-### Create a resource
+Вам потрібно виконати наступні кроки:
 
-You need to carry out the following steps:
+- Створіть обліковий запис на Azure [https://azure.microsoft.com/free/](https://azure.microsoft.com/free/?WT.mc_id=academic-105485-koreyst).
+- Отримайте доступ до Azure OpenAI. Перейдіть за посиланням [https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst) та подайте заявку на доступ.
 
-- Create an account on Azure [https://azure.microsoft.com/free/](https://azure.microsoft.com/free/?WT.mc_id=academic-105485-koreyst).
-- Gain access to Azure OpenAI. Go to [https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst) and request access.
+  > [!ПРИМІТКА]
+  > На момент написання цього матеріалу потрібно подати заявку на доступ до Azure OpenAI.
 
-  > [!NOTE]
-  > At the time of writing, you need to apply for access to Azure OpenAI.
+- Встановіть Python <https://www.python.org/>
+- Створіть ресурс Azure OpenAI Service. Дивіться це керівництво про те, як [створити ресурс](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst).
 
-- Install Python <https://www.python.org/>
-- Have created an Azure OpenAI Service resource. See this guide for how to [create a resource](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst).
+### Знаходження API-ключа та кінцевої точки
 
-### Locate API key and endpoint
+На цьому етапі вам потрібно повідомити вашій бібліотеці `openai`, який API-ключ використовувати. Щоб знайти свій API-ключ, перейдіть до розділу "Keys and Endpoint" вашого ресурсу Azure OpenAI та скопіюйте значення "Key 1".
 
-At this point, you need to tell your `openai` library what API key to use. To find your API key, go to "Keys and Endpoint" section of your Azure OpenAI resource and copy the "Key 1" value.
+![Розділ Keys and Endpoint ресурсу в Azure Portal](https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-koreyst)
 
-![Keys and Endpoint resource blade in Azure Portal](https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-koreyst)
+Тепер, коли ви скопіювали цю інформацію, давайте налаштуємо бібліотеки для її використання.
 
-Now that you have this information copied, let's instruct the libraries to use it.
-
-> [!NOTE]
-> It's worth separating your API key from your code. You can do so by using environment variables.
+> [!ПРИМІТКА]
+> Варто відокремлювати ваш API-ключ від коду. Ви можете зробити це за допомогою змінних середовища.
 >
-> - Set the environment variable `OPENAI_API_KEY` to your API key.
+> - Встановіть змінну середовища `OPENAI_API_KEY` зі значенням вашого API-ключа.
 >   `export OPENAI_API_KEY='sk-...'`
 
-### Setup configuration Azure
+### Налаштування конфігурації Azure
 
-If you're using Azure OpenAI, here's how you setup configuration:
+Якщо ви використовуєте Azure OpenAI, ось як налаштувати конфігурацію:
 
 ```python
 openai.api_type = 'azure'
@@ -120,48 +119,48 @@ openai.api_version = '2023-05-15'
 openai.api_base = os.getenv("API_BASE")
 ```
 
-Above we're setting the following:
+Вище ми встановлюємо наступне:
 
-- `api_type` to `azure`. This tells the library to use Azure OpenAI and not OpenAI.
-- `api_key`, this is your API key found in the Azure Portal.
-- `api_version`, this is the version of the API you want to use. At the time of writing, the latest version is `2023-05-15`.
-- `api_base`, this is the endpoint of the API. You can find it in the Azure Portal next to your API key.
+- `api_type` як `azure`. Це вказує бібліотеці використовувати Azure OpenAI, а не OpenAI.
+- `api_key`, це ваш API-ключ, знайдений в Azure Portal.
+- `api_version`, це версія API, яку ви хочете використовувати. На момент написання цього матеріалу остання версія - `2023-05-15`.
+- `api_base`, це кінцева точка API. Ви можете знайти її в Azure Portal поруч з вашим API-ключем.
 
-> [!NOTE] > `os.getenv` is a function that reads environment variables. You can use it to read environment variables like `OPENAI_API_KEY` and `API_BASE`. Set these environment variables in your terminal or by using a library like `dotenv`.
+> [!ПРИМІТКА] > `os.getenv` - це функція, яка читає змінні середовища. Ви можете використовувати її для читання змінних середовища, таких як `OPENAI_API_KEY` та `API_BASE`. Встановіть ці змінні середовища у вашому терміналі або за допомогою бібліотеки на зразок `dotenv`.
 
-## Generate text
+## Генерація тексту
 
-The way to generate text is to use the `Completion` class. Here's an example:
+Способом генерації тексту є використання класу `Completion`. Ось приклад:
 
 ```python
-prompt = "Complete the following: Once upon a time there was a"
+prompt = "Завершіть наступне: Одного разу був"
 
 completion = openai.Completion.create(model="davinci-002", prompt=prompt)
 print(completion.choices[0].text)
 ```
 
-In the above code, we create a completion object and pass in the model we want to use and the prompt. Then we print the generated text.
+У наведеному вище коді ми створюємо об'єкт completion і передаємо модель, яку хочемо використовувати, та промпт. Потім ми друкуємо згенерований текст.
 
-### Chat completions
+### Чат-доповнення
 
-So far, you've seen how we've been using `Completion` to generate text. But there's another class called `ChatCompletion` that is more suited for chatbots. Here's an example of using it:
+Досі ви бачили, як ми використовували `Completion` для генерації тексту. Але є інший клас під назвою `ChatCompletion`, який більше підходить для чатботів. Ось приклад його використання:
 
 ```python
 import openai
 
 openai.api_key = "sk-..."
 
-completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Hello world"}])
+completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Привіт світ"}])
 print(completion.choices[0].message.content)
 ```
 
-More on this functionality in an upcoming chapter.
+Більше про цю функціональність у наступному розділі.
 
-## Exercise - your first text generation app
+## Вправа - ваш перший застосунок для генерації тексту
 
-Now that we learned how to set up and configure openai, it's time to build your first text generation app. To build your app, follow these steps:
+Тепер, коли ми дізналися, як налаштувати та сконфігурувати openai, час створити ваш перший застосунок для генерації тексту. Щоб створити ваш застосунок, виконайте наступні кроки:
 
-1. Create a virtual environment and install openai:
+1. Створіть віртуальне середовище та встановіть openai:
 
    ```bash
    python -m venv venv
@@ -169,408 +168,376 @@ Now that we learned how to set up and configure openai, it's time to build your 
    pip install openai
    ```
 
-   > [!NOTE]
-   > If you're using Windows type `venv\Scripts\activate` instead of `source venv/bin/activate`.
+   > [!ПРИМІТКА]
+   > Якщо ви використовуєте Windows, введіть `venv\Scripts\activate` замість `source venv/bin/activate`.
 
-   > [!NOTE]
-   > Locate your Azure OpenAI key by going to [https://portal.azure.com/](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst) and search for `Open AI` and select the `Open AI resource` and then select `Keys and Endpoint` and copy the `Key 1` value.
+   > [!ПРИМІТКА]
+   > Знайдіть свій ключ Azure OpenAI, перейшовши на [https://portal.azure.com/](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst), знайдіть `Open AI`, виберіть ресурс `Open AI`, потім виберіть `Keys and Endpoint` і скопіюйте значення `Key 1`.
 
-1. Create an _app.py_ file and give it the following code:
+1. Створіть файл _app.py_ і додайте до нього наступний код:
 
    ```python
    import openai
 
-   openai.api_key = "<replace this value with your open ai key or Azure OpenAI key>"
+   openai.api_key = "<замініть це значення вашим ключем open ai або ключем Azure OpenAI>"
 
    openai.api_type = 'azure'
    openai.api_version = '2023-05-15'
-   openai.api_base = "<endpoint found in Azure Portal where your API key is>"
-   deployment_name = "<deployment name>"
+   openai.api_base = "<кінцева точка з Azure Portal, де знаходиться ваш API-ключ>"
+   deployment_name = "<назва розгортання>"
 
-   # add your completion code
-   prompt = "Complete the following: Once upon a time there was a"
+   # додайте ваш код доповнення
+   prompt = "Завершіть наступне: Одного разу був"
    messages = [{"role": "user", "content": prompt}]
 
-   # make completion
+   # створіть доповнення
    completion = client.chat.completions.create(model=deployment, messages=messages)
 
-   # print response
+   # надрукуйте відповідь
    print(completion.choices[0].message.content)
    ```
 
-   > [!NOTE]
-   > If you're using Azure OpenAI, you need to set the `api_type` to `azure` and set the `api_key` to your Azure OpenAI key.
+   > [!ПРИМІТКА]
+   > Якщо ви використовуєте Azure OpenAI, вам потрібно встановити `api_type` як `azure` та встановити `api_key` як ваш ключ Azure OpenAI.
 
-   You should see an output like the following:
+   Ви повинні побачити вивід, схожий на наступний:
 
    ```output
-    very unhappy _____.
+    дуже нещасний _____.
 
-   Once upon a time there was a very unhappy mermaid.
+   Одного разу була дуже нещасна русалка.
    ```
 
-## Different types of prompts, for different things
+   ## Різні типи промптів для різних завдань
 
-Now you've seen how to generate text using a prompt. You even have a program up and running that you can modify and change to generate different types of text.
+Тепер ви бачили, як генерувати текст за допомогою промпту. У вас навіть є працюючий застосунок, який ви можете модифікувати та змінювати для генерації різних типів тексту.
 
-Prompts can be used for all sorts of tasks. For example:
+Промпти можна використовувати для різноманітних завдань. Наприклад:
 
-- **Generate a type of text**. For example, you can generate a poem, questions for a quiz etc.
-- **Lookup information**. You can use prompts to look for information like the following example 'What does CORS mean in web development?'.
-- **Generate code**. You can use prompts to generate code, for example developing a regular expression used to validate emails or why not generate an entire program, like a web app?
+- **Генерація певного типу тексту**. Наприклад, ви можете згенерувати вірш, питання для вікторини тощо.
+- **Пошук інформації**. Ви можете використовувати промпти для пошуку інформації, наприклад 'Що означає CORS у веб-розробці?'.
+- **Генерація коду**. Ви можете використовувати промпти для генерації коду, наприклад, створення регулярного виразу для перевірки електронних адрес або навіть генерації цілого застосунку, як-от веб-застосунок.
 
-## A more practical use case: a recipe generator
+## Більш практичний випадок: генератор рецептів
 
-Imagine you have ingredients at home and you want to cook something. For that, you need a recipe. A way to find recipes is to use a search engine or you could use an LLM to do so.
+Уявіть, що у вас вдома є інгредієнти і ви хочете щось приготувати. Для цього вам потрібен рецепт. Один зі способів знайти рецепти - використати пошукову систему, або ви можете використати LLM для цього.
 
-You could write a prompt like so:
+Ви могли б написати промпт такого типу:
 
-> "Show me 5 recipes for a dish with the following ingredients: chicken, potatoes, and carrots. Per recipe, list all the ingredients used"
+> "Покажіть мені 5 рецептів страви з наступними інгредієнтами: курка, картопля та морква. Для кожного рецепту перелічіть всі використані інгредієнти"
 
-Given the above prompt, you might get a response similar to:
+За таким промптом ви можете отримати відповідь на зразок:
 
 ```output
-1. Roasted Chicken and Vegetables:
-Ingredients:
-- 4 chicken thighs
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 2 tablespoons olive oil
-- 2 cloves garlic, minced
-- 1 teaspoon dried thyme
-- 1 teaspoon dried oregano
-- Salt and pepper, to taste
+1. Запечена курка з овочами:
+Інгредієнти:
+- 4 курячих стегна
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 2 столові ложки оливкової олії
+- 2 зубчики часнику, подрібнені
+- 1 чайна ложка сушеного чебрецю
+- 1 чайна ложка сушеного орегано
+- Сіль та перець за смаком
 
-2. Chicken and Potato Stew:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+2. Курячий суп з картоплею:
+Інгредієнти:
+- 2 столові ложки оливкової олії
+- 1 цибулина, нарізана
+- 2 зубчики часнику, подрібнені
+- 2 курячі грудки, нарізані кубиками
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 1 чайна ложка сушеного орегано
+- 1 чайна ложка сушеного чебрецю
+- 1 склянка курячого бульйону
+- Сіль та перець за смаком
 
-3. Chicken and Potato Bake:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
-
-4. Chicken and Potato Soup:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 4 cups chicken broth
-- Salt and pepper, to taste
-
-5. Chicken and Potato Hash:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 2 cloves garlic, minced
-- 1 teaspoon dried oregano
+[продовження рецептів...]
 ```
 
-This outcome is great, I know what to cook. At this point, what could be useful improvements are:
+Це чудовий результат, я знаю, що приготувати. На цьому етапі корисними покращеннями могли б бути:
 
-- Filtering out ingredients I don't like or am allergic to.
-- Produce a shopping list, in case I don't have all the ingredients at home.
+- Відфільтрування інгредієнтів, які я не люблю або на які маю алергію.
+- Створення списку покупок, якщо у мене вдома немає всіх інгредієнтів.
 
-For the above cases, let's add an additional prompt:
+Для цих випадків, давайте додамо додатковий промпт:
 
-> "Please remove recipes with garlic as I'm allergic and replace it with something else. Also, please produce a shopping list for the recipes, considering I already have chicken, potatoes and carrots at home."
+> "Будь ласка, видаліть рецепти з часником, оскільки я маю на нього алергію, та замініть його чимось іншим. Також, будь ласка, створіть список покупок для рецептів, враховуючи, що у мене вже є курка, картопля та морква вдома."
 
-Now you have a new result, namely:
+Тепер ви отримаєте новий результат, а саме:
 
 ```output
-1. Roasted Chicken and Vegetables:
-Ingredients:
-- 4 chicken thighs
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 2 tablespoons olive oil
-- 1 teaspoon dried thyme
-- 1 teaspoon dried oregano
-- Salt and pepper, to taste
+1. Запечена курка з овочами:
+Інгредієнти:
+- 4 курячих стегна
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 2 столові ложки оливкової олії
+- 1 чайна ложка сушеного чебрецю
+- 1 чайна ложка сушеного орегано
+- Сіль та перець за смаком
 
-2. Chicken and Potato Stew:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+2. Курячий суп з картоплею:
+Інгредієнти:
+- 2 столові ложки оливкової олії
+- 1 цибулина, нарізана
+- 2 курячі грудки, нарізані кубиками
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 1 чайна ложка сушеного орегано
+- 1 чайна ложка сушеного чебрецю
+- 1 склянка курячого бульйону
+- Сіль та перець за смаком
 
-3. Chicken and Potato Bake:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 1 cup chicken broth
-- Salt and pepper, to taste
+3. Запечена курка з картоплею:
+Інгредієнти:
+- 2 столові ложки оливкової олії
+- 2 курячі грудки, нарізані кубиками
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 1 цибулина, нарізана
+- 1 чайна ложка сушеного орегано
+- 1 чайна ложка сушеного чебрецю
+- 1 склянка курячого бульйону
+- Сіль та перець за смаком
 
-4. Chicken and Potato Soup:
-Ingredients:
-- 2 tablespoons olive oil
-- 1 onion, diced
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 teaspoon dried oregano
-- 1 teaspoon dried thyme
-- 4 cups chicken broth
-- Salt and pepper, to taste
+4. Курячий суп:
+Інгредієнти:
+- 2 столові ложки оливкової олії
+- 1 цибулина, нарізана
+- 2 курячі грудки, нарізані кубиками
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 1 чайна ложка сушеного орегано
+- 1 чайна ложка сушеного чебрецю
+- 4 склянки курячого бульйону
+- Сіль та перець за смаком
 
-5. Chicken and Potato Hash:
-Ingredients:
-- 2 tablespoons olive oil
-- 2 chicken breasts, cut into cubes
-- 2 potatoes, cut into cubes
-- 2 carrots, cut into cubes
-- 1 onion, diced
-- 1 teaspoon dried oregano
+5. Картопляний хеш з куркою:
+Інгредієнти:
+- 2 столові ложки оливкової олії
+- 2 курячі грудки, нарізані кубиками
+- 2 картоплини, нарізані кубиками
+- 2 моркви, нарізані кубиками
+- 1 цибулина, нарізана
+- 1 чайна ложка сушеного орегано
 
-Shopping List:
-- Olive oil
-- Onion
-- Thyme
-- Oregano
-- Salt
-- Pepper
+Список покупок:
+- Оливкова олія
+- Цибуля
+- Чебрець
+- Орегано
+- Сіль
+- Перець
 ```
 
-That's your five recipes, with no garlic mentioned and you also have a shopping list considering what you already have at home.
+Це ваші п'ять рецептів, без згадки часнику, і у вас також є список покупок, враховуючи те, що вже є вдома.
 
-## Exercise - build a recipe generator
+## Вправа - створення генератора рецептів
 
-Now that we have played out a scenario, let's write code to match the demonstrated scenario. To do so, follow these steps:
+Тепер, коли ми розглянули сценарій, давайте напишемо код, що відповідає продемонстрованому сценарію. Для цього виконайте наступні кроки:
 
-1. Use the existing _app.py_ file as a starting point
-1. Locate the `prompt` variable and change its code to the following:
-
-   ```python
-   prompt = "Show me 5 recipes for a dish with the following ingredients: chicken, potatoes, and carrots. Per recipe, list all the ingredients used"
-   ```
-
-   If you now run the code, you should see an output similar to:
-
-   ```output
-   -Chicken Stew with Potatoes and Carrots: 3 tablespoons oil, 1 onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 1/2 cups chicken broth, 1/2 cup dry white wine, 2 tablespoons chopped fresh parsley, 2 tablespoons unsalted butter, 1 1/2 pounds boneless, skinless chicken thighs, cut into 1-inch pieces
-   -Oven-Roasted Chicken with Potatoes and Carrots: 3 tablespoons extra-virgin olive oil, 1 tablespoon Dijon mustard, 1 tablespoon chopped fresh rosemary, 1 tablespoon chopped fresh thyme, 4 cloves garlic, minced, 1 1/2 pounds small red potatoes, quartered, 1 1/2 pounds carrots, quartered lengthwise, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 (4-pound) whole chicken
-   -Chicken, Potato, and Carrot Casserole: cooking spray, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and shredded, 1 potato, peeled and shredded, 1/2 teaspoon dried thyme leaves, 1/4 teaspoon salt, 1/4 teaspoon black pepper, 2 cups fat-free, low-sodium chicken broth, 1 cup frozen peas, 1/4 cup all-purpose flour, 1 cup 2% reduced-fat milk, 1/4 cup grated Parmesan cheese
-
-   -One Pot Chicken and Potato Dinner: 2 tablespoons olive oil, 1 pound boneless, skinless chicken thighs, cut into 1-inch pieces, 1 large onion, chopped, 3 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 2 cups chicken broth, 1/2 cup dry white wine
-
-   -Chicken, Potato, and Carrot Curry: 1 tablespoon vegetable oil, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 teaspoon ground coriander, 1 teaspoon ground cumin, 1/2 teaspoon ground turmeric, 1/2 teaspoon ground ginger, 1/4 teaspoon cayenne pepper, 2 cups chicken broth, 1/2 cup dry white wine, 1 (15-ounce) can chickpeas, drained and rinsed, 1/2 cup raisins, 1/2 cup chopped fresh cilantro
-   ```
-
-   > NOTE, your LLM is nondeterministic, so you might get different results every time you run the program.
-
-   Great, let's see how we can improve things. To improve things, we want to make sure the code is flexible, so ingredients and number of recipes can be improved and changed.
-
-1. Let's change the code in the following way:
+1. Використайте існуючий файл _app.py_ як відправну точку
+1. Знайдіть змінну `prompt` та змініть її код на наступний:
 
    ```python
-   no_recipes = input("No of recipes (for example, 5): ")
-
-   ingredients = input("List of ingredients (for example, chicken, potatoes, and carrots): ")
-
-   # interpolate the number of recipes into the prompt an ingredients
-   prompt = f"Show me {no_recipes} recipes for a dish with the following ingredients: {ingredients}. Per recipe, list all the ingredients used"
+   prompt = "Покажіть мені 5 рецептів страви з наступними інгредієнтами: курка, картопля та морква. Для кожного рецепту перелічіть всі використані інгредієнти"
    ```
 
-   Taking the code for a test run, could look like this:
+   Якщо ви тепер запустите код, ви повинні побачити вивід, схожий на:
 
    ```output
-   No of recipes (for example, 5): 3
-   List of ingredients (for example, chicken, potatoes, and carrots): milk,strawberries
+   -Курячий суп з картоплею та морквою: 3 столові ложки олії, 1 цибулина, подрібнена, 2 зубчики часнику, подрібнені, 1 морква, очищена та нарізана, 1 картоплина, очищена та нарізана, 1 лавровий лист, 1 гілочка чебрецю, 1/2 чайної ложки солі, 1/4 чайної ложки чорного перцю, 1 1/2 склянки курячого бульйону, 1/2 склянки білого сухого вина, 2 столові ложки подрібненої свіжої петрушки, 2 столові ложки вершкового масла, 1 1/2 фунта курячих стегон без кісток і шкіри, нарізаних кубиками по 1 дюйму
 
-   -Strawberry milk shake: milk, strawberries, sugar, vanilla extract, ice cubes
-   -Strawberry shortcake: milk, flour, baking powder, sugar, salt, unsalted butter, strawberries, whipped cream
-   -Strawberry milk: milk, strawberries, sugar, vanilla extract
+   -Запечена курка з картоплею та морквою: 3 столові ложки оливкової олії першого віджиму, 1 столова ложка дижонської гірчиці, 1 столова ложка подрібненого свіжого розмарину, 1 столова ложка подрібненого свіжого чебрецю, 4 зубчики часнику, подрібнені, 1 1/2 фунта дрібної червоної картоплі, нарізаної четвертинками, 1 1/2 фунта моркви, нарізаної вздовж на четвертинки, 1/2 чайної ложки солі, 1/4 чайної ложки чорного перцю, 1 (4-фунтова) ціла курка
+
+   -Куряча, картопляна та морквяна запіканка: кулінарний спрей, 1 велика цибулина, подрібнена, 2 зубчики часнику, подрібнені, 1 морква, очищена та натерта, 1 картоплина, очищена та натерта, 1/2 чайної ложки сушеного чебрецю, 1/4 чайної ложки солі, 1/4 чайної ложки чорного перцю, 2 склянки знежиреного курячого бульйону з низьким вмістом натрію, 1 склянка замороженого горошку, 1/4 склянки борошна, 1 склянка молока 2% жирності, 1/4 склянки тертого сиру пармезан
+
+   -Курячий та картопляний обід в одній каструлі: 2 столові ложки оливкової олії, 1 фунт курячих стегон без кісток і шкіри, нарізаних кубиками по 1 дюйму, 1 велика цибулина, подрібнена, 3 зубчики часнику, подрібнені, 1 морква, очищена та подрібнена, 1 картоплина, очищена та подрібнена, 1 лавровий лист, 1 гілочка чебрецю, 1/2 чайної ложки солі, 1/4 чайної ложки чорного перцю, 2 склянки курячого бульйону, 1/2 склянки білого сухого вина
+
+   -Куряче, картопляне та морквяне каррі: 1 столова ложка рослинної олії, 1 велика цибулина, подрібнена, 2 зубчики часнику, подрібнені, 1 морква, очищена та подрібнена, 1 картоплина, очищена та подрібнена, 1 чайна ложка меленого коріандру, 1 чайна ложка меленого кмину, 1/2 чайної ложки куркуми, 1/2 чайної ложки меленого імбиру, 1/4 чайної ложки кайєнського перцю, 2 склянки курячого бульйону, 1/2 склянки білого сухого вина, 1 (15-унцієва) банка нуту, промитого та висушеного, 1/2 склянки родзинок, 1/2 склянки подрібненої свіжої кінзи
    ```
 
-### Improve by adding filter and shopping list
+   > ПРИМІТКА, ваша LLM є недетермінованою, тому ви можете отримувати різні результати щоразу, коли запускаєте програму.
 
-We now have a working app capable of producing recipes and it's flexible as it relies on inputs from the user, both on the number of recipes but also the ingredients used.
+   Чудово, давайте подивимось, як ми можемо покращити речі. Щоб покращити речі, ми хочемо зробити код гнучким, щоб інгредієнти та кількість рецептів можна було змінювати.
 
-To further improve it, we want to add the following:
+   1. Давайте змінимо код наступним чином:
 
-- **Filter out ingredients**. We want to be able to filter out ingredients we don't like or are allergic to. To accomplish this change, we can edit our existing prompt and add a filter condition to the end of it like so:
+   ```python
+   no_recipes = input("Кількість рецептів (наприклад, 5): ")
+
+   ingredients = input("Список інгредієнтів (наприклад, курка, картопля та морква): ")
+
+   # інтерполюємо кількість рецептів у промпт та інгредієнти
+   prompt = f"Покажіть мені {no_recipes} рецептів страви з наступними інгредієнтами: {ingredients}. Для кожного рецепту перелічіть всі використані інгредієнти"
+   ```
+
+   Тестовий запуск коду може виглядати так:
+
+   ```output
+   Кількість рецептів (наприклад, 5): 3
+   Список інгредієнтів (наприклад, курка, картопля та морква): молоко,полуниця
+
+   -Молочний коктейль з полуницею: молоко, полуниця, цукор, ванільний екстракт, кубики льоду
+   -Полуничний торт: молоко, борошно, розпушувач, цукор, сіль, несолене масло, полуниця, збиті вершки
+   -Полуничне молоко: молоко, полуниця, цукор, ванільний екстракт
+   ```
+
+### Покращення за допомогою фільтрації та списку покупок
+
+Тепер у нас є працюючий застосунок, здатний створювати рецепти, і він гнучкий, оскільки покладається на введення користувача як щодо кількості рецептів, так і щодо використовуваних інгредієнтів.
+
+Для подальшого вдосконалення ми хочемо додати наступне:
+
+- **Фільтрація інгредієнтів**. Ми хочемо мати можливість відфільтровувати інгредієнти, які нам не подобаються або на які у нас алергія. Щоб досягти цієї зміни, ми можемо відредагувати наш існуючий промпт і додати умову фільтрації в його кінець, ось так:
 
   ```python
-  filter = input("Filter (for example, vegetarian, vegan, or gluten-free): ")
+  filter = input("Фільтр (наприклад, вегетаріанський, веганський або без глютену): ")
 
-  prompt = f"Show me {no_recipes} recipes for a dish with the following ingredients: {ingredients}. Per recipe, list all the ingredients used, no {filter}"
+  prompt = f"Покажіть мені {no_recipes} рецептів страви з наступними інгредієнтами: {ingredients}. Для кожного рецепту перелічіть всі використані інгредієнти, без {filter}"
   ```
 
-  Above, we add `{filter}` to the end of the prompt and we also capture the filter value from the user.
+  Вище ми додаємо `{filter}` в кінець промпту, а також отримуємо значення фільтра від користувача.
 
-  An example input of running the program can now look like so:
+  Приклад введення при запуску програми тепер може виглядати так:
 
   ```output
-  No of recipes (for example, 5): 3
-  List of ingredients (for example, chicken, potatoes, and carrots): onion,milk
-  Filter (for example, vegetarian, vegan, or gluten-free): no milk
+   Кількість рецептів (наприклад, 5): 3
+   Список інгредієнтів (наприклад, курка, картопля та морква): цибуля,молоко
+   Фільтр (наприклад, вегетаріанський, веганський або без глютену): молоко
 
-  1. French Onion Soup
+   1. Французький цибулевий суп
 
-  Ingredients:
+   Інгредієнти:
 
-  -1 large onion, sliced
-  -3 cups beef broth
-  -1 cup milk
-  -6 slices french bread
-  -1/4 cup shredded Parmesan cheese
-  -1 tablespoon butter
-  -1 teaspoon dried thyme
-  -1/4 teaspoon salt
-  -1/4 teaspoon black pepper
+   -1 велика цибулина, нарізана
+   -3 склянки яловичого бульйону
+   -1 склянка молока
+   -6 скибочок французького хліба
+   -1/4 склянки тертого сиру пармезан
+   -1 столова ложка масла
+   -1 чайна ложка сушеного чебрецю
+   -1/4 чайної ложки солі
+   -1/4 чайної ложки чорного перцю
 
-  Instructions:
+   Інструкції:
 
-  1. In a large pot, sauté onions in butter until golden brown.
-  2. Add beef broth, milk, thyme, salt, and pepper. Bring to a boil.
-  3. Reduce heat and simmer for 10 minutes.
-  4. Place french bread slices on soup bowls.
-  5. Ladle soup over bread.
-  6. Sprinkle with Parmesan cheese.
+   1. У великій каструлі обсмажте цибулю в маслі до золотистого кольору.
+   2. Додайте яловичий бульйон, молоко, чебрець, сіль та перець. Доведіть до кипіння.
+   3. Зменшіть вогонь і варіть 10 хвилин.
+   4. Покладіть скибочки французького хліба в суповi тарілки.
+   5. Налийте суп поверх хліба.
+   6. Посипте сиром пармезан.
 
-  2. Onion and Potato Soup
+   2. Цибулевий суп з картоплею
 
-  Ingredients:
+   Інгредієнти:
 
-  -1 large onion, chopped
-  -2 cups potatoes, diced
-  -3 cups vegetable broth
-  -1 cup milk
-  -1/4 teaspoon black pepper
+   -1 велика цибулина, подрібнена
+   -2 склянки картоплі, нарізаної кубиками
+   -3 склянки овочевого бульйону
+   -1 склянка молока
+   -1/4 чайної ложки чорного перцю
 
-  Instructions:
+   Інструкції:
 
-  1. In a large pot, sauté onions in butter until golden brown.
-  2. Add potatoes, vegetable broth, milk, and pepper. Bring to a boil.
-  3. Reduce heat and simmer for 10 minutes.
-  4. Serve hot.
+   1. У великій каструлі обсмажте цибулю в маслі до золотистого кольору.
+   2. Додайте картоплю, овочевий бульйон, молоко та перець. Доведіть до кипіння.
+   3. Зменшіть вогонь і варіть 10 хвилин.
+   4. Подавайте гарячим.
 
-  3. Creamy Onion Soup
+   3. Вершковий цибулевий суп
 
-  Ingredients:
+   Інгредієнти:
 
-  -1 large onion, chopped
-  -3 cups vegetable broth
-  -1 cup milk
-  -1/4 teaspoon black pepper
-  -1/4 cup all-purpose flour
-  -1/2 cup shredded Parmesan cheese
+   -1 велика цибулина, подрібнена
+   -3 склянки овочевого бульйону
+   -1 склянка молока
+   -1/4 чайної ложки чорного перцю
+   -1/4 склянки борошна
+   -1/2 склянки тертого сиру пармезан
 
-  Instructions:
+   Інструкції:
 
-  1. In a large pot, sauté onions in butter until golden brown.
-  2. Add vegetable broth, milk, and pepper. Bring to a boil.
-  3. Reduce heat and simmer for 10 minutes.
-  4. In a small bowl, whisk together flour and Parmesan cheese until smooth.
-  5. Add to soup and simmer for an additional 5 minutes, or until soup has thickened.
-  ```
+   1. У великій каструлі обсмажте цибулю в маслі до золотистого кольору.
+   2. Додайте овочевий бульйон, молоко та перець. Доведіть до кипіння.
+   3. Зменшіть вогонь і варіть 10 хвилин.
+   4. В маленькій мисці змішайте борошно та сир пармезан до однорідності.
+   5. Додайте до супу і варіть ще 5 хвилин або до загустіння супу.
+   ```
 
-  As you can see, any recipes with milk in it has been filtered out. But, if you're lactose intolerant, you might want to filter out recipes with cheese in them as well, so there's a need to be clear.
+   Як бачите, всі рецепти з молоком були відфільтровані. Але якщо у вас непереносимість лактози, ви можете захотіти відфільтрувати також рецепти з сиром, тому потрібно бути точнішим.
 
-- **Produce a shopping list**. We want to produce a shopping list, considering what we already have at home.
+- **Створення списку покупок**. Ми хочемо створити список покупок, враховуючи те, що вже є вдома.
 
-  For this functionality, we could either try to solve everything in one prompt or we could split it up into two prompts. Let's try the latter approach. Here we're suggesting adding an additional prompt, but for that to work, we need to add the result of the former prompt as context to the latter prompt.
+  Для цієї функціональності ми могли б спробувати вирішити все в одному промпті або розділити його на два промпти. Давайте спробуємо другий підхід. Тут ми пропонуємо додати додатковий промпт, але для цього нам потрібно додати результат попереднього промпту як контекст до наступного промпту.
 
-  Locate the part in the code that prints out the result from the first prompt and add the following code below:
+  Знайдіть частину коду, яка виводить результат першого промпту, і додайте наступний код нижче:
 
   ```python
   old_prompt_result = completion.choices[0].message.content
-  prompt = "Produce a shopping list for the generated recipes and please don't include ingredients that I already have."
+  prompt = "Створіть список покупок для згенерованих рецептів і, будь ласка, не включайте інгредієнти, які в мене вже є."
 
   new_prompt = f"{old_prompt_result} {prompt}"
   messages = [{"role": "user", "content": new_prompt}]
   completion = openai.Completion.create(engine=deployment_name, messages=messages, max_tokens=1200)
 
-  # print response
-  print("Shopping list:")
+  # виведення відповіді
+  print("Список покупок:")
   print(completion.choices[0].message.content)
   ```
 
-  Note the following:
+  Зверніть увагу на наступне:
 
-  1. We're constructing a new prompt by adding the result from the first prompt to the new prompt:
+  1. Ми створюємо новий промпт, додаючи результат першого промпту до нового промпту:
 
      ```python
      new_prompt = f"{old_prompt_result} {prompt}"
      ```
 
-  1. We make a new request, but also considering the number of tokens we asked for in the first prompt, so this time we say `max_tokens` is 1200.
+  1. Ми робимо новий запит, але також враховуємо кількість токенів, які ми запитували в першому промпті, тому цього разу ми встановлюємо `max_tokens` як 1200.
 
      ```python
      completion = openai.Completion.create(engine=deployment_name, prompt=new_prompt, max_tokens=1200)
      ```
 
-     Taking this code for a spin, we now arrive at the following output:
+     Запустивши цей код, ми отримаємо наступний вивід:
 
      ```output
-     No of recipes (for example, 5): 2
-     List of ingredients (for example, chicken, potatoes, and carrots): apple,flour
-     Filter (for example, vegetarian, vegan, or gluten-free): sugar
+     Кількість рецептів (наприклад, 5): 2
+     Список інгредієнтів (наприклад, курка, картопля та морква): яблуко,борошно
+     Фільтр (наприклад, вегетаріанський, веганський або без глютену): цукор
 
 
-     -Apple and flour pancakes: 1 cup flour, 1/2 tsp baking powder, 1/2 tsp baking soda, 1/4 tsp salt, 1 tbsp sugar, 1 egg, 1 cup buttermilk or sour milk, 1/4 cup melted butter, 1 Granny Smith apple, peeled and grated
-     -Apple fritters: 1-1/2 cups flour, 1 tsp baking powder, 1/4 tsp salt, 1/4 tsp baking soda, 1/4 tsp nutmeg, 1/4 tsp cinnamon, 1/4 tsp allspice, 1/4 cup sugar, 1/4 cup vegetable shortening, 1/4 cup milk, 1 egg, 2 cups shredded, peeled apples
-     Shopping list:
-     -Flour, baking powder, baking soda, salt, sugar, egg, buttermilk, butter, apple, nutmeg, cinnamon, allspice
+     -Яблучні панкейки: 1 склянка борошна, 1/2 ч.л. розпушувача, 1/2 ч.л. соди, 1/4 ч.л. солі, 1 ст.л. цукру, 1 яйце, 1 склянка пахти або кислого молока, 1/4 склянки розтопленого масла, 1 яблуко сорту Гренні Сміт, очищене та натерте
+     -Яблучні оладки: 1-1/2 склянки борошна, 1 ч.л. розпушувача, 1/4 ч.л. солі, 1/4 ч.л. соди, 1/4 ч.л. мускатного горіха, 1/4 ч.л. кориці, 1/4 ч.л. духмяного перцю, 1/4 склянки цукру, 1/4 склянки рослинного жиру, 1/4 склянки молока, 1 яйце, 2 склянки подрібнених очищених яблук
+     Список покупок:
+     -Борошно, розпушувач, сода, сіль, цукор, яйце, пахта, масло, яблуко, мускатний горіх, кориця, духмяний перець
      ```
 
-## Improve your setup
+     ## Покращення вашого налаштування
 
-What we have so far is code that works, but there are some tweaks we should be doing to improve things further. Some things we should do are:
+Те, що ми маємо на даний момент - це код, який працює, але є деякі налаштування, які ми повинні зробити для подальшого вдосконалення. Ось що ми повинні зробити:
 
-- **Separate secrets from code**, like the API key. Secrets do not belong in code and should be stored in a secure location. To separate secrets from code, we can use environment variables and libraries like `python-dotenv` to load them from a file. Here's how that would look like in code:
+- **Відокремити секрети від коду**, такі як API-ключ. Секрети не повинні знаходитися в коді і мають зберігатися в безпечному місці. Щоб відокремити секрети від коду, ми можемо використовувати змінні середовища та бібліотеки на кшталт `python-dotenv` для їх завантаження з файлу. Ось як це виглядатиме в коді:
 
-  1. Create a `.env` file with the following content:
+  1. Створіть файл `.env` з наступним вмістом:
 
      ```bash
      OPENAI_API_KEY=sk-...
      ```
 
-     > Note, for Azure, you need to set the following environment variables:
+     > Примітка: для Azure вам потрібно встановити наступні змінні середовища:
 
      ```bash
      OPENAI_API_TYPE=azure
      OPENAI_API_VERSION=2023-05-15
-     OPENAI_API_BASE=<replace>
+     OPENAI_API_BASE=<замініть>
      ```
 
-     In code, you would load the environment variables like so:
+     В коді ви б завантажували змінні середовища так:
 
      ```python
      from dotenv import load_dotenv
@@ -580,76 +547,76 @@ What we have so far is code that works, but there are some tweaks we should be d
      openai.api_key = os.environ["OPENAI_API_KEY"]
      ```
 
-- **A word on token length**. We should consider how many tokens we need to generate the text we want. Tokens cost money, so where possible, we should try to be economical with the number of tokens we use. For example, can we phrase the prompt so that we can use less tokens?
+- **Слово про довжину токенів**. Ми повинні враховувати, скільки токенів нам потрібно для генерації бажаного тексту. Токени коштують грошей, тому де можливо, ми повинні намагатися бути економними з кількістю використовуваних токенів. Наприклад, чи можемо ми сформулювати промпт так, щоб використовувати менше токенів?
 
-  To change the tokens used, you can use the `max_tokens` parameter. For example, if you want to use 100 tokens, you would do:
+  Щоб змінити кількість використовуваних токенів, ви можете використовувати параметр `max_tokens`. Наприклад, якщо ви хочете використовувати 100 токенів, ви б зробили так:
 
   ```python
   completion = client.chat.completions.create(model=deployment, messages=messages, max_tokens=100)
   ```
 
-- **Experimenting with temperature**. Temperature is something we haven't mentioned so far but is an important context for how our program performs. The higher the temperature value the more random the output will be. Conversely the lower the temperature value the more predictable the output will be. Consider whether you want variation in your output or not.
+- **Експерименти з температурою**. Температура - це те, про що ми досі не згадували, але це важливий контекст для того, як працює наша програма. Чим вище значення температури, тим більш випадковим буде вивід. І навпаки, чим нижче значення температури, тим більш передбачуваним буде вивід. Подумайте, чи хочете ви варіації у вашому виводі чи ні.
 
-  To alter the temperature, you can use the `temperature` parameter. For example, if you want to use a temperature of 0.5, you would do:
+  Щоб змінити температуру, ви можете використовувати параметр `temperature`. Наприклад, якщо ви хочете використовувати температуру 0.5, ви б зробили так:
 
   ```python
   completion = client.chat.completions.create(model=deployment, messages=messages, temperature=0.5)
   ```
 
-  > Note, the closer to 1.0, the more varied the output.
+  > Примітка: чим ближче до 1.0, тим більш різноманітним буде вивід.
 
-## Assignment
+  ## Завдання
 
-For this assignment, you can choose what to build.
+Для цього завдання ви можете вибрати, що створювати.
 
-Here are some suggestions:
+Ось кілька пропозицій:
 
-- Tweak the recipe generator app to improve it further. Play around with temperature values, and the prompts to see what you can come up with.
-- Build a "study buddy". This app should be able to answer questions about a topic for example Python, you could have prompts like "What is a certain topic in Python?", or you could have a prompt that says, show me code for a certain topic etc.
-- History bot, make history come alive, instruct the bot to play a certain historical character and ask it questions about its life and times.
+- Вдосконалити генератор рецептів, щоб покращити його ще більше. Поекспериментуйте з значеннями температури та промптами, щоб побачити, що у вас вийде.
+- Створити "помічника в навчанні". Цей застосунок повинен вміти відповідати на питання про певну тему, наприклад Python, ви могли б мати промпти на кшталт "Що таке певна тема в Python?", або ви могли б мати промпт, який каже "покажи мені код для певної теми" тощо.
+- Історичний бот, оживіть історію, накажіть боту грати роль певного історичного персонажа і задавайте йому питання про його життя та часи.
 
-## Solution
+## Рішення
 
-### Study buddy
+### Помічник у навчанні
 
-Below is a starter prompt, see how you can use it and tweak it to your liking.
-
-```text
-- "You're an expert on the Python language
-
-    Suggest a beginner lesson for Python in the following format:
-
-    Format:
-    - concepts:
-    - brief explanation of the lesson:
-    - exercise in code with solutions"
-```
-
-### History bot
-
-Here are some prompts you could be using:
+Нижче наведено початковий промпт, подивіться, як ви можете використовувати його та налаштувати під свої потреби.
 
 ```text
-- "You are Abe Lincoln, tell me about yourself in 3 sentences, and respond using grammar and words like Abe would have used"
-- "You are Abe Lincoln, respond using grammar and words like Abe would have used:
+- "Ви експерт з мови Python
 
-   Tell me about your greatest accomplishments, in 300 words"
+    Запропонуйте урок для початківців з Python у наступному форматі:
+
+    Формат:
+    - концепції:
+    - короткий опис уроку:
+    - вправа в коді з рішеннями"
 ```
 
-## Knowledge check
+### Історичний бот
 
-What does the concept temperature do?
+Ось кілька промптів, які ви могли б використовувати:
 
-1. It controls how random the output is.
-1. It controls how big the response is.
-1. It controls how many tokens are used.
+```text
+- "Ви Авраам Лінкольн, розкажіть про себе в 3 реченнях, і відповідайте, використовуючи граматику та слова, які б використовував Ейб"
+- "Ви Авраам Лінкольн, відповідайте, використовуючи граматику та слова, які б використовував Ейб:
 
-## 🚀 Challenge
+   Розкажіть про свої найбільші досягнення, в 300 словах"
+```
 
-When working on the assignment, try to vary the temperature, try set it to 0, 0.5, and 1. Remember that 0 is the least varied and 1 is the most, what value works best for your app?
+## Перевірка знань
 
-## Great Work! Continue Your Learning
+Що робить концепція температури?
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+1. Вона контролює, наскільки випадковим є вивід.
+1. Вона контролює, наскільки великою є відповідь.
+1. Вона контролює, скільки токенів використовується.
 
-Head over to Lesson 7 where we will look at how to [build chat applications](../07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+## 🚀 Завдання
+
+Працюючи над завданням, спробуйте змінювати температуру, встановіть її на 0, 0.5 та 1. Пам'ятайте, що 0 - це найменш різноманітний варіант, а 1 - найбільш різноманітний, яке значення найкраще працює для вашого застосунку?
+
+## Чудова робота! Продовжуйте навчання
+
+Після завершення цього уроку перегляньте нашу [колекцію навчальних матеріалів з Генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжити вдосконалювати свої знання з Генеративного ШІ!
+
+Переходьте до Уроку 7, де ми розглянемо, як [створювати чат-застосунки](../07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)!
