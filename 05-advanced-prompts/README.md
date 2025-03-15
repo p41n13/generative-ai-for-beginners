@@ -1,221 +1,221 @@
-# Creating Advanced prompts
+# Створення розширених промптів
 
-[![Creating Advanced Prompts](./images/05-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson5-gh?WT.mc_id=academic-105485-koreyst?WT.mc_id=academic-105485-koreyst)
+[![Створення розширених промптів](./images/05-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson5-gh?WT.mc_id=academic-105485-koreyst?WT.mc_id=academic-105485-koreyst)
 
-Let's recap some learnings from the previous chapter:
+Давайте згадаємо деякі висновки з попереднього розділу:
 
-> Prompt _engineering_ is the process by which we **guide the model towards more relevant responses** by providing more useful instructions or context.
+> _Інженерія_ промптів — це процес, за допомогою якого ми **направляємо модель до більш релевантних відповідей** шляхом надання більш корисних інструкцій або контексту.
 
-There are also two steps to writing prompts, constructing the prompt, by providing relevant context and the second part is _optimization_, how to gradually improve the prompt.
+Також існує два кроки для написання промптів: конструювання промпту шляхом надання відповідного контексту та друга частина — це _оптимізація_, тобто поступове вдосконалення промпту.
 
-At this point, we have some basic understanding of how to write prompts, but we need to go deeper. In this chapter, you will go from trying out various prompts to understanding why one prompt is better than another. You will learn how to construct prompts following some basic techniques that can be applied to any LLM.
+На цьому етапі ми маємо деяке базове розуміння того, як писати промпти, але нам потрібно заглибитись детальніше. У цьому розділі ви перейдете від спроб різних промптів до розуміння, чому один промпт кращий за інший. Ви дізнаєтеся, як конструювати промпти, застосовуючи деякі базові техніки, які можна застосувати до будь-якої моделі LLM.
 
-## Introduction
+## Вступ
 
-In this chapter, we will cover the following topics:
+У цьому розділі ми розглянемо такі теми:
 
-- Extend your knowledge of prompt engineering by applying different techniques to your prompts.
-- Configuring your prompts to vary the output.
+- Розширення ваших знань з інженерії промптів шляхом застосування різних технік до ваших промптів.
+- Налаштування ваших промптів для зміни вихідних даних.
 
-## Learning goals
+## Навчальні цілі
 
-After completing this lesson, you'll be able to:
+Після завершення цього уроку ви зможете:
 
-- Apply prompt engineering techniques that improve the outcome of your prompts.
-- Perform prompting that is either varied or deterministic.
+- Застосовувати техніки інженерії промптів, які покращують результати ваших промптів.
+- Виконувати запити, які можуть бути або варіативними, або детермінованими.
 
-## Prompt engineering
+## Інженерія промптів
 
-Prompt engineering is the process of creating prompts that will produce the desired outcome. There's more to prompt engineering than just writing a text prompt. Prompt engineering is not an engineering discipline, it's more a set of techniques that you can apply to get the desired outcome.
+Інженерія промптів — це процес створення запитів, які дадуть бажаний результат. У інженерії промптів є щось більше, ніж просто написання текстового запиту. Інженерія промптів — це не інженерна дисципліна, це швидше набір технік, які ви можете застосувати для досягнення бажаного результату.
 
-### An example of a prompt
+### Приклад промпту
 
-Let's take a basic prompt like this one:
+Візьмемо базовий промпт, як цей:
 
-> Generate 10 questions on geography.
+> Згенеруй 10 питань з географії.
 
-In this prompt, you are actually applying a set of different prompt techniques.
+У цьому промпті ви насправді застосовуєте набір різних технік промптингу.
 
-Let's break this down.
+Давайте розберемо це.
 
-- **Context**, you specify it should be about "geography".
-- **Limiting the output**, you want no more than 10 questions.
+- **Контекст**, ви вказуєте, що це має бути про "географію".
+- **Обмеження виводу**, ви хочете не більше 10 питань.
 
-### Limitations of simple prompting
+### Обмеження простого промптингу
 
-You may or may not get the desired outcome. You will get your questions generated, but geography is a big topic and you may not get what you want to due the following reasons:
+Ви можете отримати або не отримати бажаний результат. Ви отримаєте згенеровані питання, але географія — це велика тема, і ви можете не отримати те, що хочете, з таких причин:
 
-- **Big topic**, you don't know if it's going to be about countries, capitals, rivers and so on.
-- **Format**, what if you wanted the questions to be formatted in a certain way?
+- **Велика тема**, ви не знаєте, чи це буде про країни, столиці, річки тощо.
+- **Формат**, що якщо ви хочете, щоб питання були відформатовані певним чином?
 
-As you can see, there's a lot to consider when creating prompts.
+Як бачите, є багато чого, що потрібно враховувати при створенні промптів.
 
-So far, we've seen a simple prompt example, but generative AI is capable of much more to help people in a variety of roles and industries. Let's explore some basic techniques next.
+Досі ми бачили простий приклад промпту, але генеративний ШІ здатний на набагато більше, щоб допомогти людям у різних ролях та галузях. Давайте розглянемо деякі базові техніки далі.
 
-### Techniques for prompting
+### Техніки для промптингу
 
-First, we need to understand that prompting is an _emergent_ property of an LLM meaning that this is not a feature that is built into the model but rather something we discover as we use the model.
+Спочатку нам потрібно зрозуміти, що промптинг є _емерджентною_ властивістю LLM, що означає, що це не функція, яка вбудована в модель, а скоріше щось, що ми виявляємо під час використання моделі.
 
-There are some basic techniques that we can use to prompt an LLM. Let's explore them.
+Існують деякі базові техніки, які ми можемо використовувати для запиту LLM. Давайте розглянемо їх.
 
-- **Zero-shot prompting**, this is the most basic form of prompting. It's a single prompt requesting a response from the LLM based solely on its training data.
-- **Few-shot prompting**, this type of prompting guides the LLM by providing 1 or more examples it can rely on to generate its response.
-- **Chain-of-thought**, this type of prompting tells the LLM how to break down a problem into steps.
-- **Generated knowledge**, to improve the response of a prompt, you can provide generated facts or knowledge additionally to your prompt.
-- **Least to most**, like chain-of-thought, this technique is about breaking down a problem into a series of steps and then ask these steps to be performed in order.
-- **Self-refine**, this technique is about critiquing the LLM's output and then asking it to improve.
-- **Maieutic prompting**. What you want here is to ensure the LLM answer is correct and you ask it to explain various parts of the answer. This is a form of self-refine.
+- **Промптинг з нульовим прикладом (Zero-shot)**, це найбільш базова форма промптингу. Це одиночний запит, що вимагає відповіді від LLM на основі виключно його навчальних даних.
+- **Промптинг з кількома прикладами (Few-shot)**, цей тип промптингу направляє LLM шляхом надання 1 або більше прикладів, на які вона може покладатися при генерації відповіді.
+- **Ланцюжок думок (Chain-of-thought)**, цей тип промптингу вказує LLM, як розбити проблему на кроки.
+- **Згенеровані знання (Generated knowledge)**, щоб покращити відповідь на запит, ви можете додатково до вашого промпту надати згенеровані факти або знання.
+- **Від найменшого до найбільшого (Least to most)**, як і ланцюжок думок, ця техніка полягає в розбитті проблеми на серію кроків, а потім у виконанні цих кроків по порядку.
+- **Самовдосконалення (Self-refine)**, ця техніка полягає в критиці виводу LLM, а потім у проханні покращити його.
+- **Майєвтичний промптинг (Maieutic prompting)**. Тут ви хочете переконатися, що відповідь LLM є правильною, і ви просите пояснити різні частини відповіді. Це форма самовдосконалення.
 
-### Zero-shot prompting
+### Промптинг з нульовим прикладом
 
-This style of prompting is very simple, it consists of a single prompt. This technique is probably what you're using as you're starting to learn about LLMs. Here's an example:
+Цей стиль промптингу дуже простий, він складається з одного запиту. Ця техніка, ймовірно, та, яку ви використовуєте, коли тільки починаєте вивчати LLM. Ось приклад:
 
-- Prompt: "What is Algebra?"
-- Answer: "Algebra is a branch of mathematics that studies mathematical symbols and the rules for manipulating these symbols."
+- Промпт: "Що таке алгебра?"
+- Відповідь: "Алгебра — це галузь математики, яка вивчає математичні символи та правила маніпулювання цими символами."
 
-### Few-shot prompting
+### Промптинг з кількома прикладами
 
-This style of prompting helps the model by providing a few examples along with the request. It consists of a single prompt with additional task-specific data. Here's an example:
+Цей стиль промптингу допомагає моделі, надаючи кілька прикладів разом із запитом. Він складається з одного промпту з додатковими даними для конкретного завдання. Ось приклад:
 
-- Prompt: "Write a poem in the style of Shakespeare. Here are a few examples of Shakespearean sonnets.:
-  Sonnet 18: 'Shall I compare thee to a summer's day? Thou art more lovely and more temperate...'
-  Sonnet 116: 'Let me not to the marriage of true minds Admit impediments. Love is not love Which alters when it alteration finds...'
-  Sonnet 132: 'Thine eyes I love, and they, as pitying me, Knowing thy heart torment me with disdain,...'
-  Now, write a sonnet about the beauty of the moon."
-- Answer: "Upon the sky, the moon doth softly gleam, In silv'ry light that casts its gentle grace,..."
+- Промпт: "Напиши вірш у стилі Шекспіра. Ось кілька прикладів шекспірівських сонетів:
+  Сонет 18: 'Чи порівняю тебе з літнім днем? Ти прекрасніший і спокійніший...'
+  Сонет 116: 'Не дозволю я перешкод у шлюбі істинних умів. Любов — це не любов, Яка змінюється, коли знаходить зміну...'
+  Сонет 132: 'Твої очі я люблю, і вони, ніби жаліючи мене, Знаючи, що твоє серце мучить мене зневагою...'
+  Тепер напиши сонет про красу місяця."
+- Відповідь: "На небі місяць ніжно сяє, В сріблястому світлі, що випромінює ніжну грацію..."
 
-Examples provide the LLM with the context, format or style of the desired output. They help the model understand the specific task and generate more accurate and relevant responses.
+Приклади надають LLM контекст, формат або стиль бажаного виводу. Вони допомагають моделі зрозуміти конкретне завдання та генерувати більш точні та релевантні відповіді.
 
-### Chain-of-thought
+### Ланцюжок думок
 
-Chain-of-thought is a very interesting technique as it's about taking the LLM through a series of steps. The idea is to instruct the LLM in such a way that it understands how to do something. Consider the following example, with and without chain-of-thought:
+Ланцюжок думок — це дуже цікава техніка, оскільки йдеться про проведення LLM через серію кроків. Ідея полягає в тому, щоб проінструктувати LLM таким чином, щоб вона зрозуміла, як щось робити. Розгляньте наступний приклад, з ланцюжком думок і без нього:
 
-    - Prompt: "Alice has 5 apples, throws 3 apples, gives 2 to Bob and Bob gives one back, how many apples does Alice have?"
-    - Answer: 5
+    - Промпт: "У Аліси є 5 яблук, вона кидає 3 яблука, віддає 2 Бобу, а Боб віддає їй одне назад, скільки яблук у Аліси?"
+    - Відповідь: 5
 
-LLM answers with 5, which is incorrect. Correct answer is 1 apple, given the calculation (5 -3 -2 + 1 = 1).
+LLM відповідає 5, що неправильно. Правильна відповідь — 1 яблуко, враховуючи розрахунок (5 -3 -2 + 1 = 1).
 
-So how can we teach the LLM to do this correctly?
+Отже, як ми можемо навчити LLM робити це правильно?
 
-Let's try chain-of-thought. Applying chain-of-thought means:
+Давайте спробуємо ланцюжок думок. Застосування ланцюжка думок означає:
 
-1. Give the LLM a similar example.
-1. Show the calculation, and how to calculate it correctly.
-1. Provide the original prompt.
+1. Дати LLM подібний приклад.
+1. Показати розрахунок і як розрахувати це правильно.
+1. Надати початковий промпт.
 
-Here's how:
+Ось як:
 
-- Prompt: "Lisa has 7 apples, throws 1 apple, gives 4 apples to Bart and Bart gives one back:
+- Промпт: "У Лізи є 7 яблук, вона кидає 1 яблуко, віддає 4 яблука Барту, а Барт віддає їй одне назад:
   7 -1 = 6
   6 -4 = 2
   2 +1 = 3  
-  Alice has 5 apples, throws 3 apples, gives 2 to Bob and Bob gives one back, how many apples does Alice have?"
-  Answer: 1
+  У Аліси є 5 яблук, вона кидає 3 яблука, віддає 2 Бобу, а Боб віддає їй одне назад, скільки яблук у Аліси?"
+  Відповідь: 1
 
-Note how we write substantially longer prompts with another example, a calculation and then the original prompt and we arrive at the correct answer 1.
+Зверніть увагу, як ми пишемо суттєво довший промпт з іншим прикладом, розрахунком, а потім початковим промптом, і отримуємо правильну відповідь 1.
 
-As you can see chain-of-thought is a very powerful technique.
+Як бачите, ланцюжок думок — це дуже потужна техніка.
 
-### Generated knowledge
+### Згенеровані знання
 
-Many times when you want to construct a prompt, you want to do so using your own company's data. You want part of the prompt to be from the company and the other part should be the actual prompt you're interested in.
+Багато разів, коли ви хочете сконструювати промпт, ви хочете зробити це, використовуючи власні дані компанії. Ви хочете, щоб частина промпту була від компанії, а інша частина повинна бути фактичним промптом, який вас цікавить.
 
-As an example, this is what your prompt then can look like if you're in the insurance business:
+Наприклад, ось як може виглядати ваш промпт, якщо ви в страховому бізнесі:
 
 ```text
 {{company}}: {{company_name}}
 {{products}}:
 {{products_list}}
-Please suggest an insurance given the following budget and requirements:
-Budget: {{budget}}
-Requirements: {{requirements}}
+Будь ласка, запропонуйте страховку з урахуванням наступного бюджету та вимог:
+Бюджет: {{budget}}
+Вимоги: {{requirements}}
 ```
 
-Above, you see how the prompt is constructed using a template. In the template there's a number of variables, denoted by `{{variable}}`, that will be replaced with actual values from a company API.
+Вище ви бачите, як промпт сконструйований з використанням шаблону. У шаблоні є ряд змінних, позначених `{{змінна}}`, які будуть замінені фактичними значеннями з API компанії.
 
-Here's an example of how the prompt could look like once the variables have been replaced by content from your company:
+Ось приклад того, як може виглядати промпт після заміни змінних контентом з вашої компанії:
 
 ```text
-Insurance company: ACME Insurance
-Insurance products (cost per month):
-- Car, cheap, 500 USD
-- Car, expensive, 1100 USD
-- Home, cheap, 600 USD
-- Home, expensive, 1200 USD
-- Life, cheap, 100 USD
+Страхова компанія: ACME Insurance
+Страхові продукти (вартість на місяць):
+- Автомобіль, дешевий, 500 USD
+- Автомобіль, дорогий, 1100 USD
+- Дім, дешевий, 600 USD
+- Дім, дорогий, 1200 USD
+- Життя, дешеве, 100 USD
 
-Please suggest an insurance given the following budget and requirements:
-Budget: $1000
-Requirements: Car, Home, and Life insurance
+Будь ласка, запропонуйте страховку з урахуванням наступного бюджету та вимог:
+Бюджет: $1000
+Вимоги: Автомобіль, Дім та страхування життя
 ```
 
-Running this prompt through an LLM will produce a response like this:
+Запуск цього промпту через LLM дасть відповідь на кшталт:
 
 ```output
-Given the budget and requirements, we suggest the following insurance package from ACME Insurance:
-- Car, cheap, 500 USD
-- Home, cheap, 600 USD
-- Life, cheap, 100 USD
-Total cost: $1,200 USD
+Враховуючи бюджет та вимоги, ми пропонуємо наступний страховий пакет від ACME Insurance:
+- Автомобіль, дешевий, 500 USD
+- Дім, дешевий, 600 USD
+- Життя, дешеве, 100 USD
+Загальна вартість: $1,200 USD
 ```
 
-As you can see, it also suggests the Life insurance, which it shouldn't. This result is an indication that we need to optimize the prompt by changing the prompt to be clearer on what it can allow. After some _trial and error_, we arrive at the following prompt:
+Як бачите, він також пропонує страхування життя, чого не повинно бути. Цей результат є показником того, що нам потрібно оптимізувати промпт, змінивши його, щоб чітко вказати, що можна дозволити. Після деяких _спроб і помилок_ ми приходимо до наступного промпту:
 
 ```text
-Insurance company: ACME Insurance
-Insurance products (cost per month):
-- type: Car, cheap, cost: 500 USD
-- type: Car, expensive, cost: 1100 USD
-- type: Home, cheap, cost: 600 USD
-- type: Home, expensive, cost: 1200 USD
-- type: Life, cheap, cost: 100 USD
+Страхова компанія: ACME Insurance
+Страхові продукти (вартість на місяць):
+- тип: Автомобіль, дешевий, вартість: 500 USD
+- тип: Автомобіль, дорогий, вартість: 1100 USD
+- тип: Дім, дешевий, вартість: 600 USD
+- тип: Дім, дорогий, вартість: 1200 USD
+- тип: Життя, дешеве, вартість: 100 USD
 
-Please suggest an insurance given the following budget and requirements:
-Budget: $1000 restrict choice to types: Car, Home
+Будь ласка, запропонуйте страховку з урахуванням наступного бюджету та вимог:
+Бюджет: $1000 обмежте вибір типами: Автомобіль, Дім
 ```
 
-Note how adding _type_ and _cost_ and also using the keyword _restrict_ helps the LLM to understand what we want.
+Зверніть увагу, як додавання _тип_ і _вартість_, а також використання ключового слова _обмежте_ допомагає LLM зрозуміти, що ми хочемо.
 
-Now we get the following response:
+Тепер ми отримуємо наступну відповідь:
 
 ```output
-Given the budget and requirements, we suggest the Car, Cheap insurance product which costs 500 USD per month.
+Враховуючи бюджет та вимоги, ми пропонуємо страховий продукт Автомобіль, Дешевий, який коштує 500 USD на місяць.
 ```
 
-The point of this example was to show that even though we're using a basic technique like _generated knowledge_, we still need to optimize the prompt in most cases to get the desired outcome.
+Суть цього прикладу полягала в тому, щоб показати, що навіть хоч ми використовуємо базову техніку, як _згенеровані знання_, нам все одно потрібно оптимізувати промпт у більшості випадків, щоб отримати бажаний результат.
 
-### Least-to-most
+### Від найменшого до найбільшого
 
-The idea with Least-to-most prompting is to break down a bigger problem into subproblems. That way, you help guide the LLM on how to "conquer" the bigger problem. A good example could be for data science where you can ask the LLM to divide up a problem like so:
+Ідея промптингу від найменшого до найбільшого полягає в розбитті більшої проблеми на підпроблеми. Таким чином, ви допомагаєте вказати LLM, як "завоювати" більшу проблему. Хорошим прикладом може бути наука про дані, де ви можете попросити LLM розділити проблему так:
 
-> Prompt: How to perform data science in 5 steps?
+> Промпт: Як виконати науку про дані в 5 кроків?
 
-With your AI assistant answering with:
+Ваш ШІ-асистент відповідає:
 
-1. Collect data
-1. Clean data
-1. Analyze data
-1. Plot data
-1. Present data
+1. Зібрати дані
+1. Очистити дані
+1. Проаналізувати дані
+1. Візуалізувати дані
+1. Представити дані
 
-### Self-refine, critique the results
+### Самовдосконалення, критика результатів
 
-With generative AIs and LLMs, you can't trust the output. You need to verify it. After all, the LLM is just presenting you what's the next most likely thing to say, not what's correct. Therefore, a good idea is to ask the LLM to critique itself, which leads us to the self-refine technique.
+З генеративними ШІ та LLM ви не можете довіряти виходу. Вам потрібно його перевірити. Зрештою, LLM просто представляє вам те, що найімовірніше сказати далі, а не те, що правильно. Тому хорошою ідеєю є попросити LLM критикувати себе, що приводить нас до техніки самовдосконалення.
 
-How it works is that you follow the following steps:
+Вона працює так, що ви дотримуєтесь наступних кроків:
 
-1. Initial prompt asking the LLM to solve a problem
-1. LLM answers
-1. You critique the answer and ask the AI to improve
-1. LLM answers again, this time considering the critique and suggest solutions it came up with
+1. Початковий промпт з проханням до LLM вирішити проблему
+1. LLM відповідає
+1. Ви критикуєте відповідь і просите ШІ покращити її
+1. LLM відповідає знову, цього разу враховуючи критику та пропонуючи рішення, які вона знайшла
 
-You can repeat this process as many times as you want.
+Ви можете повторювати цей процес стільки разів, скільки хочете.
 
-Here's an example using this technique:
+Ось приклад використання цієї техніки:
 
-> Prompt: "Create a Python Web API with routes products and customers"
+> Промпт: "Створіть веб-API на Python з маршрутами products і customers"
 
-AI Answer:
+Відповідь ШІ:
 
 ```python
 import flask
@@ -230,18 +230,18 @@ def customers():
     return 'Customers'
 ```
 
-> Prompt: suggest 3 improvements of the above code
+> Промпт: запропонуйте 3 покращення для вищенаведеного коду
 
-AI Answer:
+Відповідь ШІ:
 
 ```text
-Sure, here are three suggestions to improve the code:
+Звичайно, ось три пропозиції для покращення коду:
 
-Import the correct module: The first line should import Flask instead of flask. The correct import statement should be from flask import Flask.
+Імпортуйте правильний модуль: У першому рядку має бути імпортований Flask замість flask. Правильний оператор імпорту повинен бути from flask import Flask.
 
-Add a main function: Add a if __name__ == '__main__': block to the end of the file to run the application when the file is executed.
+Додайте головну функцію: Додайте блок if __name__ == '__main__': в кінці файлу, щоб запустити додаток при виконанні файлу.
 
-Use f-strings: Use f-strings to format the return statements in the route functions. For example, return 'Products' can be changed to return f'This is the {request.path} page'.
+Використовуйте f-рядки: Використовуйте f-рядки для форматування операторів return у функціях маршрутів. Наприклад, return 'Products' можна змінити на return f'This is the {request.path} page'.
 ```
 
 ```python
@@ -261,113 +261,113 @@ if __name__ == '__main__':
     app.run()
 ```
 
-As you can see, the above AI response is improving the first suggested code thanks to critiquing the first answer.
+Як бачите, вищенаведена відповідь ШІ покращує перший запропонований код завдяки критиці першої відповіді.
 
-### Maieutic prompting
+### Майєвтичний промптинг
 
-Maieutic prompting is a technique that is similar to self-refine but it's more about asking the LLM to explain itself. The goal is to reduce inconsistencies in the LLM's output so to ensure it arrives at the correct answer. The workflow to follow is:
+Майєвтичний промптинг — це техніка, схожа на самовдосконалення, але вона більше стосується прохання до LLM пояснити себе. Мета полягає в зменшенні невідповідностей у виводі LLM, щоб переконатися, що вона приходить до правильної відповіді. Робочий процес, якого слід дотримуватися:
 
-1. Ask the LLM to answer a question
-1. For each part of the answer, ask the LLM to explain it more in depth.
-1. If there are inconsistencies, discard the parts that are inconsistent.
+1. Попросіть LLM відповісти на питання
+1. Для кожної частини відповіді попросіть LLM пояснити її більш детально.
+1. Якщо є невідповідності, відкиньте частини, які є несумісними.
 
-Repeat 2 and 3 until you've gone through all the parts and you're satisfied with the answer.
+Повторюйте кроки 2 і 3, поки не переберете всі частини і не будете задоволені відповіддю.
 
-Here's an example prompt:
+Ось приклад промпту:
 
-> prompt: How can I create a crisis plan to mitigate a pandemic in 5 steps?
-> LLM answer:
-
-```text
-1. Identify the risks
-1. Identify the stakeholders
-1. Identify the resources
-1. Identify the actions
-1. Identify the communication channels
-```
-
-It's identified 5 steps, but can we determine if this is correct? Let's ask the LLM to explain each step:
-
-> prompt: Explain the first step in more detail, what are the risks in detail with a pandemic?
+> промпт: Як я можу створити кризовий план для пом'якшення наслідків пандемії в 5 кроків?
+> відповідь LLM:
 
 ```text
-The risks are the following:
-
-- Loss of life
-- Loss of business
-- Loss of reputation
-- Loss of customers
-- Loss of employees
+1. Визначте ризики
+1. Визначте зацікавлені сторони
+1. Визначте ресурси
+1. Визначте дії
+1. Визначте канали комунікації
 ```
 
-At this point, we want to make sure the LLM is correct so we ask it to explain the first risk in more detail and hope it's consistent with the answer above:
+Вона визначила 5 кроків, але чи можемо ми визначити, чи це правильно? Давайте попросимо LLM пояснити кожен крок:
 
-> prompt: In a Pandemic, which is the biggest risk and why?
+> промпт: Поясніть перший крок більш детально, які саме ризики під час пандемії?
 
 ```text
-The biggest risk is loss of life because it's the most important thing to protect.
+Ризики є наступними:
+
+- Втрата життя
+- Втрата бізнесу
+- Втрата репутації
+- Втрата клієнтів
+- Втрата працівників
 ```
 
-> What are the two biggest risks in a pandemic?
+На цьому етапі ми хочемо переконатися, що LLM є правильною, тому ми просимо її пояснити перший ризик більш детально і сподіваємось, що вона буде узгоджена з вищенаведеною відповіддю:
+
+> промпт: У пандемії, який найбільший ризик і чому?
 
 ```text
-The two biggest risks are loss of life and loss of business.
+Найбільший ризик — це втрата життя, тому що це найважливіше, що потрібно захистити.
 ```
 
-At this point, the LLM is consistent and mentions "life" and "business" as the top two risks. We can now continue to the next step and feel fairly confident. However, we shouldn't trust the LLM blindly, we should always verify the output.
+> Які два найбільші ризики під час пандемії?
 
-## Vary your output
+```text
+Два найбільші ризики — це втрата життя та втрата бізнесу.
+```
 
-LLMs are nondeterministic by nature, meaning that you will get different results each time you run the same prompt. Try the following prompt for example:
+На цьому етапі LLM є узгодженою і згадує "життя" та "бізнес" як два найбільші ризики. Ми можемо тепер продовжити до наступного кроку і почуватися досить впевнено. Однак, ми не повинні сліпо довіряти LLM, ми завжди повинні перевіряти вивід.
 
-> "Generate code for a Python Web API"
+## Урізноманітнення виводу
+
+LLM за своєю природою є недетермінованими, що означає, що ви отримаєте різні результати кожного разу, коли запускаєте той самий промпт. Спробуйте, наприклад, наступний промпт:
+
+> "Згенеруйте код для веб-API на Python"
 
 ```python
-# Import necessary modules
+# Імпортуємо необхідні модулі
 import flask
 from flask import request, jsonify
 
-# Create a Flask app
+# Створюємо додаток Flask
 app = flask.Flask(__name__)
 
-# Create a route for the API
+# Створюємо маршрут для API
 @app.route('/api', methods=['GET'])
 def api():
-    # Get the data from the request
+    # Отримуємо дані з запиту
     data = request.args
 
-    # Process the data
+    # Обробляємо дані
     result = process_data(data)
 
-    # Return the result as JSON
+    # Повертаємо результат у форматі JSON
     return jsonify(result)
 
-# Function to process the data
+# Функція для обробки даних
 def process_data(data):
-    # Do something with the data
+    # Робимо щось з даними
     result = data + 1
 
-    # Return the result
+    # Повертаємо результат
     return result
 
-# Run the app
+# Запускаємо додаток
 if __name__ == '__main__':
     app.run()
 
 ```
 
-Running the same prompt again generates a slightly different response:
+Запуск того ж промпту знову генерує дещо іншу відповідь:
 
 ```python
-#import necessary packages
+#імпортуємо необхідні пакети
 import flask
 from flask import request, jsonify
 
-#create the Flask application
+#створюємо додаток Flask
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-#create a list of books
+#створюємо список книг
 books = [
     {'id': 0,
      'title': 'A Fire Upon the Deep',
@@ -386,180 +386,180 @@ books = [
      'published': '1975'}
 ]
 
-#create an endpoint for the API
+#створюємо кінцеву точку для API
 @app.route('/', methods=['GET'])
 def home():
     return '''<h1>Books API</h1>
 <p>A prototype API for retrieving books.</p>'''
 
-#create an endpoint to return all books
+#створюємо кінцеву точку для повернення всіх книг
 @app.route('/api/v1/resources/books/all', methods=['GET'])
 def api_all():
     return jsonify(books)
 
-#create an endpoint to return a single book
+#створюємо кінцеву точку для повернення однієї книги
 @app.route('/api/v1/resources/books', methods=['GET'])
 def api_id():
-    #check if an ID was provided as part of the URL
-    #if ID is provided, assign it to a variable
-    #if no ID is provided, display an error
+    #перевіряємо, чи надано ID як частину URL
+    #якщо ID надано, призначаємо його змінній
+    #якщо ID не надано, відображаємо помилку
     if 'id' in request.args:
         id = int(request.args['id'])
     else:
         return "Error: No id field provided. Please specify an id."
 
-    #create an empty list for our results
+    #створюємо порожній список для наших результатів
     results = []
 
-    #loop through the data and match results that fit the requested ID
-    #IDs are unique, but other fields might return many results
+    #перебираємо дані та шукаємо результати, які відповідають запитаному ID
+    #ID унікальні, але інші поля можуть повертати багато результатів
     for book in books:
         if book['id'] == id:
             results.append(book)
 
-    #use the jsonify function from Flask to convert our list of
-    #Python dictionaries to the JSON format
+    #використовуємо функцію jsonify з Flask для перетворення нашого списку
+    #Python словників у формат JSON
     return jsonify(results)
 
 app.run()
 ```
 
-> So is the varied output a problem?
+> Отже, чи є проблемою різноманітний вивід?
 
-Depends on what you're trying to do. If you want a specific response then it's a problem. If you're ok with a varied output like "Generate any 3 questions on geography", then it's not a problem.
+Залежить від того, що ви намагаєтеся зробити. Якщо ви хочете певну відповідь, тоді це проблема. Якщо вас влаштовує різноманітний вивід, як "Згенеруйте будь-які 3 питання з географії", тоді це не проблема.
 
-### Using temperature to vary your output
+### Використання температури для урізноманітнення виводу
 
-Ok, so we've decided we want to limit the output to be more predictable, that is more deterministic. How do we do that?
+Добре, отже ми вирішили, що хочемо обмежити вивід, щоб він був більш передбачуваним, тобто більш детермінованим. Як ми це робимо?
 
-Temperature is a value between 0 and 1, where 0 is the most deterministic and 1 is the most varied. The default value is 0.7. Let's see what happens with two runs of the same prompt with temperature set to 0.1:
+Температура — це значення між 0 та 1, де 0 є найбільш детермінованим, а 1 — найбільш різноманітним. Значення за замовчуванням — 0.7. Давайте подивимось, що відбувається при двох запусках того ж промпту з температурою, встановленою на 0.1:
 
-> "Generate code for a Python Web API"
+> "Згенеруйте код для веб-API на Python"
 
 ```python
-#import necessary libraries
+#імпортуємо необхідні бібліотеки
 import flask
 from flask import request, jsonify
 
-#create an instance of the Flask class
+#створюємо екземпляр класу Flask
 app = flask.Flask(__name__)
 
-#create an endpoint for the API
+#створюємо кінцеву точку для API
 @app.route('/api/v1/endpoint', methods=['GET'])
 def api_endpoint():
-    #get the request data
+    #отримуємо дані запиту
     data = request.get_json()
 
-    #process the data
+    #обробляємо дані
     result = process_data(data)
 
-    #return the result
+    #повертаємо результат
     return jsonify(result)
 
-#function to process the data
+#функція для обробки даних
 def process_data(data):
-    #process the data
+    #обробляємо дані
     result = {'result': 'success'}
 
-    #return the result
+    #повертаємо результат
     return result
 
-#run the Flask app
+#запускаємо додаток Flask
 if __name__ == '__main__':
     app.run()
 
 ```
 
-Running the prompt again gives us this outcome:
+Запуск промпту знову дає нам такий результат:
 
 ```python
-#import necessary libraries
+#імпортуємо необхідні бібліотеки
 import flask
 from flask import request, jsonify
 
-#create a Flask app
+#створюємо додаток Flask
 app = flask.Flask(__name__)
 
-#create a route for the API
+#створюємо маршрут для API
 @app.route('/api', methods=['GET'])
 def api_call():
-    #get the data from the request
+    #отримуємо дані з запиту
     data = request.get_json()
 
-    #process the data
+    #обробляємо дані
     result = process_data(data)
 
-    #return the result
+    #повертаємо результат
     return jsonify(result)
 
-#define the process_data function
+#визначаємо функцію process_data
 def process_data(data):
-    #do something with the data
+    #робимо щось з даними
     result = data + 1
 
-    #return the result
+    #повертаємо результат
     return result
 
-#run the app
+#запускаємо додаток
 if __name__ == '__main__':
     app.run()
 
 ```
 
-There's only a tiny difference between these two outputs. Let's do the opposite this time, let's set the temperature to 0.9:
+Між цими двома виводами є лише невелика різниця. Давайте зробимо протилежне цього разу, встановимо температуру на 0.9:
 
 ```python
-# Import necessary libraries
+# Імпортуємо необхідні бібліотеки
 import flask
 from flask import request, jsonify
 
-# Create a Flask app
+# Створюємо додаток Flask
 app = flask.Flask(__name__)
 
-# Create a route for the API
+# Створюємо маршрут для API
 @app.route('/api', methods=['GET'])
 def api_call():
-    # Get the data from the request
+    # Отримуємо дані з запиту
     data = request.args
 
-    # Process the data
+    # Обробляємо дані
     result = process_data(data)
 
-    # Return the result
+    # Повертаємо результат
     return jsonify(result)
 
-# Function to process the data
+# Функція для обробки даних
 def process_data(data):
-    # Do something with the data
+    # Робимо щось з даними
     result = data + 1
 
-    # Return the result
+    # Повертаємо результат
     return result
 
-# Run the app
+# Запускаємо додаток
 if __name__ == '__main__':
     app.run()
 
 ```
 
-and the second attempt at 0.9 as temperature value:
+а друга спроба з температурою 0.9:
 
 ```python
 import flask
 from flask import request, jsonify
 
-# create the Flask app
+# створюємо додаток Flask
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
-# create some test data
+# створюємо тестові дані
 books = [
     {'id': 0, 'title': 'A Fire Upon The Deep', 'author': 'Vernor Vinge', 'first_sentence': 'The coldsleep itself was dreamless.', 'year_published': '1992'},
     {'id': 1, 'title': 'The Ones Who Walk Away From Omelas', 'author': 'Ursula K. Le Guin', 'first_sentence': 'With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.', 'published': '1973'},
     {'id': 2, 'title': 'Dhalgren', 'author': 'Samuel R. Delany', 'first_sentence': 'to wound the autumnal city.', 'published': '1975'}
 ]
 
-# create an endpoint
+# створюємо кінцеву точку
 @app.route('/', methods=['GET'])
 def home():
     return '''<h1>Welcome to our book API!</h1>'''
@@ -568,27 +568,27 @@ def home():
 
 ```
 
-As you can see, the results couldn't be more varied.
+Як бачите, результати не могли б бути більш різноманітними.
 
-> Note, that there are more parameters you can change to vary the output, like top-k, top-p, repetition penalty, length penalty and diversity penalty but these are outside the scope of this curriculum.
+> Зауважте, що існує більше параметрів, які ви можете змінити для урізноманітнення виводу, як-от top-k, top-p, штраф за повторення, штраф за довжину та штраф за різноманітність, але вони виходять за рамки цього навчального плану.
 
-## Good practices
+## Хороші практики
 
-There are many practices you can apply to try to get what you want. You will find your own style as you use prompting more and more.
+Існує багато практик, які ви можете застосувати, щоб спробувати отримати те, що хочете. Ви знайдете свій власний стиль, використовуючи промптинг все частіше і частіше.
 
-Additionally to the techniques we've covered, there are some good practices to consider when prompting an LLM.
+Додатково до технік, які ми розглянули, є деякі хороші практики, які варто враховувати при промптингу LLM.
 
-Here are some good practices to consider:
+Ось деякі хороші практики, які варто врахувати:
 
-- **Specify context**. Context matters, the more you can specify like domain, topic, etc. the better.
-- Limit the output. If you want a specific number of items or a specific length, specify it.
-- **Specify both what and how**. Remember to mention both what you want and how you want it, for example "Create a Python Web API with routes products and customers, divide it into 3 files".
-- **Use templates**. Often, you will want to enrich your prompts with data from your company. Use templates to do this. Templates can have variables that you replace with actual data.
-- **Spell correctly**. LLMs might provide you with a correct response, but if you spell correctly, you will get a better response.
+- **Вкажіть контекст**. Контекст має значення, чим більше ви можете вказати, як домен, тему тощо, тим краще.
+- Обмежте вивід. Якщо ви хочете певну кількість елементів або певну довжину, вкажіть це.
+- **Вкажіть як що, так і як**. Пам'ятайте, що треба згадати як те, що ви хочете, так і те, як ви це хочете, наприклад "Створіть веб-API на Python з маршрутами products і customers, розділіть його на 3 файли".
+- **Використовуйте шаблони**. Часто ви захочете збагатити свої промпти даними з вашої компанії. Використовуйте шаблони для цього. Шаблони можуть мати змінні, які ви заміняєте фактичними даними.
+- **Пишіть правильно**. LLM можуть надати вам правильну відповідь, але якщо ви пишете правильно, ви отримаєте кращу відповідь.
 
-## Assignment
+## Завдання
 
-Here's code in Python showing how to build a simple API using Flask:
+Ось код на Python, який показує, як побудувати простий API з використанням Flask:
 
 ```python
 from flask import Flask, request
@@ -604,33 +604,33 @@ if __name__ == '__main__':
     app.run()
 ```
 
-Use an AI assistant like GitHub Copilot or ChatGPT and apply the "self-refine" technique to improve the code.
+Використовуйте ШІ-асистента, такого як GitHub Copilot або ChatGPT, і застосуйте техніку "самовдосконалення", щоб покращити код.
 
-## Solution
+## Рішення
 
-Please attempt to solve the assignment by adding suitable prompts to the code.
+Будь ласка, спробуйте вирішити завдання, додавши відповідні промпти до коду.
 
-> [!TIP]
-> Phrase a prompt to ask it to improve, it's a good idea to limit how many improvements. You can also ask to improve it in a certain way, for example architecture, performance, security, etc.
+> [!ПОРАДА]
+> Сформулюйте промпт з проханням покращити код, добре було б обмежити кількість покращень. Ви також можете попросити покращити його певним чином, наприклад, в аспекті архітектури, продуктивності, безпеки тощо.
 
-[Solution](./python/aoai-solution.py?WT.mc_id=academic-105485-koreyst)
+[Рішення](./python/aoai-solution.py?WT.mc_id=academic-105485-koreyst)
 
-## Knowledge check
+## Перевірка знань
 
-Why would I use chain-of-thought prompting? Show me 1 correct response and 2 incorrect responses.
+Чому я використовував би промптинг з ланцюжком думок? Покажіть мені 1 правильну відповідь і 2 неправильні.
 
-1. To teach the LLM how to solve a problem.
-1. B, To teach the LLM to find errors in code.
-1. C, To instruct the LLM to come up with different solutions.
+1. Щоб навчити LLM, як вирішувати проблему.
+1. B, Щоб навчити LLM знаходити помилки в коді.
+1. C, Щоб проінструктувати LLM придумати різні рішення.
 
-A: 1, because chain-of-thought is about showing the LLM how to solve a problem by providing it with a series of steps, and similar problems and how they were solved.
+Відповідь: 1, тому що ланцюжок думок полягає в тому, щоб показати LLM, як вирішувати проблему, надаючи їй серію кроків, і подібні проблеми та як вони були вирішені.
 
-## 🚀 Challenge
+## 🚀 Завдання
 
-You just used the self-refine technique in the assignment. Take any program you built and consider what improvements you would want to apply to it. Now use the self-refine technique to apply the proposed changes. What did you think the result, better or worse?
+Ви щойно використали техніку самовдосконалення в завданні. Візьміть будь-яку програму, яку ви створили, і подумайте, які покращення ви хотіли б застосувати до неї. Тепер використовуйте техніку самовдосконалення, щоб застосувати запропоновані зміни. Що ви думаєте про результат, краще чи гірше?
 
-## Great Work! Continue Your Learning
+## Відмінна робота! Продовжуйте своє навчання
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Після завершення цього уроку перевірте нашу [колекцію навчальних матеріалів з генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжити підвищувати свої знання з генеративного ШІ!
 
-Head over to Lesson 6 where we will apply our knowledge of Prompt Engineering by [building text generation apps](../06-text-generation-apps/README.md?WT.mc_id=academic-105485-koreyst)
+Переходьте до Уроку 6, де ми застосуємо наші знання з інженерії промптів, [створюючи додатки для генерації тексту](../06-text-generation-apps/README.md?WT.mc_id=academic-105485-koreyst)
