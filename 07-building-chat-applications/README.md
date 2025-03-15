@@ -1,66 +1,66 @@
-# Building Generative AI-Powered Chat Applications
+# Створення чат-додатків на основі генеративного ШІ
 
-[![Building Generative AI-Powered Chat Applications](./images/07-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lessons7-gh?WT.mc_id=academic-105485-koreyst)
+[![Створення чат-додатків на основі генеративного ШІ](./images/07-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lessons7-gh?WT.mc_id=academic-105485-koreyst)
 
-> _(Click the image above to view video of this lesson)_
+> _(Клацніть на зображення вище, щоб переглянути відео цього уроку)_
 
-Now that we've seen how we can build text-generation apps, let's look into chat applications.
+Тепер, коли ми побачили, як можемо будувати додатки для генерації тексту, давайте розглянемо чат-додатки.
 
-Chat applications have become integrated into our daily lives, offering more than just a means of casual conversation. They're integral parts of customer service, technical support, and even sophisticated advisory systems. It's likely that you've gotten some help from a chat application not too long ago. As we integrate more advanced technologies like generative AI into these platforms, the complexity increases and so does the challenges.
+Чат-додатки стали невід'ємною частиною нашого повсякденного життя, пропонуючи більше, ніж просто засіб для повсякденного спілкування. Вони є невід'ємними компонентами обслуговування клієнтів, технічної підтримки і навіть складних консультаційних систем. Цілком ймовірно, що ви нещодавно отримували допомогу від чат-додатку. Коли ми інтегруємо більш передові технології, такі як генеративний ШІ, у ці платформи, складність зростає, як і виклики.
 
-Some questions we need to be answered are:
+Деякі питання, на які нам потрібно отримати відповіді:
 
-- **Building the app**. How do we efficiently build and seamlessly integrate these AI-powered applications for specific use cases?
-- **Monitoring**. Once deployed, how can we monitor and ensure that the applications are operating at the highest level of quality, both in terms of functionality and adhering to the [six principles of responsible AI](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst)?
+- **Створення додатку**. Як ми можемо ефективно створювати й без проблем інтегрувати ці додатки на базі ШІ для конкретних випадків використання?
+- **Моніторинг**. Після розгортання, як ми можемо контролювати та забезпечувати, щоб додатки працювали на найвищому рівні якості, як з точки зору функціональності, так і дотримуючись [шести принципів відповідального ШІ](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst)?
 
-As we move further into an age defined by automation and seamless human-machine interactions, understanding how generative AI transforms the scope, depth, and adaptability of chat applications becomes essential. This lesson will investigate the aspects of architecture that support these intricate systems, delve into the methodologies for fine-tuning them for domain-specific tasks, and evaluate the metrics and considerations pertinent to ensuring responsible AI deployment.
+Коли ми рухаємося далі в епоху, визначену автоматизацією та безперешкодною взаємодією між людиною та машиною, розуміння того, як генеративний ШІ трансформує обсяг, глибину та адаптивність чат-додатків, стає необхідним. Цей урок дослідить аспекти архітектури, які підтримують ці складні системи, заглибиться в методології їх тонкого налаштування для завдань, специфічних для конкретних доменів, та оцінить показники й міркування, що стосуються забезпечення відповідального розгортання ШІ.
 
-## Introduction
+## Вступ
 
-This lesson covers:
+Цей урок охоплює:
 
-- Techniques for efficiently building and integrating chat applications.
-- How to apply customization and fine-tuning to applications.
-- Strategies and considerations to effectively monitor chat applications.
+- Техніки для ефективного створення та інтеграції чат-додатків.
+- Як застосовувати налаштування та тонке налаштування до додатків.
+- Стратегії та міркування для ефективного моніторингу чат-додатків.
 
-## Learning Goals
+## Навчальні цілі
 
-By the end of this lesson, you'll be able to:
+До кінця цього уроку ви зможете:
 
-- Describe considerations for building and integrating chat applications into existing systems.
-- Customize chat applications for specific use-cases.
-- Identify key metrics and considerations to effectively monitor and maintain the quality of AI-powered chat applications.
-- Ensure chat applications leverage AI responsibly.
+- Описати міркування щодо створення та інтеграції чат-додатків у існуючі системи.
+- Налаштувати чат-додатки для конкретних випадків використання.
+- Визначити ключові показники та міркування для ефективного моніторингу та підтримки якості чат-додатків на базі ШІ.
+- Забезпечити, щоб чат-додатки використовували ШІ відповідально.
 
-## Integrating Generative AI into Chat Applications
+## Інтеграція генеративного ШІ у чат-додатки
 
-Elevating chat applications through generative AI isn't only centered around making them smarter; it's about optimizing their architecture, performance, and user interface to deliver a quality user experience. This involves investigating the architectural foundations, API integrations, and user interface considerations. This section aims to offer you a comprehensive roadmap for navigating these complex landscapes, whether you're plugging them into existing systems or building them as stand-alone platforms.
+Підвищення рівня чат-додатків за допомогою генеративного ШІ не тільки зосереджено на тому, щоб зробити їх розумнішими; йдеться про оптимізацію їхньої архітектури, продуктивності та інтерфейсу користувача, щоб забезпечити якісний досвід користувача. Це включає дослідження архітектурних основ, інтеграцій API та міркувань щодо інтерфейсу користувача. Цей розділ має на меті запропонувати вам комплексну дорожню карту для навігації цими складними ландшафтами, незалежно від того, чи ви інтегруєте їх у існуючі системи, чи створюєте їх як окремі платформи.
 
-By the end of this section, you'll be equipped with the expertise needed to efficiently construct and incorporate chat applications.
+До кінця цього розділу ви будете озброєні знаннями, необхідними для ефективного створення та впровадження чат-додатків.
 
-### Chatbot or Chat application?
+### Чатбот чи чат-додаток?
 
-Before we dive into building chat applications, let's compare 'chatbots' against 'AI-powered chat applications,' which serve distinct roles and functionalities. A chatbot's main purpose is to automate specific conversational tasks, such as answering frequently asked questions or tracking a package. It's typically governed by rule-based logic or complex AI algorithms. In contrast, an AI-powered chat application is a far more expansive environment designed to facilitate various forms of digital communication, such as text, voice, and video chats among human users. Its defining feature is the integration of a generative AI model that simulates nuanced, human-like conversations, generating responses based on a wide variety of input and contextual cues. A generative AI powered chat application can engage in open-domain discussions, adapt to evolving conversational contexts, and even produce creative or complex dialogue.
+Перш ніж ми заглибимося у створення чат-додатків, давайте порівняємо 'чатботів' з 'чат-додатками на базі ШІ', які виконують різні ролі та функції. Основна мета чатбота – автоматизувати конкретні розмовні завдання, такі як відповіді на часті запитання або відстеження пакета. Зазвичай він керується правилами логіки або складними алгоритмами ШІ. На відміну від цього, чат-додаток на базі ШІ є набагато ширшим середовищем, призначеним для забезпечення різних форм цифрового спілкування, таких як текстові, голосові та відеочати між користувачами-людьми. Його визначальною особливістю є інтеграція генеративної моделі ШІ, яка імітує нюансовані, схожі на людські розмови, генеруючи відповіді на основі широкого різноманіття вхідних даних та контекстуальних сигналів. Чат-додаток на базі генеративного ШІ може вести відкриті дискусії, адаптуватися до еволюційних контекстів розмови і навіть створювати творчий або складний діалог.
 
-The table below outlines the key differences and similarities to help us understand their unique roles in digital communication.
+Наведена нижче таблиця окреслює ключові відмінності та подібності, щоб допомогти нам зрозуміти їх унікальні ролі в цифровому спілкуванні.
 
-| Chatbot                               | Generative AI-Powered Chat Application |
-| ------------------------------------- | -------------------------------------- |
-| Task-Focused and rule based           | Context-aware                          |
-| Often integrated into larger systems  | May host one or multiple chatbots      |
-| Limited to programmed functions       | Incorporates generative AI models      |
-| Specialized & structured interactions | Capable of open-domain discussions     |
+| Чатбот                                 | Чат-додаток на базі генеративного ШІ      |
+| -------------------------------------- | ------------------------------------------ |
+| Орієнтований на завдання та на правила | Контекстно-усвідомлений                   |
+| Часто інтегрований у більші системи    | Може містити одного або кількох чатботів  |
+| Обмежений запрограмованими функціями   | Інтегрує генеративні моделі ШІ            |
+| Спеціалізовані та структуровані взаємодії | Здатний до відкритих дискусій           |
 
-### Leveraging pre-built functionalities with SDKs and APIs
+### Використання вже готових функціональностей з SDK та API
 
-When building a chat application, a great first step is to assess what is already out there. Using SDKs and APIs to build chat applications is an advantageous strategy for a variety of reasons. By integrating well-documented SDKs and APIs, you're strategically positioning your application for long-term success, addressing scalability and maintenance concerns.
+При створенні чат-додатку хорошим першим кроком є оцінка того, що вже існує. Використання SDK та API для створення чат-додатків є вигідною стратегією з різних причин. Інтегруючи добре документовані SDK та API, ви стратегічно позиціонуєте свій додаток для довгострокового успіху, вирішуючи питання масштабованості та обслуговування.
 
-- **Expedites the development process and reduces overhead**: Relying on pre-built functionalities instead of the expensive process of building them yourself allows you to focus on other aspects of your application that you may find more important, such as business logic.
-- **Better performance**: When building functionality from scratch, you'll eventually ask yourself "How does it scale? Is this application capable of handling a sudden influx of users?" Well maintained SDK and APIs often have built in solutions for these concerns.
-- **Easier maintenance**: Updates and improvements are easier to manage as most APIs and SDKs simply require an update to a library when a newer version is released.
-- **Access to cutting edge technology**: Leveraging models that have been fined tuned and trained on extensive datasets provides your application with natural language capabilities.
+- **Прискорює процес розробки та зменшує накладні витрати**: Покладаючись на вже готові функціональності замість дорогого процесу створення їх самостійно, ви можете зосередитися на інших аспектах вашого додатку, які можуть бути важливішими, наприклад, на бізнес-логіці.
+- **Краща продуктивність**: При створенні функціональності з нуля, ви кінець кінцем запитаєте себе "Як це масштабується? Чи здатний цей додаток впоратися з раптовим напливом користувачів?" Добре підтримувані SDK та API часто мають вбудовані рішення для цих проблем.
+- **Легше обслуговування**: Оновлення та вдосконалення легше керувати, оскільки більшість API та SDK просто вимагають оновлення бібліотеки, коли випускається новіша версія.
+- **Доступ до передових технологій**: Використання моделей, які були тонко налаштовані та навчені на великих наборах даних, забезпечує ваш додаток можливостями обробки природної мови.
 
-Accessing functionality of an SDK or API typically involves obtaining permission to use the provided services, which is often through the use of a unique key or authentication token. We'll use the OpenAI Python Library to explore what this looks like. You can also try it out on your own in the following [notebook for OpenAI](./python/oai-assignment.ipynb?WT.mc_id=academic-105485-koreyst) or [notebook for Azure OpenAI Services](./python/aoai-assignment.ipynb?WT.mc_id=academic-105485-koreys) for this lesson.
+Доступ до функціональності SDK або API зазвичай включає отримання дозволу на використання наданих послуг, що часто здійснюється за допомогою унікального ключа або токена автентифікації. Ми будемо використовувати бібліотеку OpenAI Python, щоб дослідити, як це виглядає. Ви також можете спробувати це самостійно в наступному [ноутбуці для OpenAI](./python/oai-assignment.ipynb?WT.mc_id=academic-105485-koreyst) або [ноутбуці для Azure OpenAI Services](./python/aoai-assignment.ipynb?WT.mc_id=academic-105485-koreys) для цього уроку.
 
 ```python
 import os
@@ -75,110 +75,110 @@ client = OpenAI(
 chat_completion = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Suggest two titles for an instructional lesson on chat applications for generative AI."}])
 ```
 
-The above example uses the GPT-3.5 Turbo model to complete the prompt, but notice that the API key is set prior to doing so. You'd receive an error if you didn't set the key.
+Наведений вище приклад використовує модель GPT-3.5 Turbo для завершення промпту, але зверніть увагу, що ключ API встановлюється перед цим. Ви отримали б помилку, якби не встановили ключ.
 
-## User Experience (UX)
+## Досвід користувача (UX)
 
-General UX principles apply to chat applications, but here are some additional considerations that become particularly important due to the machine learning components involved.
+Загальні принципи UX застосовуються до чат-додатків, але ось деякі додаткові міркування, які стають особливо важливими через компоненти машинного навчання, що задіяні.
 
-- **Mechanism for addressing ambiguity**: Generative AI models occasionally generate ambiguous answers. A feature that allows users to ask for clarification can be helpful should they come across this problem.
-- **Context retention**: Advanced generative AI models have the ability to remember context within a conversation, which can be a necessary asset to the user experience. Giving users the ability to control and manage context improves the user experience, but introduces the risk of retaining sensitive user information. Considerations for how long this information is stored, such as introducing a retention policy, can balance the need for context against privacy.
-- **Personalization**: With the ability to learn and adapt, AI models offer an individualized experience for a user. Tailoring the user experience through features like user profiles not only makes the user feel understood, but it also helps their pursuit of finding specific answers, creating a more efficient and satisfying interaction.
+- **Механізм для вирішення неоднозначності**: Генеративні моделі ШІ іноді генерують неоднозначні відповіді. Функція, яка дозволяє користувачам просити уточнення, може бути корисною, якщо вони зіткнуться з цією проблемою.
+- **Збереження контексту**: Передові генеративні моделі ШІ мають здатність запам'ятовувати контекст у розмові, що може бути необхідним активом для досвіду користувача. Надання користувачам можливості контролювати та керувати контекстом покращує досвід користувача, але вводить ризик збереження конфіденційної інформації користувача. Міркування щодо того, як довго ця інформація зберігається, наприклад, запровадження політики збереження, може збалансувати потребу в контексті відносно приватності.
+- **Персоналізація**: З можливістю навчатися та адаптуватися, моделі ШІ пропонують індивідуалізований досвід для користувача. Налаштування досвіду користувача через такі функції, як профілі користувачів, не тільки змушує користувача відчувати себе зрозумілим, але й допомагає їхньому прагненню знайти конкретні відповіді, створюючи більш ефективну та задовільну взаємодію.
 
-One such example of personalization is the "Custom instructions" settings in OpenAI's ChatGPT. It allows you to provide information about yourself that may be important context for your prompts. Here's an example of a custom instruction.
+Одним з таких прикладів персоналізації є налаштування "Користувацькі інструкції" в ChatGPT від OpenAI. Воно дозволяє вам надавати інформацію про себе, яка може бути важливим контекстом для ваших промптів. Ось приклад користувацької інструкції.
 
-![Custom Instructions Settings in ChatGPT](./images/custom-instructions.png?WT.mc_id=academic-105485-koreyst)
+![Налаштування користувацьких інструкцій в ChatGPT](./images/custom-instructions.png?WT.mc_id=academic-105485-koreyst)
 
-This "profile" prompts ChatGPT to create a lesson plan on linked lists. Notice that ChatGPT takes into account that the user may want a more in depth lesson plan based on her experience.
+Цей "профіль" спонукає ChatGPT створити план уроку про зв'язані списки. Зверніть увагу, що ChatGPT враховує, що користувач може хотіти більш глибокий план уроку на основі її досвіду.
 
-![A prompt in ChatGPT for a lesson plan about linked lists](./images/lesson-plan-prompt.png?WT.mc_id=academic-105485-koreyst)
+![Промпт в ChatGPT для плану уроку про зв'язані списки](./images/lesson-plan-prompt.png?WT.mc_id=academic-105485-koreyst)
 
-### Microsoft's System Message Framework for Large Language Models
+### Система повідомлень Microsoft для моделей великих мовних моделей
 
-[Microsoft has provided guidance](https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message#define-the-models-output-format?WT.mc_id=academic-105485-koreyst) for writing effective system messages when generating responses from LLMs broken down into 4 areas:
+[Microsoft надала керівництво](https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message#define-the-models-output-format?WT.mc_id=academic-105485-koreyst) для написання ефективних системних повідомлень при генерації відповідей від LLM, розбитих на 4 області:
 
-1. Defining who the model is for, as well as its capabilities and limitations.
-2. Defining the model's output format.
-3. Providing specific examples that demonstrate intended behavior of the model.
-4. Providing additional behavioral guardrails.
+1. Визначення, для кого призначена модель, а також її можливості та обмеження.
+2. Визначення формату виводу моделі.
+3. Надання конкретних прикладів, які демонструють очікувану поведінку моделі.
+4. Надання додаткових поведінкових обмежень.
 
-### Accessibility
+### Доступність
 
-Whether a user has visual, auditory, motor, or cognitive impairments, a well-designed chat application should be usable by all. The following list breaks down specific features aimed at enhancing accessibility for various user impairments.
+Незалежно від того, чи має користувач візуальні, слухові, моторні чи когнітивні порушення, добре розроблений чат-додаток повинен бути використовуваний всіма. Наступний список розкриває конкретні функції, спрямовані на підвищення доступності для різних порушень користувачів.
 
-- **Features for Visual Impairment**: High contrast themes and resizable text, screen reader compatibility.
-- **Features for Auditory Impairment**: Text-to-speech and speech-to-text functions, visual cues for audio notifications.
-- **Features for Motor Impairment**: Keyboard navigation support, voice commands.
-- **Features for Cognitive Impairment**: Simplified language options.
+- **Функції для візуальних порушень**: Теми з високим контрастом і текст зі змінним розміром, сумісність зі зчитувачами екрану.
+- **Функції для слухових порушень**: Функції перетворення тексту на мовлення і мовлення на текст, візуальні сигнали для аудіоповідомлень.
+- **Функції для моторних порушень**: Підтримка навігації з клавіатури, голосові команди.
+- **Функції для когнітивних порушень**: Опції спрощеної мови.
 
-## Customization and Fine-tuning for Domain-Specific Language Models
+## Налаштування та тонке налаштування для доменно-специфічних мовних моделей
 
-Imagine a chat application that understands your company's jargon and anticipates the specific queries its user base commonly has. There are a couple of approaches worth mentioning:
+Уявіть чат-додаток, який розуміє жаргон вашої компанії та передбачає конкретні запити, які часто має його база користувачів. Є кілька підходів, які варто згадати:
 
-- **Leveraging DSL models**. DSL stands for domain specific language. You can leverage a so called DSL model trained on a specific domain to understand it's concepts and scenarios.
-- **Apply fine-tuning**. Fine-tuning is the process of further training your model with specific data.
+- **Використання моделей DSL**. DSL означає доменно-специфічну мову. Ви можете використовувати так звану модель DSL, навчену на конкретному домені, щоб розуміти його концепції та сценарії.
+- **Застосування тонкого налаштування**. Тонке налаштування — це процес подальшого навчання вашої моделі конкретними даними.
 
-## Customization: Using a DSL
+## Налаштування: Використання DSL
 
-Leveraging a domain-specific language models (DSL Models) can enhance user engagement and by providing specialized, contextually relevant interactions. It's a model that is trained or fine-tuned to understand and generate text related to a specific field, industry, or subject. Options for using a DSL model can vary from training one from scratch, to using pre-existing ones through SDKs and APIs. Another option is fine-tuning, which involves taking an existing pre-trained model and adapting it for a specific domain.
+Використання доменно-специфічних мовних моделей (моделі DSL) може підвищити залучення користувачів, надаючи спеціалізовані, контекстуально релевантні взаємодії. Це модель, яка навчена або тонко налаштована для розуміння та генерації тексту, пов'язаного з конкретною галуззю, індустрією або предметом. Варіанти використання моделі DSL можуть варіюватися від навчання її з нуля до використання вже існуючих через SDK та API. Ще одним варіантом є тонке налаштування, яке включає взяття існуючої попередньо навченої моделі та адаптацію її для конкретного домену.
 
-## Customization: Apply fine-tuning
+## Налаштування: Застосування тонкого налаштування
 
-Fine-tuning is often considered when a pre-trained model falls short in a specialized domain or specific task.
+Тонке налаштування часто розглядається, коли попередньо навчена модель не справляється в спеціалізованому домені або конкретному завданні.
 
-For instance, medical queries are complex and require a lot of context. When a medical professional diagnoses a patient it's based on a variety of factors such as lifestyle or pre-existing conditions, and may even rely on recent medical journals to validate their diagnosis. In such nuanced scenarios, a general-purpose AI chat application cannot be a reliable source.
+Наприклад, медичні запити є складними та вимагають багато контексту. Коли медичний працівник діагностує пацієнта, це базується на різних факторах, таких як спосіб життя або вже існуючі умови, і може навіть спиратися на недавні медичні журнали для підтвердження їхнього діагнозу. У таких нюансованих сценаріях чат-додаток загального призначення на базі ШІ не може бути надійним джерелом.
 
-### Scenario: a medical application
+### Сценарій: медичний додаток
 
-Consider a chat application designed to assist medical practitioners by providing quick references to treatment guidelines, drug interactions, or recent research findings.
+Розгляньте чат-додаток, розроблений для допомоги медичним працівникам, надаючи швидкі посилання на настанови з лікування, взаємодії ліків або останні результати досліджень.
 
-A general-purpose model might be adequate for answering basic medical questions or providing general advice, but it may struggle with the following:
+Модель загального призначення може бути достатньою для відповіді на базові медичні питання або надання загальних порад, але вона може мати труднощі з наступним:
 
-- **Highly specific or complex cases**. For example, a neurologist might ask the application, "What are the current best practices for managing drug-resistant epilepsy in pediatric patients?"
-- **Lacking recent advancements**. A general-purpose model could struggle to provide a current answer that incorporates the most recent advancements in neurology and pharmacology.
+- **Дуже специфічні або складні випадки**. Наприклад, невролог може запитати додаток: "Які поточні найкращі практики для лікування резистентної до ліків епілепсії у педіатричних пацієнтів?"
+- **Відсутність останніх досягнень**. Модель загального призначення може мати труднощі з наданням поточної відповіді, яка враховує останні досягнення в неврології та фармакології.
 
-In instances such as these, fine-tuning the model with a specialized medical dataset can significantly improve its ability to handle these intricate medical inquiries more accurately and reliably. This requires access to a large and relevant dataset that represents the domain-specific challenges and questions that need to be addressed.
+У таких випадках тонке налаштування моделі зі спеціалізованим медичним набором даних може значно покращити її здатність обробляти ці складні медичні запити більш точно та надійно. Це вимагає доступу до великого та релевантного набору даних, який представляє специфічні для домену виклики та питання, які потрібно вирішити.
 
-## Considerations for a High Quality AI-Driven Chat Experience
+## Міркування для високоякісного чат-досвіду на базі ШІ
 
-This section outlines the criteria for "high-quality" chat applications, which include the capture of actionable metrics and adherence to a framework that responsibly leverages AI technology.
+Цей розділ окреслює критерії для "високоякісних" чат-додатків, які включають збір показників, що можуть бути використані для дій, та дотримання структури, яка відповідально використовує технологію ШІ.
 
-### Key Metrics
+### Ключові показники
 
-To maintain the high-quality performance an application, it's essential to keep track of key metrics and considerations. These measurements not only ensure the functionality of the application but also assess the quality of the AI model and user experience. Below is a list that covers basic, AI, and user experience metrics to consider.
+Для підтримки високоякісної роботи додатку необхідно відстежувати ключові показники та міркування. Ці вимірювання не лише забезпечують функціональність додатку, але й оцінюють якість моделі ШІ та досвід користувача. Нижче наведено список, який охоплює базові показники, показники ШІ та досвіду користувача, які варто врахувати.
 
-| Metric                        | Definition                                                                                                             | Considerations for Chat Developer                                         |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| **Uptime**                    | Measures the time the application is operational and accessible by users.                                              | How will you minimize downtime?                                           |
-| **Response Time**             | The time taken by the application to reply to a user's query.                                                          | How can you optimize query processing to improve response time?           |
-| **Precision**                 | The ratio of true positive predictions to the total number of positive predictions                                     | How will you validate the precision of your model?                        |
-| **Recall (Sensitivity)**      | The ratio of true positive predictions to the actual number of positives                                               | How will you measure and improve recall?                                  |
-| **F1 Score**                  | The harmonic mean of precision and recall, that balances the trade-off between both.                                   | What is your target F1 Score? How will you balance precision and recall?  |
-| **Perplexity**                | Measures how well the probability distribution predicted by the model aligns with the actual distribution of the data. | How will you minimize perplexity?                                         |
-| **User Satisfaction Metrics** | Measures the user's perception of the application. Often captured through surveys.                                     | How often will you collect user feedback? How will you adapt based on it? |
-| **Error Rate**                | The rate at which the model makes mistakes in understanding or output.                                                 | What strategies do you have in place to reduce error rates?               |
-| **Retraining Cycles**         | The frequency with which the model is updated to incorporate new data and insights.                                    | How often will you retrain the model? What triggers a retraining cycle?   |
-| **Anomaly Detection**         | Tools and techniques for identifying unusual patterns that do not conform to expected behavior.                        | How will you respond to anomalies?                                        |
+| Показник                      | Визначення                                                                                                          | Міркування для розробника чату                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **Час роботи**                | Вимірює час, протягом якого додаток є операційним та доступним для користувачів.                                     | Як ви будете мінімізувати час простою?                                  |
+| **Час відповіді**             | Час, який додаток витрачає на відповідь на запит користувача.                                                       | Як ви можете оптимізувати обробку запитів для покращення часу відповіді? |
+| **Точність**                  | Співвідношення істинно позитивних прогнозів до загальної кількості позитивних прогнозів.                            | Як ви будете перевіряти точність вашої моделі?                          |
+| **Повнота (Чутливість)**      | Співвідношення істинно позитивних прогнозів до фактичної кількості позитивів.                                       | Як ви будете вимірювати та покращувати повноту?                         |
+| **F1 Score**                  | Гармонійне середнє між точністю та повнотою, яке балансує компроміс між обома.                                      | Який ваш цільовий F1 Score? Як ви будете балансувати точність і повноту? |
+| **Перплексія**                | Вимірює, наскільки добре розподіл ймовірностей, передбачений моделлю, відповідає фактичному розподілу даних.       | Як ви будете мінімізувати перплексію?                                   |
+| **Показники задоволення користувачів** | Вимірює сприйняття додатку користувачем. Часто збирається через опитування.                                    | Як часто ви будете збирати відгуки користувачів? Як ви будете адаптувати їх? |
+| **Частота помилок**           | Частота, з якою модель робить помилки в розумінні або виводі.                                                        | Які стратегії ви маєте для зменшення частоти помилок?                   |
+| **Цикли перенавчання**        | Частота, з якою модель оновлюється для включення нових даних та інсайтів.                                            | Як часто ви будете перенавчати модель? Що запускає цикл перенавчання?    |
+| **Виявлення аномалій**        | Інструменти та техніки для ідентифікації незвичайних шаблонів, які не відповідають очікуваній поведінці.            | Як ви будете реагувати на аномалії?                                     |
 
-### Implementing Responsible AI Practices in Chat Applications
+### Впровадження практик відповідального ШІ в чат-додатках
 
-Microsoft's approach to Responsible AI has identified six principles that should guide AI development and use. Below are the principles, their definition, and things a chat developer should consider and why they should take them seriously.
+Підхід Microsoft до відповідального ШІ визначив шість принципів, які повинні керувати розробкою та використанням ШІ. Нижче наведено принципи, їх визначення та речі, які розробник чату повинен враховувати, і чому він повинен серйозно ставитися до них.
 
-| Principles             | Microsoft's Definition                                | Considerations for Chat Developer                                      | Why It's Important                                                                     |
-| ---------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Fairness               | AI systems should treat all people fairly.            | Ensure the chat application does not discriminate based on user data.  | To build trust and inclusivity among users; avoids legal ramifications.                |
-| Reliability and Safety | AI systems should perform reliably and safely.        | Implement testing and fail-safes to minimize errors and risks.         | Ensures user satisfaction and prevents potential harm.                                 |
-| Privacy and Security   | AI systems should be secure and respect privacy.      | Implement strong encryption and data protection measures.              | To safeguard sensitive user data and comply with privacy laws.                         |
-| Inclusiveness          | AI systems should empower everyone and engage people. | Design UI/UX that is accessible and easy-to-use for diverse audiences. | Ensures a wider range of people can use the application effectively.                   |
-| Transparency           | AI systems should be understandable.                  | Provide clear documentation and reasoning for AI responses.            | Users are more likely to trust a system if they can understand how decisions are made. |
-| Accountability         | People should be accountable for AI systems.          | Establish a clear process for auditing and improving AI decisions.     | Enables ongoing improvement and corrective measures in case of mistakes.               |
+| Принципи               | Визначення Microsoft                                      | Міркування для розробника чату                                     | Чому це важливо                                                                  |
+| ---------------------- | --------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| Справедливість         | Системи ШІ повинні ставитися до всіх людей справедливо.  | Забезпечити, щоб чат-додаток не дискримінував на основі даних користувача. | Для побудови довіри та інклюзивності серед користувачів; уникнення юридичних наслідків. |
+| Надійність та безпека  | Системи ШІ повинні працювати надійно та безпечно.        | Впровадити тестування та захисні механізми для мінімізації помилок та ризиків. | Забезпечує задоволення користувачів та запобігає потенційній шкоді.              |
+| Приватність та безпека | Системи ШІ повинні бути захищеними та поважати приватність. | Впровадити сильне шифрування та заходи захисту даних.               | Для захисту конфіденційних даних користувачів та відповідності законам про приватність. |
+| Інклюзивність          | Системи ШІ повинні надавати можливості всім та залучати людей. | Розробити інтерфейс користувача, який є доступним та простим у використанні для різноманітної аудиторії. | Забезпечує, щоб ширше коло людей могло ефективно використовувати додаток.        |
+| Прозорість             | Системи ШІ повинні бути зрозумілими.                     | Надати чітку документацію та обґрунтування для відповідей ШІ.       | Користувачі з більшою ймовірністю довіряють системі, якщо вони можуть зрозуміти, як приймаються рішення. |
+| Відповідальність       | Люди повинні бути відповідальними за системи ШІ.         | Встановити чіткий процес для аудиту та покращення рішень ШІ.        | Дозволяє постійне вдосконалення та коригувальні заходи у випадку помилок.        |
 
-## Assignment
+## Завдання
 
-See [assignment](./python?WT.mc_id=academic-105485-koreyst) it will take you through a series of exercises from running your first chat prompts, to classifying and summarizing text and more. Notice that the assignments are available in different programming languages!
+Дивіться [завдання](./python?WT.mc_id=academic-105485-koreyst), яке проведе вас через серію вправ від запуску ваших перших чат-промптів до класифікації та підсумовування тексту і багато іншого. Зверніть увагу, що завдання доступні на різних мовах програмування!
 
-## Great Work! Continue the Journey
+## Чудова робота! Продовжуйте подорож
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Після завершення цього уроку, перегляньте нашу [Колекцію навчальних матеріалів з генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжити підвищувати ваші знання з генеративного ШІ!
 
-Head over to Lesson 8 to see how you can start [building search applications](../08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+Переходьте до Уроку 8, щоб побачити, як ви можете почати [створювати пошукові додатки](../08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)!
