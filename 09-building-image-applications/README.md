@@ -1,93 +1,93 @@
-# Building Image Generation Applications
+# Створення застосунків для генерації зображень
 
-[![Building Image Generation Applications](./images/09-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)
+[![Створення застосунків для генерації зображень](./images/09-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)
 
-There's more to LLMs than text generation. It's also possible to generate images from text descriptions. Having images as a modality can be highly useful in a number of areas from MedTech, architecture, tourism, game development and more. In this chapter, we will look into the two most popular image generation models, DALL-E and Midjourney.
+Великі мовні моделі (LLM) здатні на більше, ніж просто генерація тексту. Можливо також генерувати зображення з текстових описів. Використання зображень як модальності може бути дуже корисним у ряді галузей: медичні технології, архітектура, туризм, розробка ігор та інші. У цьому розділі ми розглянемо дві найпопулярніші моделі генерації зображень, DALL-E та Midjourney.
 
-## Introduction
+## Вступ
 
-In this lesson, we will cover:
+У цьому уроці ми розглянемо:
 
-- Image generation and why it's useful.
-- DALL-E and Midjourney, what they are, and how they work.
-- How you would build an image generation app.
+- Генерацію зображень та її користь.
+- DALL-E та Midjourney: що це таке і як вони працюють.
+- Як створити застосунок для генерації зображень.
 
-## Learning Goals
+## Цілі навчання
 
-After completing this lesson, you will be able to:
+Після завершення цього уроку ви зможете:
 
-- Build an image generation application.
-- Define boundaries for your application with meta prompts.
-- Work with DALL-E and Midjourney.
+- Створювати застосунки для генерації зображень.
+- Визначати межі для вашого застосунку за допомогою мета-промптів.
+- Працювати з DALL-E та Midjourney.
 
-## Why build an image generation application?
+## Навіщо створювати застосунок для генерації зображень?
 
-Image generation applications are a great way to explore the capabilities of Generative AI. They can be used for, for example:
+Застосунки для генерації зображень - це чудовий спосіб дослідити можливості генеративного ШІ. Вони можуть використовуватися, наприклад, для:
 
-- **Image editing and synthesis**. You can generate images for a variety of use cases, such as image editing and image synthesis.
+- **Редагування та синтезу зображень**. Ви можете генерувати зображення для різних випадків використання, таких як редагування та синтез зображень.
 
-- **Applied to a variety of industries**. They can also be used to generate images for a variety of industries like Medtech, Tourism, Game development and more.
+- **Застосування в різних галузях**. Їх також можна використовувати для генерації зображень для різних галузей, таких як медичні технології, туризм, розробка ігор та інші.
 
-## Scenario: Edu4All
+## Сценарій: Edu4All
 
-As part of this lesson, we will continue to work with our startup, Edu4All, in this lesson. The students will create images for their assessments, exactly what images is up to the students, but they could be illustrations for their own fairytale or create a new character for their story or help them visualize their ideas and concepts.
+У рамках цього уроку ми продовжимо працювати з нашим стартапом Edu4All. Студенти створюватимуть зображення для своїх завдань. Які саме зображення – вирішуватимуть самі студенти, але це можуть бути ілюстрації для власної казки, створення нового персонажа для розповіді або візуалізація своїх ідей та концепцій.
 
-Here's what Edu4All's students could generate for example if they're working in class on monuments:
+Ось приклад того, що могли б згенерувати студенти Edu4All, якщо вони працюють на уроці над пам'ятками:
 
-![Edu4All startup, class on monuments, Eiffel Tower](./images/startup.png?WT.mc_id=academic-105485-koreyst)
+![Стартап Edu4All, урок про пам'ятки, Ейфелева вежа](./images/startup.png?WT.mc_id=academic-105485-koreyst)
 
-using a prompt like
+використовуючи промпт на кшталт
 
-> "Dog next to Eiffel Tower in early morning sunlight"
+> "Собака біля Ейфелевої вежі в ранньому ранковому світлі"
 
-## What is DALL-E and Midjourney?
+## Що таке DALL-E та Midjourney?
 
-[DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) and [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) are two of the most popular image generation models, they allow you to use prompts to generate images.
+[DALL-E](https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst) та [Midjourney](https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst) - це дві з найпопулярніших моделей генерації зображень, які дозволяють використовувати промпти для створення зображень.
 
 ### DALL-E
 
-Let's start with DALL-E, which is a Generative AI model that generates images from text descriptions.
+Почнемо з DALL-E, який є моделлю генеративного ШІ, що створює зображення з текстових описів.
 
-> [DALL-E is a combination of two models, CLIP and diffused attention](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst).
+> [DALL-E - це комбінація двох моделей, CLIP та дифузної уваги](https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst).
 
-- **CLIP**, is a model that generates embeddings, which are numerical representations of data, from images and text.
+- **CLIP** - це модель, яка генерує вбудовування (embeddings), які є числовими представленнями даних, із зображень та тексту.
 
-- **Diffused attention**, is a model that generates images from embeddings. DALL-E is trained on a dataset of images and text and can be used to generate images from text descriptions. For example, DALL-E can be used to generate images of a cat in a hat, or a dog with a mohawk.
+- **Дифузна увага** - це модель, яка генерує зображення з вбудовувань. DALL-E навчається на наборі даних зображень та тексту і може використовуватися для генерації зображень з текстових описів. Наприклад, DALL-E можна використовувати для генерації зображень кота в капелюсі або собаки з ірокезом.
 
 ### Midjourney
 
-Midjourney works in a similar way to DALL-E, it generates images from text prompts. Midjourney, can also be used to generate images using prompts like “a cat in a hat”, or a “dog with a mohawk”.
+Midjourney працює аналогічно DALL-E, він генерує зображення з текстових промптів. Midjourney також можна використовувати для генерації зображень за допомогою промптів на кшталт "кіт у капелюсі" або "собака з ірокезом".
 
-![Image generated by Midjourney, mechanical pigeon](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)
-_Image cred Wikipedia, image generated by Midjourney_
+![Зображення, згенероване Midjourney, механічний голуб](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst)
+_Авторство зображення - Wikipedia, зображення згенероване Midjourney_
 
-## How does DALL-E and Midjourney Work
+## Як працюють DALL-E та Midjourney
 
-First, [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst). DALL-E is a Generative AI model based on the transformer architecture with an _autoregressive transformer_.
+Спочатку [DALL-E](https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst). DALL-E - це модель генеративного ШІ, заснована на архітектурі трансформера з _авторегресивним трансформером_.
 
-An _autoregressive transformer_ defines how a model generates images from text descriptions, it generates one pixel at a time, and then uses the generated pixels to generate the next pixel. Passing through multiple layers in a neural network, until the image is complete.
+_Авторегресивний трансформер_ визначає, як модель генерує зображення з текстових описів, він генерує один піксель за раз, а потім використовує згенеровані пікселі для генерації наступного пікселя. Проходячи через кілька шарів у нейронній мережі, поки зображення не буде завершено.
 
-With this process, DALL-E, controls attributes, objects, characteristics, and more in the image it generates. However, DALL-E 2 and 3 have more control over the generated image.
+За допомогою цього процесу DALL-E контролює атрибути, об'єкти, характеристики та інше в згенерованому зображенні. Проте DALL-E 2 та 3 мають більший контроль над згенерованим зображенням.
 
-## Building your first image generation application
+## Створення вашого першого застосунку для генерації зображень
 
-So what does it take to build an image generation application? You need the following libraries:
+Отже, що потрібно для створення застосунку для генерації зображень? Вам потрібні наступні бібліотеки:
 
-- **python-dotenv**, you're highly recommended to use this library to keep your secrets in a _.env_ file away from the code.
-- **openai**, this library is what you will use to interact with the OpenAI API.
-- **pillow**, to work with images in Python.
-- **requests**, to help you make HTTP requests.
+- **python-dotenv**, настійно рекомендується використовувати цю бібліотеку для зберігання ваших секретів у файлі _.env_ окремо від коду.
+- **openai**, ця бібліотека використовується для взаємодії з API OpenAI.
+- **pillow**, для роботи із зображеннями в Python.
+- **requests**, для допомоги з HTTP-запитами.
 
-1. Create a file _.env_ with the following content:
+1. Створіть файл _.env_ з наступним вмістом:
 
    ```text
-   AZURE_OPENAI_ENDPOINT=<your endpoint>
-   AZURE_OPENAI_API_KEY=<your key>
+   AZURE_OPENAI_ENDPOINT=<ваша кінцева точка>
+   AZURE_OPENAI_API_KEY=<ваш ключ>
    ```
 
-   Locate this information in Azure Portal for your resource in the "Keys and Endpoint" section.
+   Знайдіть цю інформацію в Azure Portal для вашого ресурсу в розділі "Keys and Endpoint".
 
-1. Collect the above libraries in a file called _requirements.txt_ like so:
+1. Зберіть вищезгадані бібліотеки у файлі _requirements.txt_ таким чином:
 
    ```text
    python-dotenv
@@ -96,7 +96,7 @@ So what does it take to build an image generation application? You need the foll
    requests
    ```
 
-1. Next, create virtual environment and install the libraries:
+1. Далі створіть віртуальне середовище та встановіть бібліотеки:
 
    ```bash
    python3 -m venv venv
@@ -104,14 +104,14 @@ So what does it take to build an image generation application? You need the foll
    pip install -r requirements.txt
    ```
 
-   For Windows, use the following commands to create and activate your virtual environment:
+   Для Windows використовуйте наступні команди для створення та активації віртуального середовища:
 
    ```bash
    python3 -m venv venv
    venv\Scripts\activate.bat
    ```
 
-1. Add the following code in file called _app.py_:
+1. Додайте наступний код у файл _app.py_:
 
    ```python
    import openai
@@ -166,9 +166,9 @@ So what does it take to build an image generation application? You need the foll
 
    ```
 
-Let's explain this code:
+Давайте пояснимо цей код:
 
-- First, we import the libraries we need, including the OpenAI library, the dotenv library, the requests library, and the Pillow library.
+- Спочатку ми імпортуємо необхідні бібліотеки, включаючи бібліотеку OpenAI, бібліотеку dotenv, бібліотеку requests та бібліотеку Pillow.
 
   ```python
   import openai
@@ -178,14 +178,14 @@ Let's explain this code:
   import dotenv
   ```
 
-- Next, we load the environment variables from the _.env_ file.
+- Далі ми завантажуємо змінні середовища з файлу _.env_.
 
   ```python
   # import dotenv
   dotenv.load_dotenv()
   ```
 
-- After that, we set the endpoint, key for the OpenAI API, version and type.
+- Після цього ми встановлюємо кінцеву точку, ключ для API OpenAI, версію та тип.
 
   ```python
   # Get endpoint and key from environment variables
@@ -197,7 +197,7 @@ Let's explain this code:
   openai.api_type = 'azure'
   ```
 
-- Next, we generate the image:
+- Далі ми генеруємо зображення:
 
   ```python
   # Create an image by using the image generation API
@@ -209,18 +209,18 @@ Let's explain this code:
   )
   ```
 
-  The above code responds with a JSON object that contains the URL of the generated image. We can use the URL to download the image and save it to a file.
+  Вищенаведений код відповідає JSON-об'єктом, який містить URL згенерованого зображення. Ми можемо використовувати URL для завантаження зображення та збереження його у файл.
 
-- Lastly, we open the image and use the standard image viewer to display it:
+- Нарешті, ми відкриваємо зображення та використовуємо стандартний переглядач зображень для його відображення:
 
   ```python
   image = Image.open(image_path)
   image.show()
   ```
 
-### More details on generating the image
+### Більше деталей про генерацію зображення
 
-Let's look at the code that generates the image in more detail:
+Розглянемо код, що генерує зображення, більш детально:
 
 ```python
 generation_response = openai.Image.create(
@@ -231,20 +231,20 @@ generation_response = openai.Image.create(
     )
 ```
 
-- **prompt**, is the text prompt that is used to generate the image. In this case, we're using the prompt "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils".
-- **size**, is the size of the image that is generated. In this case, we're generating an image that is 1024x1024 pixels.
-- **n**, is the number of images that are generated. In this case, we're generating two images.
-- **temperature**, is a parameter that controls the randomness of the output of a Generative AI model. The temperature is a value between 0 and 1 where 0 means that the output is deterministic and 1 means that the output is random. The default value is 0.7.
+- **prompt** - це текстовий промпт, який використовується для генерації зображення. У цьому випадку ми використовуємо промпт "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils".
+- **size** - це розмір згенерованого зображення. У цьому випадку ми генеруємо зображення розміром 1024x1024 пікселів.
+- **n** - це кількість згенерованих зображень. У цьому випадку ми генеруємо два зображення.
+- **temperature** - це параметр, який контролює випадковість виводу моделі генеративного ШІ. Температура - це значення між 0 та 1, де 0 означає, що вивід є детермінованим, а 1 означає, що вивід є випадковим. Значення за замовчуванням - 0.7.
 
-There are more things you can do with images that we will cover in the next section.
+Існує більше можливостей для роботи із зображеннями, які ми розглянемо в наступному розділі.
 
-## Additional capabilities of image generation
+## Додаткові можливості генерації зображень
 
-You've seen so far how we were able to generate an image using a few lines in Python. However, there are more things you can do with images.
+Ви вже бачили, як ми змогли згенерувати зображення за допомогою кількох рядків Python. Проте є й інші речі, які можна робити із зображеннями.
 
-You can also do the following:
+Ви також можете:
 
-- **Perform edits**. By providing an existing image a mask and a prompt, you can alter an image. For example, you can add something to a portion of an image. Imagine our bunny image, you can add a hat to the bunny. How you would do that is by providing the image, a mask (identifying the part of the area for the change) and a text prompt to say what should be done.
+- **Виконувати редагування**. Надаючи існуюче зображення, маску та промпт, ви можете змінити зображення. Наприклад, ви можете додати щось до частини зображення. Уявіть, що у нас є зображення кролика, ви можете додати капелюх до кролика. Для цього вам потрібно надати зображення, маску (яка визначає частину області для зміни) та текстовий промпт, який вказує, що слід зробити.
 
   ```python
   response = openai.Image.create_edit(
@@ -257,9 +257,9 @@ You can also do the following:
   image_url = response['data'][0]['url']
   ```
 
-  The base image would only contain the rabbit but the final image would have the hat on the rabbit.
+  Базове зображення містило б лише кролика, але на кінцевому зображенні був би капелюх на кролику.
 
-- **Create variations**. The idea is that you take an existing image and ask that variations are created. To create a variation, you provide an image and a text prompt and code like so:
+- **Створювати варіації**. Ідея полягає в тому, що ви берете існуюче зображення і просите створити його варіації. Щоб створити варіацію, ви надаєте зображення та текстовий промпт і пишете код, як-от:
 
   ```python
   response = openai.Image.create_variation(
@@ -270,23 +270,23 @@ You can also do the following:
   image_url = response['data'][0]['url']
   ```
 
-  > Note, this is only supported on OpenAI
+  > Примітка: це підтримується лише на OpenAI
 
-## Temperature
+## Температура
 
-Temperature is a parameter that controls the randomness of the output of a Generative AI model. The temperature is a value between 0 and 1 where 0 means that the output is deterministic and 1 means that the output is random. The default value is 0.7.
+Температура - це параметр, який контролює випадковість виводу моделі генеративного ШІ. Температура - це значення між 0 та 1, де 0 означає, що вивід є детермінованим, а 1 означає, що вивід є випадковим. Значення за замовчуванням - 0.7.
 
-Let's look at an example of how temperature works, by running this prompt twice:
+Давайте розглянемо приклад того, як працює температура, запустивши цей промпт двічі:
 
-> Prompt : "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"
+> Промпт: "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"
 
-![Bunny on a horse holding a lollipop, version 1](./images/v1-generated-image.png?WT.mc_id=academic-105485-koreyst)
+![Кролик на коні, що тримає льодяник, версія 1](./images/v1-generated-image.png?WT.mc_id=academic-105485-koreyst)
 
-Now let's run that same prompt just to see that we won't get the same image twice:
+Тепер запустимо той самий промпт ще раз, щоб побачити, що ми не отримаємо однакове зображення двічі:
 
-![Generated image of bunny on horse](./images/v2-generated-image.png?WT.mc_id=academic-105485-koreyst)
+![Згенероване зображення кролика на коні](./images/v2-generated-image.png?WT.mc_id=academic-105485-koreyst)
 
-As you can see, the images are similar, but not the same. Let's try changing the temperature value to 0.1 and see what happens:
+Як ви бачите, зображення схожі, але не однакові. Давайте спробуємо змінити значення температури на 0.1 і подивимося, що станеться:
 
 ```python
  generation_response = openai.Image.create(
@@ -296,11 +296,11 @@ As you can see, the images are similar, but not the same. Let's try changing the
     )
 ```
 
-### Changing the temperature
+### Зміна температури
 
-So let's try to make the response more deterministic. We could observe from the two images we generated that in the first image, there's a bunny and in the second image, there's a horse, so the images vary greatly.
+Отже, давайте спробуємо зробити відповідь більш детермінованою. З двох зображень, які ми згенерували, ми могли спостерігати, що на першому зображенні є кролик, а на другому – кінь, тобто зображення значно відрізняються.
 
-Let's therefore change our code and set the temperature to 0, like so:
+Тому давайте змінимо наш код і встановимо температуру на 0:
 
 ```python
 generation_response = openai.Image.create(
@@ -311,47 +311,47 @@ generation_response = openai.Image.create(
     )
 ```
 
-Now when you run this code, you get these two images:
+Тепер, коли ви запустите цей код, ви отримаєте ці два зображення:
 
-- ![Temperature 0, v1](./images/v1-temp-generated-image.png?WT.mc_id=academic-105485-koreyst)
-- ![Temperature 0 , v2](./images/v2-temp-generated-image.png?WT.mc_id=academic-105485-koreyst)
+- ![Температура 0, v1](./images/v1-temp-generated-image.png?WT.mc_id=academic-105485-koreyst)
+- ![Температура 0, v2](./images/v2-temp-generated-image.png?WT.mc_id=academic-105485-koreyst)
 
-Here you can clearly see how the images resemble each other more.
+Тут ви можете чітко бачити, як зображення більше схожі одне на одне.
 
-## How to define boundaries for your application with metaprompts
+## Як визначити межі для вашого застосунку за допомогою метапромптів
 
-With our demo, we can already generate images for our clients. However, we need to create some boundaries for our application.
+З нашою демонстрацією ми вже можемо генерувати зображення для наших клієнтів. Однак нам потрібно створити деякі межі для нашого застосунку.
 
-For example, we don't want to generate images that are not safe for work, or that are not appropriate for children.
+Наприклад, ми не хочемо генерувати зображення, які не придатні для роботи або не підходять для дітей.
 
-We can do this with _metaprompts_. Metaprompts are text prompts that are used to control the output of a Generative AI model. For example, we can use metaprompts to control the output, and ensure that the generated images are safe for work, or appropriate for children.
+Ми можемо зробити це за допомогою _метапромптів_. Метапромпти - це текстові підказки, які використовуються для контролю виводу моделі генеративного ШІ. Наприклад, ми можемо використовувати метапромпти для контролю виводу і забезпечення того, щоб згенеровані зображення були придатні для роботи або підходили для дітей.
 
-### How does it work?
+### Як це працює?
 
-Now, how do meta prompts work?
+Отже, як працюють метапромпти?
 
-Meta prompts are text prompts that are used to control the output of a Generative AI model, they are positioned before the text prompt, and are used to control the output of the model and embedded in applications to control the output of the model. Encapsulating the prompt input and the meta prompt input in a single text prompt.
+Метапромпти - це текстові підказки, які використовуються для контролю виводу моделі генеративного ШІ, вони розміщуються перед текстовим промптом і використовуються для контролю виводу моделі та вбудовуються в застосунки для контролю виводу моделі. Вони об'єднують введений промпт та метапромпт в єдиний текстовий промпт.
 
-One example of a meta prompt would be the following:
+Ось приклад метапромпту:
 
 ```text
-You are an assistant designer that creates images for children.
+Ви асистент-дизайнер, який створює зображення для дітей.
 
-The image needs to be safe for work and appropriate for children.
+Зображення повинно бути придатне для роботи та підходити для дітей.
 
-The image needs to be in color.
+Зображення повинно бути кольоровим.
 
-The image needs to be in landscape orientation.
+Зображення повинно бути в альбомній орієнтації.
 
-The image needs to be in a 16:9 aspect ratio.
+Зображення повинно бути в співвідношенні сторін 16:9.
 
-Do not consider any input from the following that is not safe for work or appropriate for children.
+Не враховуйте жодного введення з наступного, яке не придатне для роботи або не підходить для дітей.
 
-(Input)
+(Введення)
 
 ```
 
-Now, let's see how we can use meta prompts in our demo.
+Тепер давайте подивимося, як ми можемо використовувати метапромпти в нашій демонстрації.
 
 ```python
 disallow_list = "swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult"
@@ -376,17 +376,17 @@ Create an image of a bunny on a horse, holding a lollipop"
 # TODO add request to generate image
 ```
 
-From the above prompt, you can see how all images being created consider the metaprompt.
+З вищенаведеного промпту ви можете бачити, як усі створені зображення враховують метапромпт.
 
-## Assignment - let's enable students
+## Завдання - дозволимо студентам
 
-We introduced Edu4All at the beginning of this lesson. Now it's time to enable the students to generate images for their assessments.
+Ми представили Edu4All на початку цього уроку. Тепер час дозволити студентам генерувати зображення для їхніх завдань.
 
-The students will create images for their assessments containing monuments, exactly what monuments is up to the students. The students are asked to use their creativity in this task to place these monuments in different contexts.
+Студенти створюватимуть зображення для своїх завдань, що містять пам'ятки. Які саме пам'ятки - вирішувати самим студентам. Студентам пропонується використовувати свою креативність у цьому завданні, щоб розміщувати ці пам'ятки в різних контекстах.
 
-## Solution
+## Рішення
 
-Here's one possible solution:
+Ось одне можливе рішення:
 
 ```python
 import openai
@@ -458,8 +458,8 @@ except openai.InvalidRequestError as err:
     print(err)
 ```
 
-## Great Work! Continue Your Learning
+## Чудова робота! Продовжуйте навчання
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Після завершення цього уроку перегляньте нашу [колекцію навчальних матеріалів з генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжити підвищувати рівень ваших знань з генеративного ШІ!
 
-Head over to Lesson 10 where we will look at how to [build AI applications with low-code](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)
+Переходьте до Уроку 10, де ми розглянемо, як [створювати ШІ-застосунки з низьким кодом](../10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)

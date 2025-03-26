@@ -1,244 +1,244 @@
-# Building Low Code AI Applications
+# Створення застосунків з низьким кодом із використанням ШІ
 
-[![Building Low Code AI Applications](./images/10-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson10-gh?WT.mc_id=academic-105485-koreyst)
+[![Створення застосунків з низьким кодом із використанням ШІ](./images/10-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson10-gh?WT.mc_id=academic-105485-koreyst)
 
-> _(Click the image above to view video of this lesson)_
+> _(Натисніть на зображення вище, щоб переглянути відео цього уроку)_
 
-## Introduction
+## Вступ
 
-Now that we've learned how to build image generating applications, let's talk about low code. Generative AI can be used for a variety of different areas including low code, but what is low code and how can we add AI to it?
+Тепер, коли ми навчилися створювати застосунки для генерації зображень, поговорімо про низький код. Генеративний ШІ можна використовувати в різних сферах, включаючи низький код, але що таке низький код і як ми можемо додати до нього ШІ?
 
-Building apps and solutions has become more easier for traditional developers and non-developers through the use of Low Code Development Platforms. Low Code Development Platforms enable you to build apps and solutions with little to no code. This is achieved by providing a visual development environment that enables you to drag and drop components to build apps and solutions. This enables you to build apps and solutions faster and with less resources. In this lesson, we dive deep into how to use Low Code and how to enhance low code development with AI using Power Platform.
+Створення застосунків та рішень стало простішим для традиційних розробників та не-розробників завдяки використанню платформ розробки з низьким кодом. Платформи розробки з низьким кодом дозволяють створювати застосунки та рішення з мінімальною кількістю коду або взагалі без нього. Це досягається шляхом надання візуального середовища розробки, яке дозволяє перетягувати та розміщувати компоненти для створення застосунків та рішень. Це дозволяє створювати застосунки та рішення швидше та з меншими ресурсами. У цьому уроці ми глибоко розглянемо, як використовувати низький код та як покращити розробку з низьким кодом за допомогою ШІ, використовуючи Power Platform.
 
-The Power Platform provides organizations with the opportunity to empower their teams to build their own solutions through an intuitive low-code or no-code environment. This environment helps simplify the process of building solutions. With Power Platform, solutions can be built in days or weeks instead of months or years. Power Platform consists of five key products: Power Apps, Power Automate, Power BI, Power Pages and Copilot Studio.
+Power Platform надає організаціям можливість уповноважити свої команди створювати власні рішення через інтуїтивне середовище з низьким кодом або без коду. Це середовище допомагає спростити процес створення рішень. За допомогою Power Platform рішення можна створювати за дні або тижні замість місяців або років. Power Platform складається з п'яти ключових продуктів: Power Apps, Power Automate, Power BI, Power Pages та Copilot Studio.
 
-This lesson covers:
+Цей урок охоплює:
 
-- Introduction to Generative AI in Power Platform
-- Introduction to Copilot and how to use it
-- Using Generative AI to build apps and flows in Power Platform
-- Understanding the AI Models in Power Platform with AI Builder
+- Вступ до генеративного ШІ в Power Platform
+- Вступ до Copilot та як його використовувати
+- Використання генеративного ШІ для створення застосунків та потоків у Power Platform
+- Розуміння моделей ШІ в Power Platform з AI Builder
 
-## Learning Goals
+## Цілі навчання
 
-By the end of this lesson, you will be able to:
+До кінця цього уроку ви зможете:
 
-- Understand how Copilot works in Power Platform.
+- Зрозуміти, як працює Copilot у Power Platform.
 
-- Build a Student Assignment Tracker App for our education startup.
+- Створити застосунок для відстеження завдань студентів для нашого освітнього стартапу.
 
-- Build an Invoice Processing Flow that uses AI to extract information from invoices.
+- Створити потік обробки рахунків-фактур, який використовує ШІ для вилучення інформації з рахунків-фактур.
 
-- Apply best practices when using the Create Text with GPT AI Model.
+- Застосовувати найкращі практики при використанні моделі ШІ для створення тексту з GPT.
 
-The tools and technologies that you will use in this lesson are:
+Інструменти та технології, які ви будете використовувати в цьому уроці:
 
-- **Power Apps**, for the Student Assignment Tracker app, which provides a low-code development environment for building apps to track, manage and interact with data.
+- **Power Apps**, для застосунку відстеження завдань студентів, який надає середовище розробки з низьким кодом для створення застосунків для відстеження, управління та взаємодії з даними.
 
-- **Dataverse**, for storing the data for the Student Assignment Tracker app where Dataverse will provide a low-code data platform for storing the app's data.
+- **Dataverse**, для зберігання даних для застосунку відстеження завдань студентів, де Dataverse надасть платформу даних з низьким кодом для зберігання даних застосунку.
 
-- **Power Automate**, for the Invoice Processing flow where you will have low-code development environment for building workflows to automate the Invoice Processing process.
+- **Power Automate**, для потоку обробки рахунків-фактур, де ви матимете середовище розробки з низьким кодом для створення робочих процесів для автоматизації процесу обробки рахунків-фактур.
 
-- **AI Builder**, for the Invoice Processing AI Model where you will use prebuilt AI Models to process the invoices for our startup.
+- **AI Builder**, для моделі ШІ обробки рахунків-фактур, де ви будете використовувати готові моделі ШІ для обробки рахунків-фактур для нашого стартапу.
 
-## Generative AI in Power Platform
+## Генеративний ШІ в Power Platform
 
-Enhancing low-code development and application with generative AI is a key focus area for Power Platform. The goal is to enable everyone to build AI-powered apps, sites, dashboards and automate processes with AI, _without requiring any data science expertise_. This goal is achieved by integrating generative AI into the low-code development experience in Power Platform in the form of Copilot and AI Builder.
+Покращення розробки з низьким кодом та застосунків за допомогою генеративного ШІ є ключовою сферою для Power Platform. Метою є надання можливості кожному створювати застосунки з підтримкою ШІ, сайти, інформаційні панелі та автоматизувати процеси за допомогою ШІ, _без необхідності в досвіді у сфері науки про дані_. Ця мета досягається шляхом інтеграції генеративного ШІ в досвід розробки з низьким кодом у Power Platform у формі Copilot та AI Builder.
 
-### How does this work?
+### Як це працює?
 
-Copilot is an AI assistant that enables you to build Power Platform solutions by describing your requirements in a series of conversational steps using natural language. You can for example instruct your AI assistant to state what fields your app will use and it will create both the app and the underlying data model or you could specify how to set up a flow in Power Automate.
+Copilot - це ШІ-асистент, який дозволяє створювати рішення Power Platform, описуючи свої вимоги у серії розмовних кроків за допомогою природної мови. Ви можете, наприклад, проінструктувати свого ШІ-асистента вказати, які поля буде використовувати ваш застосунок, і він створить як застосунок, так і базову модель даних, або ви можете вказати, як налаштувати потік у Power Automate.
 
-You can use Copilot driven functionalities as a feature in your app screens to enable users to uncover insights through conversational interactions.
+Ви можете використовувати функціональність, керовану Copilot, як функцію на екранах вашого застосунку, щоб дозволити користувачам розкривати інсайти через розмовні взаємодії.
 
-AI Builder is a low-code AI capability available in Power Platform that enables you to use AI Models to help you to automate processes and predict outcomes. With AI Builder you can bring AI to your apps and flows that connect to your data in Dataverse or in various cloud data sources, such as SharePoint, OneDrive or Azure.
+AI Builder - це можливість ШІ з низьким кодом, доступна в Power Platform, яка дозволяє використовувати моделі ШІ, щоб допомогти автоматизувати процеси та прогнозувати результати. З AI Builder ви можете додати ШІ до своїх застосунків та потоків, які підключаються до ваших даних у Dataverse або в різних хмарних джерелах даних, таких як SharePoint, OneDrive або Azure.
 
-Copilot is available in all of the Power Platform products: Power Apps, Power Automate, Power BI, Power Pages and Power Virtual Agents. AI Builder is available in Power Apps and Power Automate. In this lesson, we will focus on how to use Copilot and AI Builder in Power Apps and Power Automate to build a solution for our education startup.
+Copilot доступний у всіх продуктах Power Platform: Power Apps, Power Automate, Power BI, Power Pages та Power Virtual Agents. AI Builder доступний у Power Apps та Power Automate. У цьому уроці ми зосередимося на тому, як використовувати Copilot та AI Builder у Power Apps та Power Automate для створення рішення для нашого освітнього стартапу.
 
-### Copilot in Power Apps
+### Copilot у Power Apps
 
-As part of the Power Platform, Power Apps provides a low-code development environment for building apps to track, manage and interact with data. It's a suite of app development services with a scalable data platform and the ability to connect to cloud services and on-premises data. Power Apps allows you to build apps that run on browsers, tablets, and phones, and can be shared with co-workers. Power Apps eases users into app development with a simple interface, so that every business user or pro developer can build custom apps. The app development experience is also enhanced with Generative AI through Copilot.
+Як частина Power Platform, Power Apps надає середовище розробки з низьким кодом для створення застосунків для відстеження, управління та взаємодії з даними. Це набір сервісів розробки застосунків із масштабованою платформою даних та можливістю підключення до хмарних сервісів та локальних даних. Power Apps дозволяє створювати застосунки, які працюють у браузерах, планшетах та телефонах, і можуть бути поширені серед колег. Power Apps полегшує вхід користувачів у розробку застосунків за допомогою простого інтерфейсу, так що кожен бізнес-користувач або професійний розробник може створювати власні застосунки. Досвід розробки застосунків також покращений за допомогою генеративного ШІ через Copilot.
 
-The copilot AI assistant feature in Power Apps enables you to describe what kind of app you need and what information you want your app to track, collect, or show. Copilot then generates a responsive Canvas app based on your description. You can then customize the app to meet your needs. The AI Copilot also generates and suggests a Dataverse Table with the fields you need to store the data you want to track and some sample data. We will look at what Dataverse is and how you can use it in Power Apps in this lesson later. You can then customize the table to meet your needs using the AI Copilot assistant feature through conversational steps. This feature is readily available from the Power Apps home screen.
+Функція ШІ-асистента Copilot у Power Apps дозволяє описати, який тип застосунку вам потрібен і яку інформацію ви хочете, щоб ваш застосунок відстежував, збирав або показував. Copilot потім генерує адаптивний Canvas-застосунок на основі вашого опису. Потім ви можете налаштувати застосунок відповідно до ваших потреб. ШІ Copilot також генерує та пропонує таблицю Dataverse з полями, які вам потрібні для зберігання даних, які ви хочете відстежувати, та деякі зразки даних. Ми розглянемо, що таке Dataverse і як ви можете використовувати його в Power Apps пізніше в цьому уроці. Потім ви можете налаштувати таблицю відповідно до ваших потреб, використовуючи функцію ШІ-асистента Copilot через розмовні кроки. Ця функція легко доступна з головного екрана Power Apps.
 
-### Copilot in Power Automate
+### Copilot у Power Automate
 
-As part of the Power Platform, Power Automate lets users create automated workflows between applications and services. It helps automate repetitive business processes such as communication, data collection, and decision approvals. Its simple interface allows users with every technical competence (from beginners to seasoned developers) to automate work tasks. The workflow development experience is also enhanced with Generative AI through Copilot.
+Як частина Power Platform, Power Automate дозволяє користувачам створювати автоматизовані робочі процеси між застосунками та сервісами. Він допомагає автоматизувати повторювані бізнес-процеси, такі як комунікація, збір даних та схвалення рішень. Його простий інтерфейс дозволяє користувачам з будь-якою технічною компетентністю (від початківців до досвідчених розробників) автоматизувати робочі завдання. Досвід розробки робочих процесів також покращений за допомогою генеративного ШІ через Copilot.
 
-The copilot AI assistant feature in Power Automate enables you to describe what kind of flow you need and what actions you want your flow to perform. Copilot then generates a flow based on your description. You can then customize the flow to meet your needs. The AI Copilot also generates and suggests the actions you need to perform the task you want to automate. We will look at what flows are and how you can use them in Power Automate in this lesson later. You can then customize the actions to meet your needs using the AI Copilot assistant feature through conversational steps. This feature is readily available from the Power Automate home screen.
+Функція ШІ-асистента Copilot у Power Automate дозволяє описати, який тип потоку вам потрібен і які дії ви хочете, щоб ваш потік виконував. Copilot потім генерує потік на основі вашого опису. Потім ви можете налаштувати потік відповідно до ваших потреб. ШІ Copilot також генерує та пропонує дії, які вам потрібні для виконання завдання, яке ви хочете автоматизувати. Ми розглянемо, що таке потоки і як їх можна використовувати в Power Automate пізніше в цьому уроці. Потім ви можете налаштувати дії відповідно до ваших потреб, використовуючи функцію ШІ-асистента Copilot через розмовні кроки. Ця функція легко доступна з головного екрана Power Automate.
 
-## Assignment: manage student assignments and invoices for our startup, using Copilot
+## Завдання: управління завданнями студентів та рахунками-фактурами для нашого стартапу за допомогою Copilot
 
-Our startup provides online courses to students. The startup has grown rapidly and is now struggling to keep up with the demand for its courses. The startup has hired you as a Power Platform developer to help them build a low code solution to help them manage their student assignments and invoices. Their solution should be able to help them track and manage student assignments through an app and automate the invoice processing process through a workflow. You have been asked to use Generative AI to develop the solution.
+Наш стартап надає онлайн-курси студентам. Стартап швидко зростає і тепер має труднощі з задоволенням попиту на свої курси. Стартап найняв вас як розробника Power Platform, щоб допомогти їм створити рішення з низьким кодом для управління завданнями студентів та рахунками-фактурами. Їхнє рішення повинно допомогти їм відстежувати та управляти завданнями студентів через застосунок та автоматизувати процес обробки рахунків-фактур через робочий процес. Вас попросили використовувати генеративний ШІ для розробки рішення.
 
-When you are getting started with using Copilot, you can use the [Power Platform Copilot Prompt Library](https://github.com/pnp/powerplatform-prompts?WT.mc_id=academic-109639-somelezediko) to get started with the prompts. This library contains a list of prompts that you can use to build apps and flows with Copilot. You can also use the prompts in the library to get an idea of how to describe your requirements to Copilot.
+Коли ви починаєте використовувати Copilot, ви можете використовувати [Бібліотеку промптів Power Platform Copilot](https://github.com/pnp/powerplatform-prompts?WT.mc_id=academic-109639-somelezediko), щоб почати з промптів. Ця бібліотека містить список промптів, які ви можете використовувати для створення застосунків та потоків з Copilot. Ви також можете використовувати промпти з бібліотеки, щоб отримати уявлення про те, як описати свої вимоги Copilot.
 
-### Build a Student Assignment Tracker App for Our Startup
+### Створення застосунку для відстеження завдань студентів для нашого стартапу
 
-The educators at our startup have been struggling to keep track of student assignments. They have been using a spreadsheet to track the assignments but this has become difficult to manage as the number of students has increased. They have asked you to build an app that will help them track and manage student assignments. The app should enable them to add new assignments, view assignments, update assignments and delete assignments. The app should also enable educators and students to view the assignments that have been graded and those that have not been graded.
+Викладачі нашого стартапу мають труднощі з відстеженням завдань студентів. Вони використовували електронну таблицю для відстеження завдань, але це стало важко керувати зі збільшенням кількості студентів. Вони попросили вас створити застосунок, який допоможе їм відстежувати та управляти завданнями студентів. Застосунок повинен дозволяти їм додавати нові завдання, переглядати завдання, оновлювати завдання та видаляти завдання. Застосунок також повинен дозволяти викладачам та студентам переглядати завдання, які були оцінені, та ті, які не були оцінені.
 
-You will build the app using Copilot in Power Apps following the steps below:
+Ви створите застосунок за допомогою Copilot у Power Apps, виконавши наступні кроки:
 
-1. Navigate to the [Power Apps](https://make.powerapps.com?WT.mc_id=academic-105485-koreyst) home screen.
+1. Перейдіть до головного екрана [Power Apps](https://make.powerapps.com?WT.mc_id=academic-105485-koreyst).
 
-1. Use the text area on the home screen to describe the app you want to build. For example, **_I want to build an app to track and manage student assignments_**. Click on the **Send** button to send the prompt to the AI Copilot.
+1. Використовуйте текстову область на головному екрані, щоб описати застосунок, який ви хочете створити. Наприклад, **_Я хочу створити застосунок для відстеження та управління завданнями студентів_**. Натисніть кнопку **Надіслати**, щоб надіслати промпт до ШІ Copilot.
 
-![Describe the app you want to build](./images/copilot-chat-prompt-powerapps.png?WT.mc_id=academic-105485-koreyst)
+![Опишіть застосунок, який ви хочете створити](./images/copilot-chat-prompt-powerapps.png?WT.mc_id=academic-105485-koreyst)
 
-1. The AI Copilot will suggest a Dataverse Table with the fields you need to store the data you want to track and some sample data. You can then customize the table to meet your needs using the AI Copilot assistant feature through conversational steps.
+1. ШІ Copilot запропонує таблицю Dataverse з полями, які вам потрібні для зберігання даних, які ви хочете відстежувати, та деякі зразки даних. Потім ви можете налаштувати таблицю відповідно до ваших потреб, використовуючи функцію ШІ-асистента Copilot через розмовні кроки.
 
-   > **Important**: Dataverse is the underlying data platform for Power Platform. It is a low-code data platform for storing the app's data. It is a fully managed service that securely stores data in the Microsoft Cloud and is provisioned within your Power Platform environment. It comes with built-in data governance capabilities, such as data classification, data lineage, fine-grained access control, and more. You can learn more about Dataverse [here](https://docs.microsoft.com/powerapps/maker/data-platform/data-platform-intro?WT.mc_id=academic-109639-somelezediko).
+   > **Важливо**: Dataverse - це базова платформа даних для Power Platform. Це платформа даних з низьким кодом для зберігання даних застосунку. Це повністю керований сервіс, який безпечно зберігає дані у Microsoft Cloud і надається у вашому середовищі Power Platform. Він поставляється з вбудованими можливостями управління даними, такими як класифікація даних, походження даних, детальний контроль доступу тощо. Ви можете дізнатися більше про Dataverse [тут](https://docs.microsoft.com/powerapps/maker/data-platform/data-platform-intro?WT.mc_id=academic-109639-somelezediko).
 
-   ![Suggested fields in your new table](./images/copilot-dataverse-table-powerapps.png?WT.mc_id=academic-105485-koreyst)
+   ![Запропоновані поля у вашій новій таблиці](./images/copilot-dataverse-table-powerapps.png?WT.mc_id=academic-105485-koreyst)
 
-1. Educators want to send emails to the students who have submitted their assignments to keep them updated on the progress of their assignments. You can use Copilot to add a new field to the table to store the student email. For example, you can use the following prompt to add a new field to the table: **_I want to add a column to store student email_**. Click on the **Send** button to send the prompt to the AI Copilot.
+1. Викладачі хочуть надсилати електронні листи студентам, які подали свої завдання, щоб інформувати їх про прогрес у виконанні їхніх завдань. Ви можете використовувати Copilot, щоб додати нове поле до таблиці для зберігання електронної пошти студента. Наприклад, ви можете використовувати наступний промпт, щоб додати нове поле до таблиці: **_Я хочу додати стовпець для зберігання електронної пошти студента_**. Натисніть кнопку **Надіслати**, щоб надіслати промпт до ШІ Copilot.
 
-![Adding a new field](./images/copilot-new-column.png?WT.mc_id=academic-105485-koreyst)
+![Додавання нового поля](./images/copilot-new-column.png?WT.mc_id=academic-105485-koreyst)
 
-1. The AI Copilot will generate a new field and you can then customize the field to meet your needs.
+1. ШІ Copilot згенерує нове поле, і потім ви можете налаштувати поле відповідно до ваших потреб.
 
-1. Once you are done with the table, click on the **Create app** button to create the app.
+1. Після завершення роботи з таблицею натисніть кнопку **Створити застосунок**, щоб створити застосунок.
 
-1. The AI Copilot will generate a responsive Canvas app based on your description. You can then customize the app to meet your needs.
+1. ШІ Copilot згенерує адаптивний Canvas-застосунок на основі вашого опису. Потім ви можете налаштувати застосунок відповідно до ваших потреб.
 
-1. For educators to send emails to students, you can use Copilot to add a new screen to the app. For example, you can use the following prompt to add a new screen to the app: **_I want to add a screen to send emails to students_**. Click on the **Send** button to send the prompt to the AI Copilot.
+1. Щоб викладачі могли надсилати електронні листи студентам, ви можете використовувати Copilot для додавання нового екрану до застосунку. Наприклад, ви можете використовувати наступний промпт, щоб додати новий екран до застосунку: **_Я хочу додати екран для надсилання електронних листів студентам_**. Натисніть кнопку **Надіслати**, щоб надіслати промпт до ШІ Copilot.
 
-![Adding a new screen via a prompt instruction](./images/copilot-new-screen.png?WT.mc_id=academic-105485-koreyst)
+![Додавання нового екрану через інструкцію промпту](./images/copilot-new-screen.png?WT.mc_id=academic-105485-koreyst)
 
-1. The AI Copilot will generate a new screen and you can then customize the screen to meet your needs.
+1. ШІ Copilot згенерує новий екран, і потім ви можете налаштувати екран відповідно до ваших потреб.
 
-1. Once you are done with the app, click on the **Save** button to save the app.
+1. Після завершення роботи з застосунком натисніть кнопку **Зберегти**, щоб зберегти застосунок.
 
-1. To share the app with the educators, click on the **Share** button and then click on the **Share** button again. You can then share the app with the educators by entering their email addresses.
+1. Щоб поділитися застосунком з викладачами, натисніть кнопку **Поділитися**, а потім знову натисніть кнопку **Поділитися**. Потім ви можете поділитися застосунком з викладачами, ввівши їхні адреси електронної пошти.
 
-> **Your homework**: The app you just built is a good start but can be improved. With the email feature, educators can only send emails to students manually by having to type their emails. Can you use Copilot to build an automation that will enable educators to send emails to students automatically when they submit their assignments? Your hint is with the right prompt you can use Copilot in Power Automate to build this.
+> **Ваше домашнє завдання**: Застосунок, який ви щойно створили, є хорошим початком, але його можна вдосконалити. З функцією електронної пошти викладачі можуть надсилати електронні листи студентам лише вручну, маючи вводити їхні електронні адреси. Чи можете ви використовувати Copilot для створення автоматизації, яка дозволить викладачам автоматично надсилати електронні листи студентам, коли вони подають свої завдання? Підказкою є те, що з правильним промптом ви можете використовувати Copilot у Power Automate для створення цього.
 
-### Build an Invoices Information Table for Our Startup
+### Створення таблиці інформації про рахунки-фактури для нашого стартапу
 
-The finance team of our startup has been struggling to keep track of invoices. They have been using a spreadsheet to track the invoices but this has become difficult to manage as the number of invoices has increased. They have asked you to build a table that will help them store, track and manage the information of the invoices they received. The table should be used to build an automation that will extract all the invoice information and store it in the table. The table should also enable the finance team to view the invoices that have been paid and those that have not been paid.
+Фінансова команда нашого стартапу має труднощі з відстеженням рахунків-фактур. Вони використовували електронну таблицю для відстеження рахунків-фактур, але це стало важко керувати зі збільшенням кількості рахунків-фактур. Вони попросили вас створити таблицю, яка допоможе їм зберігати, відстежувати та управляти інформацією про отримані рахунки-фактури. Таблиця повинна використовуватися для створення автоматизації, яка буде витягувати всю інформацію про рахунки-фактури та зберігати її в таблиці. Таблиця також повинна дозволяти фінансовій команді переглядати рахунки-фактури, які були оплачені, та ті, які не були оплачені.
 
-The Power Platform has an underlying data platform called Dataverse that enables you to store the data for your apps and solutions. Dataverse provides a low-code data platform for storing the app's data. It is a fully managed service that securely stores data in the Microsoft Cloud and is provisioned within your Power Platform environment. It comes with built-in data governance capabilities, such as data classification, data lineage, fine-grained access control, and more. You can learn more [about Dataverse here](https://docs.microsoft.com/powerapps/maker/data-platform/data-platform-intro?WT.mc_id=academic-109639-somelezediko).
+Power Platform має базову платформу даних під назвою Dataverse, яка дозволяє зберігати дані для ваших застосунків та рішень. Dataverse надає платформу даних з низьким кодом для зберігання даних застосунку. Це повністю керований сервіс, який безпечно зберігає дані у Microsoft Cloud і надається у вашому середовищі Power Platform. Він поставляється з вбудованими можливостями управління даними, такими як класифікація даних, походження даних, детальний контроль доступу тощо. Ви можете дізнатися більше [про Dataverse тут](https://docs.microsoft.com/powerapps/maker/data-platform/data-platform-intro?WT.mc_id=academic-109639-somelezediko).
 
-Why should we use Dataverse for our startup? The standard and custom tables within Dataverse provide a secure and cloud-based storage option for your data. Tables let you store different types of data, similar to how you might use multiple worksheets in a single Excel workbook. You can use tables to store data that is specific to your organization or business need. Some of the benefits our startup will get from using Dataverse include but are not limited to:
+Чому ми повинні використовувати Dataverse для нашого стартапу? Стандартні та користувацькі таблиці в Dataverse надають безпечний та хмарний варіант зберігання ваших даних. Таблиці дозволяють зберігати різні типи даних, подібно до того, як ви можете використовувати кілька робочих аркушів в одному робочому зошиті Excel. Ви можете використовувати таблиці для зберігання даних, специфічних для вашої організації або бізнес-потреби. Деякі з переваг, які наш стартап отримає від використання Dataverse, включають, але не обмежуються:
 
-- **Easy to manage**: Both the metadata and data are stored in the cloud, so you don't have to worry about the details of how they are stored or managed. You can focus on building your apps and solutions.
+- **Легко керувати**: І метадані, і дані зберігаються в хмарі, тому вам не потрібно турбуватися про деталі того, як вони зберігаються чи управляються. Ви можете зосередитися на створенні ваших застосунків та рішень.
 
-- **Secure**: Dataverse provides a secure and cloud-based storage option for your data. You can control who has access to the data in your tables and how they can access it using role based security.
+- **Безпека**: Dataverse надає безпечний та хмарний варіант зберігання ваших даних. Ви можете контролювати, хто має доступ до даних у ваших таблицях і як вони можуть отримати доступ, використовуючи безпеку на основі ролей.
 
-- **Rich metadata**: Data types and relationships are used directly within Power Apps
+- **Багаті метадані**: Типи даних та відносини використовуються безпосередньо в Power Apps
 
-- **Logic and validation**: You can use business rules, calculated fields, and validation rules to enforce business logic and maintain data accuracy.
+- **Логіка та перевірка**: Ви можете використовувати бізнес-правила, обчислювані поля та правила перевірки для забезпечення бізнес-логіки та підтримання точності даних.
 
-Now that you know what Dataverse is and why you should use it, let's look at how you can use Copilot to create a table in Dataverse to meet the requirements of our finance team.
+Тепер, коли ви знаєте, що таке Dataverse і чому його слід використовувати, давайте подивимося, як ви можете використовувати Copilot для створення таблиці в Dataverse, щоб задовольнити вимоги нашої фінансової команди.
 
-> **Note** : You will use this table in the next section to build an automation that will extract all the invoice information and store it in the table.
+> **Примітка** : Ви будете використовувати цю таблицю в наступному розділі для створення автоматизації, яка буде витягувати всю інформацію про рахунки-фактури та зберігати її в таблиці.
 
-To create a table in Dataverse using Copilot, follow the steps below:
+Щоб створити таблицю в Dataverse за допомогою Copilot, виконайте наступні кроки:
 
-1. Navigate to the [Power Apps](https://make.powerapps.com?WT.mc_id=academic-105485-koreyst) home screen.
+1. Перейдіть до головного екрана [Power Apps](https://make.powerapps.com?WT.mc_id=academic-105485-koreyst).
 
-2. On the left navigation bar, select on **Tables** and then click on **Describe the new Table**.
+2. На лівій панелі навігації виберіть **Таблиці**, а потім натисніть **Опишіть нову таблицю**.
 
-![Select new table](./images/describe-new-table.png?WT.mc_id=academic-105485-koreyst)
+![Виберіть нову таблицю](./images/describe-new-table.png?WT.mc_id=academic-105485-koreyst)
 
-1. On the **Describe the new Table** screen, use the text area to describe the table you want to create. For example, **_I want to create a table to store invoice information_**. Click on the **Send** button to send the prompt to the AI Copilot.
+1. На екрані **Опишіть нову таблицю** використовуйте текстову область для опису таблиці, яку ви хочете створити. Наприклад, **_Я хочу створити таблицю для зберігання інформації про рахунки-фактури_**. Натисніть кнопку **Надіслати**, щоб надіслати промпт до ШІ Copilot.
 
-![Describe the table](./images/copilot-chat-prompt-dataverse.png?WT.mc_id=academic-105485-koreyst)
+![Опишіть таблицю](./images/copilot-chat-prompt-dataverse.png?WT.mc_id=academic-105485-koreyst)
 
-1. The AI Copilot will suggest a Dataverse Table with the fields you need to store the data you want to track and some sample data. You can then customize the table to meet your needs using the AI Copilot assistant feature through conversational steps.
+1. ШІ Copilot запропонує таблицю Dataverse з полями, які вам потрібні для зберігання даних, які ви хочете відстежувати, та деякі зразки даних. Потім ви можете налаштувати таблицю відповідно до ваших потреб, використовуючи функцію ШІ-асистента Copilot через розмовні кроки.
 
-![Suggested Dataverse table](./images/copilot-dataverse-table.png?WT.mc_id=academic-105485-koreyst)
+![Запропонована таблиця Dataverse](./images/copilot-dataverse-table.png?WT.mc_id=academic-105485-koreyst)
 
-1. The finance team wants to send an email to the supplier to update them with the current status of their invoice. You can use Copilot to add a new field to the table to store the supplier email. For example, you can use the following prompt to add a new field to the table: **_I want to add a column to store supplier email_**. Click on the **Send** button to send the prompt to the AI Copilot.
+1. Фінансова команда хоче надсилати електронний лист постачальнику, щоб оновити його про поточний статус їхнього рахунку-фактури. Ви можете використовувати Copilot, щоб додати нове поле до таблиці для зберігання електронної пошти постачальника. Наприклад, ви можете використовувати наступний промпт, щоб додати нове поле до таблиці: **_Я хочу додати стовпець для зберігання електронної пошти постачальника_**. Натисніть кнопку **Надіслати**, щоб надіслати промпт до ШІ Copilot.
 
-1. The AI Copilot will generate a new field and you can then customize the field to meet your needs.
+1. ШІ Copilot згенерує нове поле, і потім ви можете налаштувати поле відповідно до ваших потреб.
 
-1. Once you are done with the table, click on the **Create** button to create the table.
+1. Після завершення роботи з таблицею натисніть кнопку **Створити**, щоб створити таблицю.
 
-## AI Models in Power Platform with AI Builder
+## Моделі ШІ в Power Platform з AI Builder
 
-AI Builder is a low-code AI capability available in Power Platform that enables you to use AI Models to help you to automate processes and predict outcomes. With AI Builder you can bring AI to your apps and flows that connect to your data in Dataverse or in various cloud data sources, such as SharePoint, OneDrive or Azure.
+AI Builder - це можливість ШІ з низьким кодом, доступна в Power Platform, яка дозволяє використовувати моделі ШІ, щоб допомогти автоматизувати процеси та прогнозувати результати. З AI Builder ви можете додати ШІ до своїх застосунків та потоків, які підключаються до ваших даних у Dataverse або в різних хмарних джерелах даних, таких як SharePoint, OneDrive або Azure.
 
-## Prebuilt AI Models vs Custom AI Models
+## Готові моделі ШІ vs. Користувацькі моделі ШІ
 
-AI Builder provides two types of AI Models: Prebuilt AI Models and Custom AI Models. Prebuilt AI Models are ready-to-use AI Models that are trained by Microsoft and available in Power Platform. These help you add intelligence to your apps and flows without having to gather data and then build, train and publish your own models. You can use these models to automate processes and predict outcomes.
+AI Builder надає два типи моделей ШІ: Готові моделі ШІ та Користувацькі моделі ШІ. Готові моделі ШІ - це моделі ШІ, готові до використання, які навчені Microsoft і доступні в Power Platform. Вони допомагають додати інтелект до ваших застосунків та потоків без необхідності збирати дані, а потім будувати, навчати та публікувати власні моделі. Ви можете використовувати ці моделі для автоматизації процесів та прогнозування результатів.
 
-Some of the Prebuilt AI Models available in Power Platform include:
+Деякі з готових моделей ШІ, доступних у Power Platform, включають:
 
-- **Key Phrase Extraction**: This model extracts key phrases from text.
-- **Language Detection**: This model detects the language of a text.
-- **Sentiment Analysis**: This model detects positive, negative, neutral, or mixed sentiment in text.
-- **Business Card Reader**: This model extracts information from business cards.
-- **Text Recognition**: This model extracts text from images.
-- **Object Detection**: This model detects and extracts objects from images.
-- **Document processing**: This model extracts information from forms.
-- **Invoice Processing**: This model extracts information from invoices.
+- **Вилучення ключових фраз**: Ця модель витягує ключові фрази з тексту.
+- **Виявлення мови**: Ця модель виявляє мову тексту.
+- **Аналіз настрою**: Ця модель виявляє позитивний, негативний, нейтральний або змішаний настрій у тексті.
+- **Читач візитних карток**: Ця модель витягує інформацію з візитних карток.
+- **Розпізнавання тексту**: Ця модель витягує текст із зображень.
+- **Виявлення об'єктів**: Ця модель виявляє та витягує об'єкти із зображень.
+- **Обробка документів**: Ця модель витягує інформацію з форм.
+- **Обробка рахунків-фактур**: Ця модель витягує інформацію з рахунків-фактур.
 
-With Custom AI Models you can bring your own model into AI Builder so that it can function like any AI Builder custom model, allowing you to train the model using your own data. You can use these models to automate processes and predict outcomes in both Power Apps and Power Automate. When using your own model there are limitations that apply. Read more on these [limitations](https://learn.microsoft.com/ai-builder/byo-model#limitations?WT.mc_id=academic-105485-koreyst).
+З користувацькими моделями ШІ ви можете додати власну модель до AI Builder, щоб вона могла функціонувати як будь-яка користувацька модель AI Builder, дозволяючи вам навчати модель, використовуючи ваші власні дані. Ви можете використовувати ці моделі для автоматизації процесів та прогнозування результатів як у Power Apps, так і в Power Automate. При використанні власної моделі існують обмеження. Дізнайтеся більше про ці [обмеження](https://learn.microsoft.com/ai-builder/byo-model#limitations?WT.mc_id=academic-105485-koreyst).
 
-![AI builder models](./images/ai-builder-models.png?WT.mc_id=academic-105485-koreyst)
+![Моделі AI builder](./images/ai-builder-models.png?WT.mc_id=academic-105485-koreyst)
 
-## Assignment #2 - Build an Invoice Processing Flow for Our Startup
+## Завдання №2 - Створення потоку обробки рахунків-фактур для нашого стартапу
 
-The finance team has been struggling to process invoices. They have been using a spreadsheet to track the invoices but this has become difficult to manage as the number of invoices has increased. They have asked you to build a workflow that will help them process invoices using AI. The workflow should enable them to extract information from invoices and store the information in a Dataverse table. The workflow should also enable them to send an email to the finance team with the extracted information.
+Фінансова команда має труднощі з обробкою рахунків-фактур. Вони використовували електронну таблицю для відстеження рахунків-фактур, але це стало важко керувати зі збільшенням кількості рахунків-фактур. Вони попросили вас створити робочий процес, який допоможе їм обробляти рахунки-фактури за допомогою ШІ. Робочий процес повинен дозволяти їм витягувати інформацію з рахунків-фактур та зберігати інформацію в таблиці Dataverse. Робочий процес також повинен дозволяти їм надсилати електронний лист фінансовій команді з витягнутою інформацією.
 
-Now that you know what AI Builder is and why you should use it, let's look at how you can use the Invoice Processing AI Model in AI Builder, that we covered earlier on, to build a workflow that will help the finance team process invoices.
+Тепер, коли ви знаєте, що таке AI Builder і чому його слід використовувати, давайте подивимося, як ви можете використовувати модель ШІ для обробки рахунків-фактур в AI Builder, про яку ми говорили раніше, для створення робочого процесу, який допоможе фінансовій команді обробляти рахунки-фактури.
 
-To build a workflow that will help the finance team process invoices using the Invoice Processing AI Model in AI Builder, follow the steps below:
+Щоб створити робочий процес, який допоможе фінансовій команді обробляти рахунки-фактури за допомогою моделі ШІ для обробки рахунків-фактур в AI Builder, виконайте наступні кроки:
 
-1. Navigate to the [Power Automate](https://make.powerautomate.com?WT.mc_id=academic-105485-koreyst) home screen.
+1. Перейдіть до головного екрана [Power Automate](https://make.powerautomate.com?WT.mc_id=academic-105485-koreyst).
 
-2. Use the text area on the home screen to describe the workflow you want to build. For example, **_Process an invoice when it arrives in my mailbox_**. Click on the **Send** button to send the prompt to the AI Copilot.
+2. Використовуйте текстову область на головному екрані, щоб описати робочий процес, який ви хочете створити. Наприклад, **_Обробляти рахунок-фактуру, коли він надходить у мою поштову скриньку_**. Натисніть кнопку **Надіслати**, щоб надіслати промпт до ШІ Copilot.
 
    ![Copilot power automate](./images/copilot-chat-prompt-powerautomate.png?WT.mc_id=academic-105485-koreyst)
 
-3. The AI Copilot will suggest the actions you need to perform the task you want to automate. You can click on the **Next** button to go through the next steps.
+3. ШІ Copilot запропонує дії, які вам потрібно виконати для автоматизації завдання. Ви можете натиснути кнопку **Далі**, щоб перейти до наступних кроків.
 
-4. On the next step, Power Automate will prompt you to set up the connections required for the flow. Once you are done, click on the **Create flow** button to create the flow.
+4. На наступному кроці Power Automate запропонує вам налаштувати з'єднання, необхідні для потоку. Після завершення натисніть кнопку **Створити потік**, щоб створити потік.
 
-5. The AI Copilot will generate a flow and you can then customize the flow to meet your needs.
+5. ШІ Copilot згенерує потік, і потім ви можете налаштувати потік відповідно до ваших потреб.
 
-6. Update the trigger of the flow and set the **Folder** to the folder where the invoices will be stored. For example, you can set the folder to **Inbox**. Click on **Show advanced options** and set the **Only with Attachments** to **Yes**. This will ensure that the flow only runs when an email with an attachment is received in the folder.
+6. Оновіть тригер потоку та встановіть **Папку** на папку, де будуть зберігатися рахунки-фактури. Наприклад, ви можете встановити папку на **Вхідні**. Натисніть **Показати додаткові параметри** та встановіть **Тільки з вкладеннями** на **Так**. Це забезпечить, що потік запускається лише тоді, коли у вказаній папці отримано електронний лист з вкладенням.
 
-7. Remove the following actions from the flow: **HTML to text**, **Compose**, **Compose 2**, **Compose 3** and **Compose 4** because you will not be using them.
+7. Видаліть наступні дії з потоку: **HTML в текст**, **Скласти**, **Скласти 2**, **Скласти 3** та **Скласти 4**, оскільки ви їх не будете використовувати.
 
-8. Remove the **Condition** action from the flow because you will not be using it. It should look like the following screenshot:
+8. Видаліть дію **Умова** з потоку, оскільки ви її не будете використовувати. Це повинно виглядати так, як на наступному знімку екрана:
 
-   ![power automate, remove actions](./images/powerautomate-remove-actions.png?WT.mc_id=academic-105485-koreyst)
+   ![power automate, видалити дії](./images/powerautomate-remove-actions.png?WT.mc_id=academic-105485-koreyst)
 
-9. Click on the **Add an action** button and search for **Dataverse**. Select the **Add a new row** action.
+9. Натисніть кнопку **Додати дію** та пошукайте **Dataverse**. Виберіть дію **Додати новий рядок**.
 
-10. On the **Extract Information from invoices** action, update the **Invoice File** to point to the **Attachment Content** from the email. This will ensure that the flow extracts information from the invoice attachment.
+10. У дії **Витягти інформацію з рахунків-фактур** оновіть **Файл рахунку-фактури**, щоб він вказував на **Вміст вкладення** з електронного листа. Це забезпечить, що потік витягує інформацію з вкладення рахунку-фактури.
 
-11. Select the **Table** you created earlier on. For example, you can select the **Invoice Information** table. Choose the dynamic content from the previous action to populate the following fields:
+11. Виберіть **Таблицю**, яку ви створили раніше. Наприклад, ви можете вибрати таблицю **Інформація про рахунок-фактуру**. Виберіть динамічний вміст із попередньої дії для заповнення наступних полів:
 
     - ID
-    - Amount
-    - Date
-    - Name
-    - Status - Set the **Status** to **Pending**.
-    - Supplier Email - Use the **From** dynamic content from the **When a new email arrives** trigger.
+    - Сума
+    - Дата
+    - Назва
+    - Статус - Встановіть **Статус** на **В очікуванні**.
+    - Електронна пошта постачальника - Використовуйте динамічний вміст **Від** з тригера **Коли надходить новий електронний лист**.
 
-    ![power automate add row](./images/powerautomate-add-row.png?WT.mc_id=academic-105485-koreyst)
+    ![power automate додати рядок](./images/powerautomate-add-row.png?WT.mc_id=academic-105485-koreyst)
 
-12. Once you are done with the flow, click on the **Save** button to save the flow. You can then test the flow by sending an email with an invoice to the folder you specified in the trigger.
+12. Після завершення роботи з потоком натисніть кнопку **Зберегти**, щоб зберегти потік. Потім ви можете протестувати потік, надіславши електронний лист з рахунком-фактурою до папки, яку ви вказали в тригері.
 
-> **Your homework**: The flow you just built is a good start, now you need to think of how you can build an automation that will enable our finance team to send an email to the supplier to update them with the current status of their invoice. Your hint: the flow must run when the status of the invoice changes.
+> **Ваше домашнє завдання**: Потік, який ви щойно створили, є хорошим початком, тепер вам потрібно подумати, як можна створити автоматизацію, яка дозволить нашій фінансовій команді надсилати електронний лист постачальнику, щоб оновити його про поточний статус їхнього рахунку-фактури. Ваша підказка: потік повинен запускатися, коли змінюється статус рахунку-фактури.
 
-## Use a Text Generation AI Model in Power Automate
+## Використання моделі ШІ для генерації тексту в Power Automate
 
-The Create Text with GPT AI Model in AI Builder enables you to generate text based on a prompt and is powered by the Microsoft Azure OpenAI Service. With this capability, you can incorporate GPT (Generative Pre-Trained Transformer) technology into your apps and flows to build a variety of automated flows and insightful applications.
+Модель ШІ для створення тексту з GPT в AI Builder дозволяє генерувати текст на основі промпту і працює на основі Microsoft Azure OpenAI Service. З цією можливістю ви можете включити технологію GPT (Generative Pre-Trained Transformer) у свої застосунки та потоки для створення різноманітних автоматизованих потоків та корисних застосунків.
 
-GPT models undergo extensive training on vast amounts of data, enabling them to produce text that closely resembles human language when provided with a prompt. When integrated with workflow automation, AI models like GPT can be harnessed to streamline and automate a wide range of tasks.
+Моделі GPT проходять обширне навчання на величезній кількості даних, що дозволяє їм створювати текст, який нагадує людську мову, коли їм надається промпт. Коли вони інтегровані з автоматизацією робочих процесів, моделі ШІ, такі як GPT, можуть бути використані для спрощення та автоматизації широкого спектру завдань.
 
-For example, you can build flows to automatically generate text for a variety of use cases, such as: drafts of emails, product descriptions, and more. You can also use the model to generate text for a variety of apps, such as chatbots and customer service apps that enable customer service agents to respond effectively and efficiently to customer inquiries.
+Наприклад, ви можете створювати потоки для автоматичного генерування тексту для різних випадків використання, таких як: чернетки електронних листів, описи продуктів та інше. Ви також можете використовувати модель для генерування тексту для різних застосунків, таких як чатботи та застосунки обслуговування клієнтів, які дозволяють агентам з обслуговування клієнтів ефективно та дієво відповідати на запити клієнтів.
 
-![create a prompt](./images/create-prompt-gpt.png?WT.mc_id=academic-105485-koreyst)
+![створити промпт](./images/create-prompt-gpt.png?WT.mc_id=academic-105485-koreyst)
 
-To learn how to use this AI Model in Power Automate, go through the [Add intelligence with AI Builder and GPT](https://learn.microsoft.com/training/modules/ai-builder-text-generation/?WT.mc_id=academic-109639-somelezediko) module.
+Щоб дізнатися, як використовувати цю модель ШІ в Power Automate, пройдіть модуль [Додайте інтелект з AI Builder та GPT](https://learn.microsoft.com/training/modules/ai-builder-text-generation/?WT.mc_id=academic-109639-somelezediko).
 
-## Great Work! Continue Your Learning
+## Чудова робота! Продовжуйте своє навчання
 
-After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
+Після завершення цього уроку перегляньте нашу [колекцію навчання з генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжувати підвищувати рівень своїх знань з генеративного ШІ!
 
-Head over to Lesson 11 where we will look at how to [integrate Generative AI with Function Calling](../11-integrating-with-function-calling/README.md?WT.mc_id=academic-105485-koreyst)!
+Переходьте до Уроку 11, де ми розглянемо, як [інтегрувати генеративний ШІ з викликами функцій](../11-integrating-with-function-calling/README.md?WT.mc_id=academic-105485-koreyst)!
