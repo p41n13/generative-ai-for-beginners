@@ -1,12 +1,11 @@
 from openai import OpenAI
 import os
-import dotenv
-
-# import dotenv
-dotenv.load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
 
 # configure Azure OpenAI service client 
-client = OpenAI()
+client = OpenAI(
+    api_key=api_key,
+)
 deployment="gpt-3.5-turbo"
 
 # add your completion code

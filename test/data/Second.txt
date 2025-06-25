@@ -1,0 +1,349 @@
+See discussions, st ats, and author pr ofiles f or this public ation at : https://www .researchgate.ne t/public ation/273697873
+Introduction to Robotics
+Book  · Januar y 1989
+DOI: 10.1007/978-3-642-82997-0
+CITATIONS
+37READS
+44,381
+9 author s, including:
+Brank o Kar an
+Serbian Ac ademy of Scienc es and Arts
+41 PUBLICA TIONS    228 CITATIONS    
+SEE PROFILE
+Dragan St oki ć
+Instit ute for Applied Syst ems T echnolog y Br emen
+182 PUBLICA TIONS    2,432  CITATIONS    
+SEE PROFILE
+Dragoljub V ujic
+Milit ary Technic al Instit ute, Serbia, Belgr ade
+15 PUBLICA TIONS    98 CITATIONS    
+SEE PROFILE
+All c ontent f ollo wing this p age was uplo aded b y Brank o Kar an on 18 Mar ch 2015.
+The user has r equest ed enhanc ement of the do wnlo aded file.Miomir Vukobratovic 
+Introduction 
+to Robotics 
+In collaboration with 
+Milan Djurovic, Dragan Hristic, Branko Karan, 
+Manja Kireanski, N enad Kireanski, 
+Dragan Stokic, Dragoljub Vujic, Vesna Zivkovic 
+With 228 Figures 
+Springer-Verlag Berlin Heidelberg New York 
+London Paris Tokyo 1989 .. Miomir Vukobratovic, Ph. D., D. Sc. 
+Milan Djurovic 
+Dragan Hristic 
+Branko Karan 
+Manja Kircanski 
+Nenad Kireanski 
+Dragan Stokic 
+Dragoljub Vujic 
+Vesna Zivkovic B. Sc. 
+Ph.D. 
+B. Sc. 
+Ph.D. 
+Ph.D. 
+Ph.D. 
+Ph.D. 
+Ph.D. 
+Institute Mibajlo Pupin 
+YU-llOOO Beograd 
+Based on the original Uvod u Robotiku published by 
+Institute Mibajlo Pupin, Beograd, Yugoslavia, 1986. 
+ISBN -13: 978-3-642-82999-4 e-ISBN -13: 978-3-642-82997-0 
+DOl: 10.1007/978-3-642-82997-0 
+Library of Congress Cataloging-in-Publication Data 
+Vukobratovic, Miomir. Introduction to robotics. Translation of: Uvod u robotiku. 
+Includes index. 1. Robotics. 1. Title. 
+TJ211.V86131988 629.8'92 88-10307 
+ISBN-i3:978-3-642-82999-4 (U.S.) 
+This work is subject to copyright. All rights are reserved, whether the whole or part 
+of the material is concerned, specifically the rights of translation, reprinting, re-use of 
+illustration, recitation, broadcasting, reproduction on microfilms or in other ways. 
+and storage in data banks. Duplication of this publication or parts thereof is only 
+permitted under the provisions of the German Copyright Law of September 9,1965, 
+in its version of June 24, 1985, and a copyright fee must always be paid. Violations fall 
+under the prosecution act of the German Copyright Law. 
+© Springer-Verlag Berlin Heidelberg 1989 
+Softcover reprint of the hardcover 1st edition 1989 
+The use of registered names, trademarks, etc. in this publication does not imply, even 
+in the absence of a specific statement, that such names are exempt from the relevant 
+protective laws and regulations and therefore free for general use. 
+216113020-543210 -Printed on acid-free paper Preface 
+The publication of Introduction to Robotics is one among the results of many 
+years' work by the authors of this book in the study of robotics. During the 
+first stage of this work, devoted to locomotion robots and anthropomorphic 
+mechanisms in particular, a number of papers were published in the period 
+1974-76. The most prominent of them is M. VukobratoviC's Legged Locomotion 
+Systems and Anthropomorphic Mechanisms, published in English, Russian, 
+Japanese and Chinese. 
+The contributions by the associates of the Mibajlo Pupin Institute's Robotics 
+Department in the second stage of their work in the field of robotics are 
+included in Scientific Fundamentals of Robotics -a series of monograpbs 
+covering the study of manipulation robots. Six volumes of this series were 
+published in English by Springer-Verlag during 1982-85. Some of these volumes 
+were translated into other languages. Volume 1 was translated into Japanese 
+and published by Springer-Verlag, Volume 2 was published by Nauka in 
+Russian (the translation of Volume 5 into Russian is finished and will be 
+published by Mir in 1988), and all six volumes of the series were translated 
+into Chinese. The work on writing the series for Springer-Verlag continues. 
+The topics treated in the books that have been published by Springer-Verlag 
+are as follows. The first in the series provides a study of dynamics and the 
+application of dynamic models to the dynamic calculations of robot mechanisms, 
+and the second book studies the problems of synthesizing control laws for 
+manipulation robots on the basis of their complete dynamic models. Volume 3 
+describes efficient methods for forming the kinematic models of manipulation 
+robots and the synthesis of robot trajectories in unobstacled and obstacled 
+operating environments. Volume 4 deals with the algorithms for efficient 
+construction of the mathematical models of robot dynamics, that are suitable 
+for use in nonadaptive and adaptive control of robot mechanisms as well as 
+the analysis of the numerical complexity of various control laws intended to 
+permit their microcomputer implementation. Volume 5 treats the synthesis 
+of nonadaptive and adaptive control and the analysis of the numerical com­
+plexity of various control laws. Volume 6 outlines the convenience of using 
+the mathematical models of manipulation robot dynamics in choosing different 
+types of robot actuators, and the results concerning some specific manipulation 
+tasks in which dynamic reactions occur on a robot gripper. VI Preface 
+The books described above and work published by an increasing number 
+of other authors represent adequate introduction for postgraduate robotics 
+courses. However, it has also been necessary to create textbook material 
+suitable for the basic robotics courses of undergraduate studies at engineering 
+faculties. Such literature on robotics is lacking both in quantity and appropriate 
+presentation. In addition to textbooks, books on robotics that introduce readers 
+in a more easily understandable way to this important and propulsive field 
+of technical science appear to be lacking as well. 
+In writing a book intended to introduce a technically qualified reader to the 
+field of robotics, the authors are always faced with the risk of either over­
+simplifying the subject matter or providing just a condensed version of the text 
+of a previously published monograph. 
+The authors of this book have attempted to present the relatively wide scope 
+of robotics subject matter in a different way. Their intention has been to 
+discuss all the details of robotics in such a manner as to arouse interest to 
+this research area without facing the reader with serious difficulties in following 
+the text, from the standpoints of classical mechanics, systems theory and 
+computer engineering. We think that we have attained this aim which makes 
+the whole text easy to follow by final-year students in mechanical and electrical 
+engineering faculties as well as by students of science and mathematics spe­
+cializing in mechanics, mathematics and physics, with some basic knowledge 
+of automatic control theory. 
+The authors of this text, and of the chapter on robot dynamics in particular, 
+were in a dilemma as to how to present this subject because of its exceptional 
+importance in robotics and its role in the control and modern dynamic analysis 
+of robot mechanisms. It is well known that more than fifteen years ago, within the 
+Belgrade school of robotics some of the authors of this book were among the first 
+in the world to lay the foundations of computer-oriented methods for con­
+structing the dynamic equations of active spatial mechanisms. But, because of the 
+character of this book and space limitations, there was some fear, that the 
+automated algorithm for forming dynamic robot models could be presented in 
+a way understandable to readers who are making their first steps in robotic 
+studies. However, consistent with our opinion that the "manual" construction of 
+robot models is now an anachronism and accepting a certain amount of risk, we 
+decided to take this contemporary approach to the study of robot dynamics. 
+This book is organized into nine chapters. 
+Chapter 1 presents general robot characteristics concerning the classification 
+of robot systems, the general specification of robot mechanisms and the 
+specification of manipulation robots. 
+Chapter 2 is devoted to manipulation robot kinematics. It treats the kinematic 
+structure of manipulation robots, the types of kinematic configurations, the 
+kinematic model of manipulation robots, based on the Denavit-Hartenberg 
+(homogeneous) coordinates. The inverse problem of kinematics is formulated 
+and the basic principles of robot trajectory synthesis are given. Preface VII 
+Chapter 3 contains the fundamentals of studying robot dynamics. It presents 
+the automated construction of the dynamic equations of motion, the modelling 
+of actuator dynamics and the effect of fundamental vibration on the robot 
+dynamics. The class of tasks involving constrained gripper motion is also 
+presented. 
+The problems of manipulation robot control are discussed in Chapter 4. 
+Particular attention is given to the synthesis of programmed control based 
+on the complete or partial dynamic models of robots and to the synthesis 
+of local controllers. Some results relating to load feedback are presented 
+and the control problem of automated mechanical assembly is considered. 
+Chapter 5 is devoted to the microcomputer implementation of control 
+algorithms. It presents the basic elements of today's robot control systems as 
+well as software modules among which communication-command module, 
+kinematic module and dynamic (servosystem) module deserve to be especially 
+mentioned. 
+Manipulation robot programming is treated in Chapter 6. Apart from mani­
+pulator motion programming, special attention is devoted to robot communi­
+cation with the environment and to a short survey of programming methods. 
+Chapter 7 deals with the sensors used in robotics: position sensors (potentio­
+meters, encoders, resolvers), environment sensors (force sensors, tactile 
+sensors, proximity sensors) and vision sensors (scene illumination, special 
+vision sensors, lasers). 
+The elements of industrial robot design and application are discussed in 
+Chapter 8. Some specificfeatures of industrial robots as mechanical constructions 
+are presented, design solutions for the basic modules are described and numerous 
+examples illustrating the practical application of industrial robots are given (spot 
+and arc welding, die-casting, forging, painting, machine tool serving, etc.). 
+Considerable research and development work has been performed on flexible 
+automation systems. In Chapter 9 we have tried to unify in a systematic way 
+major problems (and possible solutions) encountered with factory automation 
+by integrating one or more robots and several machine tools into work cell, 
+flexible manufacturing line and assembly systems. 
+The authors of this book have tried to present the text in such a way as will 
+arouse the interest of all those who wish to have a solid background for 
+systematic robotic studies. 
+Beograd, Yugoslavia 
+September 1987 M. Vukobratovic  Contents 
+1 General Introduction to Robots (Miomir Vukobratovic) . . . . . . . . . . . . 1 
+1.1 Dedication and Classification of Robotic Systems ............... 1 
+1.2 General Features of Robotic Mechanisms and their Classification . .. 11 
+References ............................................... 18 
+2 Manipulator Kinematic Model (Manja Kircanski) . . . . . . . . . . . . . . . .. 19 
+2.1 Introduction. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 19 
+2.2 Definitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 19 
+2.2.1 Mechanical Structure ................................ 20 
+2.2.2 Link ............................................. 21 
+2.2.3 Kinematic Pair ..................................... 21 
+2.2.4 Kinematic Chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 21 
+2.2.5 Joint Coordinates ................................... 22 
+2.2.6 External Coordinates ................................ 22 
+2.2.7 Direct Kinematic Problem . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 23 
+2.2.8 Inverse Kinematic Problem. . . . . . . . . . . . . . . . . . . . . . . . . . .. 24 
+2.2.9 Redundancy ....................................... 24 
+2.3 Direct Kinematic Problem ................................ , 25 
+2.3.1 Manipulator Hand Position. . . . . . . . . . . . . . . . . . . . . . . . . . .. 25 
+2.3.1.1 Homogeneous Transfonnation Matrices ............ 25 
+2.3.2 Manipulator Hand Orientation. . . . . . . . . . . . . . . . . . . . . . . .. 32 
+2.4 Inverse Kinematic Problem ................................ 35 
+2.4.1 Analytical Solutions 
+2.4.2 Numerical Solutions 
+2.4.3 The Jacobian Matrix 36 
+38 
+40 X Contents 
+2.5 Manipulator Path Generation .............................. 44 
+2.6 Conclusion. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 48 
+References ............................................... 48 
+3 Dynamics and Dynamic Analysis of Manipulation Robots 
+(Miomir Vukobratovic and Dragoljub Vujic) ............. .. . . . . .. 50 
+3.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 50 
+3.2 Mathematical Model of Manipulation Robot Dynamics . . . . . . . . . .. 50 
+3.2.1 Mathematical Models of Actuators. . . . . . . . . . . . . . . . . . . . .. 62 
+3.2.2 Trajectories Synthesis and Dynamic Analysis of 
+Manipulation Robots ................................ 65 
+3.2.2.1 Transfer of Manipulator Tip Along Prescribed 
+Trajectory ................................... 68 
+3.2.2.2 Transfer of Working Object with Desired Orientation 
+along Prescribed Trajectory ................... , . .. 70 
+3.2.3 Calculation of Other Dynamic Characteristics. . . . . . . . . . . . .. 75 
+3.2.3.1 Diagrams of Torque vs. r.p.m. ................... 75 
+3.2.3.2 Calculation of the Power Needed and the Energy 
+Consumed . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. 76 
+3.2.4 Testing of Dynamic Characteristics ...................... 77 
+3.2.4.1 Tests of a D.C. Electromotor .................... 77 
+3.2.4.2 Choice of Optimal Design Parameters. . . . . . . . . . . . .. 81 
+3.3 Dynamics of Manipulation Robots in Conditions of Mechanical 
+Vibrations Impact ....................................... 84 
+3.3.1 Basis Vibrations .................................... 85 
+3.3.2 Forming Differential Equations of Motion ................ 86 
+3.4 Dynamics of Robots Under Action of External Reaction Forces. . .. 90 
+3.4.1 Practical Cases of Constrained Gripper Motion. . . . . . . . . . . .. 90 
+3.4.2 Mathematical Model of Manipulator with Constraints of 
+Gripper Motion .................................... 92 
+3.4.3 Gripper Moving Along a Surface ....................... 95 
+Appendix ................................................ 104 
+A.3.1 Connection Between the Moving and Fixed System ......... 104 
+A.3.2 Determining Velocities and Accelerations ................ 108 Contents XI 
+A.3.3 Momentum of Rigid Body with Respect to a Fixed Pole ..... 110 
+A.3.4 Example of Mathematical Model Derivation .............. 113 
+References ............................................... 117 
+4 Control of Robots (Dragan Stokie) . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118 
+4.1 Hierarchical Control of Robots ............................. 120 
+4.2 Control of a Single Joint of a Robot ......................... 122 
+4.2.1 Model of Actuator and Joint Dynamics ................... 123 
+4.2.2 Synthesis of Servosystem ............................. 125 
+4.2.3 The Influence of the Variable Moment of Inertia of the 
+Mechanism ........................................ 131 
+4.2.4 Influence of Gravity Moment and Friction ................ 136 
+4.2.5 Synthesis of the Servosystem for Trajectory Tracking ........ 138 
+4.3 Control of Simultaneous Motion of Several Robot Joints .......... 143 
+4.3.1 Analysis of the Influence of Dynamic Forces in Simultaneous 
+Motion of Several Joints .............................. 144 
+4.3.2 Dynamic Control of Robots ........................... 147 
+4.3.3 Computer-aided Synthesis of Robot Control ............... 154 
+4.4 Effects of Payload Variation and Notion of Adaptive Control 
+of Robots ............................................. 157 
+4.5 Control of Robots in Assembly Tasks ........................ 159 
+References ............................................... 161 
+5 Microprocessor ImplepIentation of Control Algorithms 
+(Nenad Kireanski) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 162 
+5.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 162 
+5.2 Basic Subsystems of Modem Robot Controllers ................ 164 
+5.3 Program Modules ....................................... 168 
+5.3.1 User-interface ...................................... 168 
+5.3.2 Kinematic Module . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 170 
+5.3.3 Dynamic Module ................................... 172 XII Contents 
+5.4 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 178 
+References ............................................... 178 
+6 Industrial Robot Programming Systems (Branko Karan) ........... 180 
+6.1 Introduction. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 180 
+6.2 Describing the Motion .................................... 182 
+6.3 Sensory Data Processing .................................. 187 
+6.4 Synchronization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 190 
+6.5 Implementations of Robot Programming Systems ............... 192 
+6.6 Robot Programming Examples ............................. 197 
+6.7 Additional Reading ...................................... 206 
+References ............................................... 207 
+7 Sensors in Robotics (Milan Djurovic) .......................... 208 
+7.1 Positional Sensors ....................................... 208 
+7.1.1 Resolvers ......................................... 209 
+7.1.2 Encoders .......................................... 210 
+7.1.3 Potentiometers ..................................... 211 
+7.1.4 Performance Comparison ............................. 211 
+7.1.4.1 Mechanical Characteristics ....................... 211 
+7.1.4.2 Environmental Conditions ....................... 212 
+7.1.4.3 Installation .................................. 212 
+7.1.4.4 Accuracy .................................... 212 
+7.1.4.5 Reliability ................................... 213 
+7.2 Environment Sensors ..................................... 213 
+7.2.1 Force Sensors ...................................... 213 
+7.2.2 Tactile Sensors ..................................... 219 
+7.2.3 Ultrasonic Sensors .................................. 222 
+7.3 Robot Vision . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 224 Contents XIII 
+7.3.1 Illuminating the Scene . . . . . . . . . . . . . . . . . . . . . . . ... . . . . . . 224 
+7.3.2 Special Vision Sensors ................................ 225 
+7.3.3 Lasers ................................. ' ........... 227 
+References ............................................... 229 
+8 Elements, Structures and AppUcation of Industrial Robots 
+(Dragan Hristic) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 230 
+8.1 Basic Postulates of Industrial Robot Design ................... 230 
+8.1.1 Specifications of Industrial Robots as Mechanical Structures ... 231 
+8.2 Design Solutions of Main Robot Sub-assemblies ................ 233 
+8.2.1 Pedestals of Robots .................................. 233 
+8.2.2 Angular Drives ..................................... 236 
+8.2.3 Linear Drives ...................................... 241 
+8.2.4 Industrial Robot Grippers ............................. 244 
+8.3 Examples of Industrial Robot Applications .................... 249 
+8.3.1 Electrical Spot-Welding ............................... 250 
+8.3.2 Electrical Seam Welding .............................. 253 
+8.3.3 Pressure Die-Casting ................................. 255 
+8.3.4 Spray Painting ...................................... 257 
+8.3.5 Machine Tool Serving ................................ 259 
+8.3.6 Materials Handling and Palletization ..................... 262 
+8.3.7 Processing Castings and Stampings ...................... 263 
+8.3.8 Applying Glue and Leakproofing ....................... 265 
+8.3.9 Assembly by Robots ................................. 266 
+8.3.10 Special Applications of Robots ........................ 268 
+References ............................................... 269 
+9 Robotics and Flexible Automation Systems (Vesna Zivkovic) . . . . . . . . 270 
+9.1 Introduction ............................................ 270 
+9.2 Functional Structure of Flexible Automation Systems ............ 271 
+9.2.1 Computerized Numerical Control ....................... 274 
+9.2.1.1 CNC System ................................. 274 
+9.2.1.2 NC Programming ............................. 276 XIV Contents 
+9.2.1.3 Adaptive Control ............................. 277 
+9.2.2 Computerized Transport Systems and Mobile Robots ........ 278 
+9.3 Control of Flexible Automation Systems ...................... 280 
+9.3.1 Control of Flexible Manufacturing Systems . . . . . . . . . . . . . . . . 282 
+9.3.2 Control of Multirobot Systems ......................... 286 
+9.3.2.1 Off-line Multirobot Trajectory Planning ............ 286 
+9.3.2.2 On-line Multirobot Trajectory Planning ............. 287 
+9.4. Hardware and Software Requirements for FAS ................ 288 
+9.4.1 An Example of the Information Flow in FAS .............. 290 
+References ............................................... 291 
+Appendix A.9 Coloured Petri Nets ............................. 292 
+A.9.1 General Notions on Petri Nets ......................... 292 
+A.9.2 Execution Rules of Petri Nets ..................... , .... 292 
+A.9.3 Non-primitive Coloured Petri Nets ..................... 293 
+A. 9.4 Normalized Coloured Petri Nets ....................... 294 
+References ............................................... 295 
+Subject Index ............................................. 297 
+View publication stats

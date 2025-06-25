@@ -1,130 +1,130 @@
-# Створення пошукових застосунків
+# Building a Search Applications
 
-[![Вступ до генеративного ШІ та великих мовних моделей](./images/08-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson8-gh?WT.mc_id=academic-105485-koreyst)
+[![Introduction to Generative AI and Large Language Models](./images/08-lesson-banner.png?WT.mc_id=academic-105485-koreyst)](https://aka.ms/gen-ai-lesson8-gh?WT.mc_id=academic-105485-koreyst)
 
-> > _Натисніть на зображення вище, щоб переглянути відео цього уроку_
+> > _Click the image above to view video of this lesson_
 
-LLM – це не лише чат-боти та генерація тексту. Також можливо створювати пошукові застосунки, використовуючи вбудовування (Embeddings). Вбудовування – це числове представлення даних, також відомі як вектори, і можуть використовуватися для семантичного пошуку даних.
+There's more to LLMs than chatbots and text generation. It's also possible to build search applications using Embeddings. Embeddings are numerical representations of data also known as vectors, and can be used for semantic search for data.
 
-У цьому уроці ви створите пошуковий застосунок для нашого освітнього стартапу. Наш стартап – це неприбуткова організація, яка надає безкоштовну освіту студентам у країнах, що розвиваються. Наш стартап має велику кількість відео на YouTube, які студенти можуть використовувати для вивчення ШІ. Наш стартап хоче створити пошуковий застосунок, який дозволяє студентам шукати відео на YouTube, ввівши запитання.
+In this lesson, you are going to build a search application for our education startup. Our startup is a non-profit organization that provides free education to students in developing countries. Our startup has a large number of YouTube videos that students can use to learn about AI. Our startup wants to build a search application that allows students to search for a YouTube video by typing a question.
 
-Наприклад, студент може ввести "Що таке Jupyter Notebooks?" або "Що таке Azure ML", і пошуковий застосунок поверне список відеороликів на YouTube, що відповідають запитанню, і, що ще краще, пошуковий застосунок поверне посилання на місце у відео, де знаходиться відповідь на запитання.
+For example, a student might type in 'What are Jupyter Notebooks?' or 'What is Azure ML' and the search application will return a list of YouTube videos that are relevant to the question, and better still, the search application will return a link to the place in the video where the answer to the question is located.
 
-## Вступ
+## Introduction
 
-У цьому уроці ми розглянемо:
+In this lesson, we will cover:
 
-- Семантичний пошук проти ключового пошуку.
-- Що таке текстові вбудовування.
-- Створення індексу текстових вбудовувань.
-- Пошук в індексі текстових вбудовувань.
+- Semantic vs Keyword search.
+- What are Text Embeddings.
+- Creating a Text Embeddings Index.
+- Searching a Text Embeddings Index.
 
-## Цілі навчання
+## Learning Goals
 
-Після завершення цього уроку ви зможете:
+After completing this lesson, you will be able to:
 
-- Розрізняти семантичний та ключовий пошук.
-- Пояснити, що таке текстові вбудовування.
-- Створити застосунок, що використовує вбудовування для пошуку даних.
+- Tell the difference between semantic and keyword search.
+- Explain what Text Embeddings are.
+- Create an application using Embeddings to search for data.
 
-## Чому варто створити пошуковий застосунок?
+## Why build a search application?
 
-Створення пошукового застосунку допоможе вам зрозуміти, як використовувати вбудовування для пошуку даних. Ви також дізнаєтеся, як створити пошуковий застосунок, який студенти можуть використовувати для швидкого пошуку інформації.
+Creating a search application will help you understand how to use Embeddings to search for data. You will also learn how to build a search application that can be used by students to find information quickly.
 
-Урок містить індекс вбудовувань транскриптів YouTube для каналу Microsoft [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1) на YouTube. AI Show – це канал YouTube, який навчає вас ШІ та машинному навчанню. Індекс вбудовувань містить вбудовування для кожного транскрипту YouTube до жовтня 2023 року. Ви використовуватимете індекс вбудовувань для створення пошукового застосунку для нашого стартапу. Пошуковий застосунок повертає посилання на місце у відео, де знаходиться відповідь на запитання. Це чудовий спосіб для студентів швидко знайти потрібну інформацію.
+The lesson includes an Embedding Index of the YouTube transcripts for the Microsoft [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1) YouTube channel. The AI Show is a YouTube channel that teaches you about AI and machine learning. The Embedding Index contains the Embeddings for each of the YouTube transcripts up until Oct 2023. You will use the Embedding Index to build a search application for our startup. The search application returns a link to the place in the video where the answer to the question is located. This is a great way for students to find the information they need quickly.
 
-Ось приклад семантичного запиту на питання "чи можна використовувати rstudio з azure ml?". Перевірте URL-адресу YouTube, ви побачите, що URL-адреса містить часову мітку, яка переносить вас у місце відео, де знаходиться відповідь на запитання.
+The following is an example of a semantic query for the question 'can you use rstudio with azure ml?'. Check out the YouTube url, you'll see the url contains a timestamp that takes you to the place in the video where the answer to the question is located.
 
-![Семантичний запит на питання "чи можна використовувати rstudio з Azure ML"](./images/query-results.png?WT.mc_id=academic-105485-koreyst)
+![Semantic query for the question "can you use rstudio with Azure ML"](./images/query-results.png?WT.mc_id=academic-105485-koreyst)
 
-## Що таке семантичний пошук?
+## What is semantic search?
 
-Тепер ви можете запитати, що таке семантичний пошук? Семантичний пошук – це техніка пошуку, яка використовує семантику або значення слів у запиті для повернення відповідних результатів.
+Now you might be wondering, what is semantic search? Semantic search is a search technique that uses the semantics, or meaning, of the words in a query to return relevant results.
 
-Ось приклад семантичного пошуку. Припустимо, ви шукаєте машину, ви можете шукати "мою машину мрії", семантичний пошук розуміє, що ви не "мрієте" про машину, а скоріше шукаєте свою "ідеальну" машину. Семантичний пошук розуміє ваш намір і повертає відповідні результати. Альтернативою є "ключовий пошук", який буквально шукатиме мрії про автомобілі та часто повертає нерелевантні результати.
+Here is an example of a semantic search. Let's say you were looking to buy a car, you might search for 'my dream car', semantic search understands that you are not `dreaming` about a car, but rather you are looking to buy your `ideal` car. Semantic search understands your intention and returns relevant results. The alternative is `keyword search` which would literally search for dreams about cars and often returns irrelevant results.
 
-## Що таке текстові вбудовування?
+## What are Text Embeddings?
 
-[Текстові вбудовування](https://en.wikipedia.org/wiki/Word_embedding?WT.mc_id=academic-105485-koreyst) – це техніка представлення тексту, що використовується в [обробці природної мови](https://en.wikipedia.org/wiki/Natural_language_processing?WT.mc_id=academic-105485-koreyst). Текстові вбудовування – це семантичні числові представлення тексту. Вбудовування використовуються для представлення даних у спосіб, зручний для розуміння машиною. Існує багато моделей для створення текстових вбудовувань, у цьому уроці ми зосередимося на створенні вбудовувань за допомогою моделі вбудовування OpenAI.
+[Text embeddings](https://en.wikipedia.org/wiki/Word_embedding?WT.mc_id=academic-105485-koreyst) are a text representation technique used in [natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing?WT.mc_id=academic-105485-koreyst). Text embeddings are semantic numerical representations of text. Embeddings are used to represent data in a way that is easy for a machine to understand. There are many models for building text embeddings, in this lesson, we will focus on generating embeddings using the OpenAI Embedding Model.
 
-Ось приклад, уявіть, що наступний текст міститься в транскрипті одного з епізодів на каналі YouTube AI Show:
+Here's an example, imagine the following text is in a transcript from one of the episodes on the AI Show YouTube channel:
 
 ```text
 Today we are going to learn about Azure Machine Learning.
 ```
 
-Ми передамо текст до API вбудовування OpenAI, і він поверне наступне вбудовування, що складається з 1536 чисел, тобто вектора. Кожне число у векторі представляє різний аспект тексту. Для короткості, ось перші 10 чисел у векторі.
+We'd pass the text to the OpenAI Embedding API and it would return the following embedding consisting of 1536 numbers aka a vector. Each number in the vector represents a different aspect of the text. For brevity, here are the first 10 numbers in the vector.
 
 ```python
 [-0.006655829958617687, 0.0026128944009542465, 0.008792596869170666, -0.02446001023054123, -0.008540431968867779, 0.022071078419685364, -0.010703742504119873, 0.003311325330287218, -0.011632772162556648, -0.02187200076878071, ...]
 ```
 
-## Як створюється індекс вбудовувань?
+## How is the Embedding index created?
 
-Індекс вбудовувань для цього уроку був створений з серією скриптів Python. Ви знайдете скрипти разом з інструкціями у [README](./scripts/README.md?WT.mc_id=academic-105485-koreyst) в папці 'scripts` для цього уроку. Вам не потрібно запускати ці скрипти для завершення цього уроку, оскільки індекс вбудовувань надається вам.
+The Embedding index for this lesson was created with a series of Python scripts. You'll find the scripts along with instructions in the [README](./scripts/README.md?WT.mc_id=academic-105485-koreyst) in the 'scripts` folder for this lesson. You don't need to run these scripts to complete this lesson as the Embedding Index is provided for you.
 
-Скрипти виконують наступні операції:
+The scripts perform the following operations:
 
-1. Завантажується транскрипт для кожного відео на YouTube у плейлисті [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1).
-2. За допомогою [OpenAI Functions](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling?WT.mc_id=academic-105485-koreyst) робиться спроба витягти ім'я доповідача з перших 3 хвилин транскрипту YouTube. Ім'я доповідача для кожного відео зберігається в індексі вбудовувань з назвою `embedding_index_3m.json`.
-3. Текст транскрипту потім розбивається на **3-хвилинні текстові сегменти**. Сегмент включає приблизно 20 слів, що перекриваються з наступним сегментом, щоб забезпечити, що вбудовування для сегмента не обрізається, і забезпечити кращий контекст пошуку.
-4. Кожен текстовий сегмент потім передається до API чату OpenAI для резюмування тексту до 60 слів. Резюме також зберігається в індексі вбудовувань `embedding_index_3m.json`.
-5. Нарешті, текст сегмента передається до API вбудовування OpenAI. API вбудовування повертає вектор з 1536 чисел, які представляють семантичне значення сегмента. Сегмент разом з вектором вбудовування OpenAI зберігається в індексі вбудовувань `embedding_index_3m.json`.
+1. The transcript for each YouTube video in the [AI Show](https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1) playlist is downloaded.
+2. Using [OpenAI Functions](https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling?WT.mc_id=academic-105485-koreyst), an attempt is made to extract the speaker name from the first 3 minutes of the YouTube transcript. The speaker name for each video is stored in the Embedding Index named `embedding_index_3m.json`.
+3. The transcript text is then chunked into **3 minute text segments**. The segment includes about 20 words overlapping from the next segment to ensure that the Embedding for the segment is not cut off and to provide better search context.
+4. Each text segment is then passed to the OpenAI Chat API to summarize the text into 60 words. The summary is also stored in the Embedding Index `embedding_index_3m.json`.
+5. Finally, the segment text is passed to the OpenAI Embedding API. The Embedding API returns a vector of 1536 numbers that represent the semantic meaning of the segment. The segment along with the OpenAI Embedding vector is stored in an Embedding Index `embedding_index_3m.json`.
 
-### Векторні бази даних
+### Vector Databases
 
-Для простоти уроку індекс вбудовувань зберігається у JSON-файлі з назвою `embedding_index_3m.json` і завантажується в DataFrame Pandas. Однак на виробництві індекс вбудовувань зберігався б у векторній базі даних, такій як [Azure Cognitive Search](https://learn.microsoft.com/training/modules/improve-search-results-vector-search?WT.mc_id=academic-105485-koreyst), [Redis](https://cookbook.openai.com/examples/vector_databases/redis/readme?WT.mc_id=academic-105485-koreyst), [Pinecone](https://cookbook.openai.com/examples/vector_databases/pinecone/readme?WT.mc_id=academic-105485-koreyst), [Weaviate](https://cookbook.openai.com/examples/vector_databases/weaviate/readme?WT.mc_id=academic-105485-koreyst), щоб назвати лише деякі.
+For lesson simplicity, the Embedding Index is stored in a JSON file named `embedding_index_3m.json` and loaded into a Pandas DataFrame. However, in production, the Embedding Index would be stored in a vector database such as [Azure Cognitive Search](https://learn.microsoft.com/training/modules/improve-search-results-vector-search?WT.mc_id=academic-105485-koreyst), [Redis](https://cookbook.openai.com/examples/vector_databases/redis/readme?WT.mc_id=academic-105485-koreyst), [Pinecone](https://cookbook.openai.com/examples/vector_databases/pinecone/readme?WT.mc_id=academic-105485-koreyst), [Weaviate](https://cookbook.openai.com/examples/vector_databases/weaviate/readme?WT.mc_id=academic-105485-koreyst), to name but a few.
 
-## Розуміння косинусної подібності
+## Understanding cosine similarity
 
-Ми дізналися про текстові вбудовування, наступним кроком є дізнатися, як використовувати текстові вбудовування для пошуку даних, і зокрема знайти найбільш схожі вбудовування до заданого запиту, використовуючи косинусну подібність.
+We've learned about text embeddings, the next step is to learn how to use text embeddings to search for data and in particular find the most similar embeddings to a given query using cosine similarity.
 
-### Що таке косинусна подібність?
+### What is cosine similarity?
 
-Косинусна подібність – це міра схожості між двома векторами, ви також почуєте, що це називається "пошуком найближчого сусіда". Щоб виконати пошук косинусної подібності, вам потрібно _векторизувати_ текст _запиту_, використовуючи API вбудовування OpenAI. Потім обчислити _косинусну подібність_ між вектором запиту та кожним вектором в індексі вбудовувань. Пам'ятайте, що індекс вбудовувань має вектор для кожного сегмента тексту транскрипту YouTube. Нарешті, відсортувати результати за косинусною подібністю, і текстові сегменти з найвищою косинусною подібністю є найбільш схожими на запит.
+Cosine similarity is a measure of similarity between two vectors, you'll also hear this referred to as `nearest neighbor search`. To perform a cosine similarity search you need to _vectorize_ for _query_ text using the OpenAI Embedding API. Then calculate the _cosine similarity_ between the query vector and each vector in the Embedding Index. Remember, the Embedding Index has a vector for each YouTube transcript text segment. Finally, sort the results by cosine similarity and the text segments with the highest cosine similarity are the most similar to the query.
 
-З математичної точки зору, косинусна подібність вимірює косинус кута між двома векторами, спроектованими в багатовимірному просторі. Цей вимір корисний, тому що якщо два документи далеко один від одного за евклідовою відстанню через розмір, вони все ще можуть мати менший кут між ними і, отже, вищу косинусну подібність. Для отримання додаткової інформації про рівняння косинусної подібності, див. [Косинусна подібність](https://en.wikipedia.org/wiki/Cosine_similarity?WT.mc_id=academic-105485-koreyst).
+From a mathematic perspective, cosine similarity measures the cosine of the angle between two vectors projected in a multidimensional space. This measurement is beneficial, because if two documents are far apart by Euclidean distance because of size, they could still have a smaller angle between them and therefore higher cosine similarity. For more information about cosine similarity equations, see [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity?WT.mc_id=academic-105485-koreyst).
 
-## Створення першого пошукового застосунку
+## Building your first search application
 
-Далі ми дізнаємося, як створити пошуковий застосунок, використовуючи вбудовування. Пошуковий застосунок дозволить студентам шукати відео, ввівши запитання. Пошуковий застосунок поверне список відео, що відповідають запитанню. Пошуковий застосунок також поверне посилання на місце у відео, де знаходиться відповідь на запитання.
+Next, we're going to learn how to build a search application using Embeddings. The search application will allow students to search for a video by typing a question. The search application will return a list of videos that are relevant to the question. The search application will also return a link to the place in the video where the answer to the question is located.
 
-Це рішення було створено і протестовано на Windows 11, macOS та Ubuntu 22.04 з використанням Python 3.10 або пізнішої версії. Ви можете завантажити Python з [python.org](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
+This solution was built and tested on Windows 11, macOS, and Ubuntu 22.04 using Python 3.10 or later. You can download Python from [python.org](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
 
-## Завдання - створення пошукового застосунку для студентів
+## Assignment - building a search application, to enable students
 
-Ми представили наш стартап на початку цього уроку. Тепер настав час дати можливість студентам створити пошуковий застосунок для їхніх оцінювань.
+We introduced our startup at the beginning of this lesson. Now it's time to enable the students to build a search application for their assessments.
 
-У цьому завданні ви створите сервіси Azure OpenAI, які будуть використовуватися для створення пошукового застосунку. Ви створите наступні сервіси Azure OpenAI. Вам потрібна підписка Azure для виконання цього завдання.
+In this assignment, you will create the Azure OpenAI Services that will be used to build the search application. You will create the following Azure OpenAI Services. You'll need an Azure subscription to complete this assignment.
 
-### Запуск Azure Cloud Shell
+### Start the Azure Cloud Shell
 
-1. Увійдіть на [портал Azure](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst).
-2. Виберіть значок Cloud Shell у верхньому правому куті порталу Azure.
-3. Виберіть **Bash** для типу середовища.
+1. Sign in to the [Azure portal](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst).
+2. Select the Cloud Shell icon in the upper-right corner of the Azure portal.
+3. Select **Bash** for the environment type.
 
-#### Створення групи ресурсів
+#### Create a resource group
 
-> Для цих інструкцій ми використовуємо групу ресурсів з назвою "semantic-video-search" у East US.
-> Ви можете змінити назву групи ресурсів, але при зміні місцезнаходження для ресурсів,
-> перевірте [таблицю доступності моделей](https://aka.ms/oai/models?WT.mc_id=academic-105485-koreyst).
+> For these instructions, we're using the resource group named "semantic-video-search" in East US.
+> You can change the name of the resource group, but when changing the location for the resources,
+> check the [model availability table](https://aka.ms/oai/models?WT.mc_id=academic-105485-koreyst).
 
 ```shell
 az group create --name semantic-video-search --location eastus
 ```
 
-#### Створення ресурсу сервісу Azure OpenAI
+#### Create an Azure OpenAI Service resource
 
-З Azure Cloud Shell виконайте наступну команду для створення ресурсу сервісу Azure OpenAI.
+From the Azure Cloud Shell, run the following command to create an Azure OpenAI Service resource.
 
 ```shell
 az cognitiveservices account create --name semantic-video-openai --resource-group semantic-video-search \
     --location eastus --kind OpenAI --sku s0
 ```
 
-#### Отримання кінцевої точки та ключів для використання в цьому застосунку
+#### Get the endpoint and keys for usage in this application
 
-З Azure Cloud Shell виконайте наступні команди, щоб отримати кінцеву точку та ключі для ресурсу сервісу Azure OpenAI.
+From the Azure Cloud Shell, run the following commands to get the endpoint and keys for the Azure OpenAI Service resource.
 
 ```shell
 az cognitiveservices account show --name semantic-video-openai \
@@ -133,9 +133,9 @@ az cognitiveservices account keys list --name semantic-video-openai \
    --resource-group semantic-video-search | jq -r .key1
 ```
 
-#### Розгортання моделі вбудовування OpenAI
+#### Deploy the OpenAI Embedding model
 
-З Azure Cloud Shell виконайте наступну команду для розгортання моделі вбудовування OpenAI.
+From the Azure Cloud Shell, run the following command to deploy the OpenAI Embedding model.
 
 ```shell
 az cognitiveservices account deployment create \
@@ -148,16 +148,16 @@ az cognitiveservices account deployment create \
     --sku-capacity 100 --sku-name "Standard"
 ```
 
-## Рішення
+## Solution
 
-Відкрийте [записник рішення](./python/aoai-solution.ipynb?WT.mc_id=academic-105485-koreyst) у GitHub Codespaces і дотримуйтесь інструкцій у Jupyter Notebook.
+Open the [solution notebook](./python/aoai-solution.ipynb?WT.mc_id=academic-105485-koreyst) in GitHub Codespaces and follow the instructions in the Jupyter Notebook.
 
-Коли ви запустите записник, вам буде запропоновано ввести запит. Поле введення виглядатиме так:
+When you run the notebook, you'll be prompted to enter a query. The input box will look like this:
 
-![Поле введення для користувача для введення запиту](./images/notebook-search.png?WT.mc_id=academic-105485-koreyst)
+![Input box for the user to input a query](./images/notebook-search.png?WT.mc_id=academic-105485-koreyst)
 
-## Чудова робота! Продовжуйте навчання
+## Great Work! Continue Your Learning
 
-Після завершення цього уроку перегляньте нашу [колекцію навчання генеративного ШІ](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), щоб продовжити підвищувати ваші знання генеративного ШІ!
+After completing this lesson, check out our [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) to continue leveling up your Generative AI knowledge!
 
-Переходьте до Уроку 9, де ми розглянемо, як [створювати застосунки для генерації зображень](../09-building-image-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+Head over to Lesson 9 where we will look at how to [build image generation applications](../09-building-image-applications/README.md?WT.mc_id=academic-105485-koreyst)!

@@ -1,0 +1,61 @@
+Robotics is a branch of engineering and science that includes electronics engineering, mechanical engineering and computer science and so on. This branch deals with the design, construction, use to control robots, sensory feedback and information processing. These are some technologies which will replace humans and human activities in coming years. These robots are designed to be used for any purpose but these are using in sensitive environments like bomb detection, deactivation of various bombs etc. Robots can take any form but many of them have given the human appearance. The robots which have taken the form of human appearance may likely to have the walk like humans, speech, cognition and most importantly all the things a human can do. Most of the robots of today are inspired by nature and are known as bio-inspired robots. Robotics is that branch of engineering that deals with conception, design, operation, and manufacturing of robots. There was an author named Issac Asimov, he said that he was the first person to give robotics name in a short story composed in 1940’s. In that story, Issac suggested three principles about how to guide these types of robotic machines. Later on, these three principles were given the name of Issac’s three laws of Robotics. These three laws state that:
+
+Robots will never harm human beings.
+Robots will follow instructions given by humans with breaking law one.
+Robots will protect themselves without breaking other rules.
+Characteristics
+
+There are some characteristics of robots given below:
+
+Appearance: Robots have a physical body. They are held by the structure of their body and are moved by their mechanical parts. Without appearance, robots will be just a software program.
+Brain: Another name of brain in robots is On-board control unit. Using this robot receive information and sends commands as output. With this control unit robot knows what to do else it’ll be just a remote-controlled machine.
+Sensors: The use of these sensors in robots is to gather info from the outside world and send it to Brain. Basically, these sensors have circuits in them that produces the voltage in them.
+Actuators: The robots move and the parts with the help of these robots move is called Actuators. Some examples of actuators are motors, pumps, and compressor etc. The brain tells these actuators when and how to respond or move.
+Program: Robots only works or responds to the instructions which are provided to them in the form of a program. These programs only tell the brain when to perform which operation like when to move, produce sounds etc. These programs only tell the robot how to use sensors data to make decisions.
+Behaviour: Robots behavior is decided by the program which has been built for it. Once the robot starts making the movement, one can easily tell which kind of program is being installed inside the robot.
+Types of Robots
+
+These are the some types of robots given below:
+
+Articulated: The feature of this robot is its rotary joints and range of these are from 2 to 10 or more joints. The arm is connected to the rotary joint and each joint is known as the axis which provides a range of movements.
+Cartesian: These are also known as gantry robots. These have three joints which use the Cartesian coordinate system i.e x, y, z. These robots are provided with attached wrists to provide rotatory motion.
+Cylindrical: These types of robots have at least one rotatory joints and one prismatic joint which are used to connect the links. The use of rotatory joints is to rotate along the axis and prismatic joint used to provide linear motion.
+Polar: These are also known as spherical robots. The arm is connected to base with a twisting joint and have a combination of 2 rotatory joint and one linear joint.
+Scara: These robots are mainly used in assembly applications. Its arm is in cylindrical in design. It has two parallel joints which are used to provide compliance in one selected plane.
+Delta: The structure of these robots are like spider-shaped. They are built by joint parallelograms that are connected to the common base. The parallelogram moves in a dome-shaped work area. These are mainly used in food and electrical industries.
+Scope and limitations of robots: The advance version of machines are robots which are used to do advanced tasks and are programmed to make decisions on their own. When a robot is designed the most important thing to be kept in mind is that What the function is to be performed and what are the limitations of the robot. Each robot has a basic level of complexity and each of the levels has the scope which limits the functions that are to be performed. For general basic robots, their complexity is decided by the number of limbs, actuators and the sensors that are used while for advanced robots the complexity is decided by the number of microprocessors and microcontroller used. As increasing any component in the robot, it is increasing the scope of the robot and with every joint added, the degree of the robot is enhanced. Advantages: The advantages of using robots are given below:
+
+They can get information that a human can’t get.
+They can perform tasks without any mistakes and very efficiently and fast.
+Maximum robots are automatic, so they can perform different tasks without needing human interaction.
+Robots are used in different factories to produce items like plane, car parts etc.
+They can be used for mining purposes and can be sent to earth’s madrid.
+Disadvantages: The disadvantages of using robots are given below:
+
+They need the power supply to keep going. People working in factories may lose their jobs as robots can replace them.
+They need high maintenance to keep them working all day long. And the cost of maintaining the robots can be expensive.
+They can store huge amount of data but they are not as efficient as our human brains.
+As we know that robots work on the program that has been installed in them. So other than the program installed, robots can’t do anything different.
+The most important disadvantage is that if the program of robots comes in wrong hands they can cause the huge amount of destruction.
+Applications: Different types of robots can performs different types of tasks. For example, many of the robots are made for assembly work which means that they are not relevant for any other work and these types of robots are called Assembly Robots. Similarly, for seam welding many suppliers provide robots with their welding materials and these types of robots are known as Welding Robots. While on the other hand many robots are designed for heavy-duty work and are known as Heavy Duty Robots. There are some applications given below:
+
+Caterpillar plans which is aiming to develop remote-controlled machines and are expecting to develop heavy robots by 2021.
+A robot can also do Herding task.
+Robots are increasingly been used more than humans in manufacturing while in auto-industry there are more than half of the labors are “Robots”.
+Many of the robots are used as Military Robots.
+Robots have been used in cleaning up of areas like toxic waste or industrial wastes etc.
+Agricultural robots.
+Household robots.
+Domestic robots.
+Nano robots.
+Swarm robots.
+Advantages:
+Increased Efficiency: Robots can work 24/7 without getting tired, leading to increased productivity and efficiency.
+Improved Accuracy: Robots are capable of performing tasks with high precision and accuracy, reducing errors and improving quality.
+Increased Safety: Robots can perform tasks that are dangerous for humans, improving overall safety in the workplace.
+Reduced Labor Costs: The use of robots can lead to reduced labor costs, as robots can perform tasks more cheaply than human workers.
+Disadvantages:
+Initial Cost: Implementing and maintaining a robotics system can be expensive, especially for small and medium-sized businesses.
+Job Losses: The increased use of robots may result in job losses for human workers, particularly in industries where manual labor is prevalent.
+Limited Capabilities: Robots are still limited in their capabilities compared to human workers and may not be able to perform tasks requiring dexterity or creativity.
+Maintenance Costs: Robots require regular maintenance and repair, which can be time-consuming and expensive.
